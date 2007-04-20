@@ -119,11 +119,9 @@ Common files for kdenetwork
 
 %dir %_datadir/apps/zeroconf/
 %_datadir/apps/zeroconf/*
-%_datadir/services/kded/dnssdwatcher.desktop
+%_datadir/kde4/services/kded/dnssdwatcher.desktop
 %_libdir/kde4/kded_dnssdwatcher.*
-%_datadir/services/zeroconf.protocol
-
-%_datadir/services/kfile_torrent.desktop
+%_datadir/kde4/services/zeroconf.protocol
 
 %dir %_docdir/HTML/en/kpf/
 %doc %_docdir/HTML/en/kpf/*.bz2
@@ -136,7 +134,7 @@ Common files for kdenetwork
 %_datadir/applications/kde4/kcmsambaconf.desktop
 %_iconsdir/hicolor/16x16/apps/kcmsambaconf.png
 
-%_datadir/services/fileshare_propsdlgplugin.desktop
+%_datadir/kde4/services/fileshare_propsdlgplugin.desktop
 
 
 #-----------------------------------------------------------
@@ -154,7 +152,6 @@ Libraries for kdenetwork.
 
 %files -n %lib_name-common
 %defattr(-,root,root,-)
-%_libdir/kde4/kfile_torrent.so
 
 #-----------------------------------------------------------
 
@@ -173,7 +170,7 @@ Header files for kdenetwork.
 
 %files -n %lib_name-common-devel
 %defattr(-,root,root,-)
-
+%_datadir/dbus-1/interfaces/org.kde.kdnssd.xml
 #-----------------------------------------------------------
 
 %package kopete
@@ -214,47 +211,24 @@ plugin off of.
 %_datadir/apps/kconf_update/kopete-account-0.10.pl
 %_datadir/apps/kconf_update/kopete-account-kconf_update.sh
 %_datadir/apps/kconf_update/kopete-account-kconf_update.upd
-%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.sh
-%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd
-%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.sh
-%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.upd
 %_datadir/apps/kconf_update/kopete-nameTracking.upd
 %_datadir/apps/kconf_update/kopete-pluginloader.pl
 %_datadir/apps/kconf_update/kopete-pluginloader.upd
 %_datadir/apps/kconf_update/kopete-pluginloader2.sh
 %_datadir/apps/kconf_update/kopete-pluginloader2.upd
 %_datadir/applications/kde4/kopete.desktop
+%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.sh
+%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd
+%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.sh
+%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.upd
 
-
-%_datadir/services/kopete_*.desktop
-%_datadir/services/xmpp.protocol
-%_datadir/servicetypes/kopete*.desktop
+%_datadir/kde4/services/kopete_*.desktop
+%_datadir/kde4/servicetypes/kopete*.desktop
 %_datadir/sounds/Kopete_*.ogg
-%_iconsdir/kopete/icons/crystalsvg/16x16/apps/jabber_protocol.png
-%_iconsdir/kopete/icons/crystalsvg/32x32/apps/jabber_protocol.png
-%_iconsdir/kopete/icons/crystalsvg/48x48/apps/jabber_protocol.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_away.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_chatty.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_connecting.mng
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_group.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_invisible.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_na.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_offline.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_online.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_original.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_raw.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_serv_off.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_serv_on.png
-%_iconsdir/kopete/icons/hicolor/16x16/actions/jabber_xa.png
-%_iconsdir/kopete/icons/hicolor/16x16/apps/jabber_protocol.png
-%_iconsdir/kopete/icons/hicolor/32x32/apps/jabber_protocol.png
-%_iconsdir/kopete/icons/hicolor/48x48/apps/jabber_protocol.png
-%_datadir/mimelnk/application/x-icq.desktop
-%_datadir/mimelnk/application/x-kopete-emoticons.desktop
-%_datadir/services/aim.protocol
-%_datadir/services/chatwindow.desktop
-%_datadir/services/emailwindow.desktop
-%_datadir/services/kconfiguredialog/kopete_*.desktop
+%_datadir/kde4/services/aim.protocol
+%_datadir/kde4/services/chatwindow.desktop
+%_datadir/kde4/services/emailwindow.desktop
+%_datadir/kde4/services/kconfiguredialog/kopete_*.desktop
 
 %_iconsdir/hicolor/22x22/actions/kopeteavailable.png
 %_iconsdir/hicolor/22x22/actions/kopeteaway.png
@@ -268,8 +242,6 @@ plugin off of.
 %_iconsdir/hicolor/48x48/apps/kopete.png
 %_iconsdir/hicolor/64x64/apps/kopete.png
 %_iconsdir/hicolor/scalable/apps/kopete2.svgz
-%_iconsdir/kopete/icons/crystalsvg/16x16/actions/jabber_*.png
-%_iconsdir/kopete/icons/crystalsvg/16x16/apps/jabber_*.png
 %_iconsdir/crystalsvg/32x32/actions/edit_user.png
 %_iconsdir/crystalsvg/32x32/actions/kopeteavailable.png
 %_iconsdir/crystalsvg/32x32/actions/kopeteaway.png
@@ -305,7 +277,6 @@ plugin off of.
 %_iconsdir/hicolor/16x16/actions/status_unknown.png
 %_iconsdir/hicolor/16x16/actions/status_unknown_overlay.png
 %_iconsdir/hicolor/16x16/apps/kopete.png
-%_iconsdir/kopete/icons/crystalsvg/16x16/actions/jabber_connecting.mng
 %_iconsdir/crystalsvg/16x16/actions/kopeteaway.png
 %_iconsdir/crystalsvg/16x16/actions/kopeteeditstatusmessage.png
 %_iconsdir/crystalsvg/16x16/actions/kopetestatusmessage.png
@@ -346,8 +317,6 @@ plugin off of.
 %dir %_datadir/apps/kopete_history/
 %_datadir/apps/kopete_history/historychatui.rc
 %_datadir/apps/kopete_history/historyui.rc
-%dir %_datadir/apps/kopete_jabber/
-%_datadir/apps/kopete_jabber/jabberchatui.rc
 %dir %_datadir/apps/kopete_msn/
 %_datadir/apps/kopete_msn/msnchatui.rc
 %dir %_datadir/apps/kopete_privacy/
@@ -629,13 +598,11 @@ Kopete Devel files
 %_libdir/libkopete_oscar.so
 %_libdir/libkopete_videodevice.so
 %_libdir/libgadu_kopete.so
-%_libdir/libiris_kopete.so
 %_libdir/libkopeteaddaccountwizard.so
 %_libdir/libkopetechatwindow_shared.so
 %_libdir/libkopeteprivacy.so
 %_libdir/libkyahoo.so
 %_libdir/liboscar.so
-%_libdir/libpapillon_kopete.so
 %dir %_includedir/kopete/
 %dir %_includedir/kopete/ui/
 %_includedir/kopete/ui/*.h
@@ -676,11 +643,9 @@ plugin off of.
 %_libdir/libkopeteprivacy.so.*
 %_libdir/libkyahoo.so.*
 %_libdir/liboscar.so.*
-%_libdir/libpapillon_kopete.so.*
 %_libdir/libkopeteaddaccountwizard.so.*
 %_libdir/libkopetechatwindow_shared.so.*
 %_libdir/libgadu_kopete.so.*
-%_libdir/libiris_kopete.so.*
 %_libdir/libkopete.so.*
 %_libdir/libkopete_msn_shared.so.*
 %_libdir/libkopete_oscar.so.*
@@ -719,11 +684,10 @@ relying on the TCP/IP protocol stack, no smb or whatever.
 %_datadir/apps/konqueror/dirtree/remote/lan.desktop
 %_datadir/apps/konqueror/servicemenus/smb2rdc.desktop
 %_datadir/apps/lisa/README
-%_datadir/services/invitation.protocol
-%_datadir/services/kcmkiolan.desktop
-%_datadir/services/kcmlisa.desktop
-%_datadir/services/lan.protocol
-%_datadir/services/rdp.protocol
+%_datadir/kde4/services/kcmkiolan.desktop
+%_datadir/kde4/services/kcmlisa.desktop
+%_datadir/kde4/services/lan.protocol
+%_datadir/kde4/services/rdp.protocol
 %dir %_docdir/HTML/en/lanbrowser/
 %doc %_docdir/HTML/en/lanbrowser/*.docbook
 %doc %_docdir/HTML/en/lanbrowser/*.bz2
@@ -884,6 +848,7 @@ Libraries for kwifimanager
 Group: Graphical desktop/KDE
 Summary: Kget program
 Provides: kget4
+Requires:	%lib_name-kget = %{epoch}:%version-%release
 
 %description kget
 An advanced download manager for KDE.
@@ -898,6 +863,70 @@ An advanced download manager for KDE.
 %doc %_docdir/HTML/en/kget/*.bz2
 %doc %_docdir/HTML/en/kget/*.docbook
 %doc %_docdir/HTML/en/kget/*.png
+%_bindir/kget
+%_datadir/applications/kde4/kget.desktop
+%_iconsdir/crystalsvg/16x16/apps/kget.png
+%_iconsdir/crystalsvg/16x16/mimetypes/kget_list.png
+%_iconsdir/crystalsvg/22x22/apps/kget.png
+%_iconsdir/crystalsvg/22x22/mimetypes/kget_list.png
+%_iconsdir/crystalsvg/32x32/apps/kget.png
+%_iconsdir/crystalsvg/32x32/mimetypes/kget_list.png
+%_iconsdir/crystalsvg/48x48/apps/kget.png
+%_iconsdir/crystalsvg/48x48/mimetypes/kget_list.png
+%_datadir/kde4/services/kget_kiofactory.desktop
+%_datadir/kde4/services/kget_metalinkfactory.desktop
+%_datadir/kde4/services/kget_multisegkiofactory.desktop
+%_datadir/kde4/servicetypes/kget_plugin.desktop
+%_datadir/sounds/KGet_Added.ogg
+%_datadir/sounds/KGet_Finished.ogg
+%_datadir/sounds/KGet_Finished_All.ogg
+%_datadir/sounds/KGet_Started.ogg
+%_datadir/apps/kget/icons/crystalsvg/32x32/actions/transfers_list.png
+%_datadir/apps/kget/kget.notifyrc
+%_datadir/apps/kget/kgetui.rc
+%_datadir/apps/kget/pics/kget_splash.png
+%_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
+%_datadir/apps/konqueror/servicemenus/kget_download.desktop
+%_datadir/config.kcfg/kget.kcfg
+%_datadir/config.kcfg/kget_multisegkiofactory.kcfg
+
+
+#-----------------------------------------------------------
+
+%package -n %lib_name-kget
+Group:      Development/KDE and Qt
+Summary:    Libraries for kget
+Provides:   %lib_name = %epoch:%version-%release
+
+%description -n %lib_name-kget
+Libraries for kget.
+
+%post -n %lib_name-kget -p /sbin/ldconfig
+%postun -n %lib_name-kget -p /sbin/ldconfig
+
+%files -n %lib_name-kget
+%defattr(-,root,root,-)
+%_libdir/kde4/khtml_kget.so
+%_libdir/kde4/libkget_kiofactory.so
+%_libdir/kde4/libkget_metalinkfactory.so
+%_libdir/kde4/libkget_multisegkiofactory.so
+%_libdir/libkgetcore.so.*
+
+
+#-----------------------------------------------------------
+
+%package  -n %lib_name-kget-devel
+Summary:        Header files for kget
+Group: Development/KDE and Qt
+
+Provides: kget4-devel = %epoch:%version-%release
+
+%description -n %lib_name-kget-devel
+Header files for kget.
+
+%files -n %lib_name-kget-devel
+%defattr(-,root,root,-)
+%_libdir/libkgetcore.so
 
 #-----------------------------------------------------------
 
@@ -916,25 +945,14 @@ location to watch and possibly control your desktop.
 
 %files krfb
 %defattr(-,root,root,-)
-%_libdir/kde4/kcm_krfb.so
 %_bindir/krdc
-%_bindir/krfb
-%_bindir/krfb_httpd
-%_datadir/services/vnc.protocol
-%_datadir/applications/kde4/krdc.desktop
+%_datadir/kde4/services/vnc.protocol
 %dir %_datadir/apps/krdc/
 %_datadir/apps/krdc/*
 %_iconsdir/*/*/*/krdc*
+%_datadir/applications/kde4/krdc.desktop
 
 
-
-%_datadir/applications/kde4/krfb.desktop
-%_datadir/apps/krfb/krfb.notifyrc
-%dir %_datadir/apps/krfb/pics/
-%_datadir/apps/krfb/pics/connection-side-image.png
-%_datadir/apps/krfb/pics/eyes-closed24.png
-%_datadir/apps/krfb/pics/eyes-open24.png
-%_datadir/dbus-1/interfaces/org.kde.krfb.xml
 
 %dir %_docdir/HTML/en/krdc/
 %doc %_docdir/HTML/en/krdc/*.png
@@ -946,18 +964,6 @@ location to watch and possibly control your desktop.
 %doc %_docdir/HTML/en/krfb/*.bz2
 %doc %_docdir/HTML/en/krfb/*.docbook
 
-%_iconsdir/crystalsvg/16x16/apps/krfb.png
-%_iconsdir/crystalsvg/32x32/apps/krfb.png
-%_iconsdir/crystalsvg/48x48/apps/krfb.png
-
-
-%_iconsdir/locolor/16x16/apps/krfb.png
-%_iconsdir/locolor/32x32/apps/krfb.png
-
-%_datadir/services/kcmkrfb.desktop
-
-%_datadir/services/kinetd_krfb.desktop
-%_datadir/services/kinetd_krfb_httpd.desktop
 
 #-----------------------------------------------------------
 
