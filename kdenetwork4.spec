@@ -76,6 +76,7 @@ BuildRequires: mesaglut-devel
 BuildRequires: X11-devel
 BuildRequires: libxtst-devel
 BuildRequires:	mDNSResponder-devel
+BuildRequires:	libvncserver-devel
 #For kopete.
 BuildRequires: qca2-devel
 Requires: %name-kdict  = %epoch:%version-%release	
