@@ -79,7 +79,8 @@ BuildRequires:	mDNSResponder-devel
 %define release_min_mkrel %mkrel 3
 BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel} 
 #For kopete.
-BuildRequires: qca2-devel
+%define release_min_mkrel_qca2 %mkrel 8
+BuildRequires: qca2-devel >= 2.0-0.beta2.${release_min_mkrel_qca2}
 Requires: %name-kdict  = %epoch:%version-%release	
 Requires: %name-kget = %epoch:%version-%release
 Requires: %name-ktalk = %epoch:%version-%release
