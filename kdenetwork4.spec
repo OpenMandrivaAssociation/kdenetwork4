@@ -8,7 +8,7 @@
 %define _sysconfdir %_prefix/etc/
 %define _docdir %_datadir/doc/
 
-%define branch_date 20070418
+%define branch_date 20070502
 %define support_ldap 1
 
 %define use_enable_pie 1
