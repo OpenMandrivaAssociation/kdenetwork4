@@ -988,7 +988,7 @@ Libraries for kwifimanager
 %files -n %lib_name-kdict
 %defattr(-,root,root,-)
 %_libdir/kde4/kdict_panelapplet.so
-%_libdir/libkdeinit_kdict.so
+%_libdir/libkdeinit4_kdict.so
 %_datadir/dbus-1/interfaces/org.kde.kdict.xml
 
 #-----------------------------------------------------------
@@ -1233,4 +1233,5 @@ mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kcmsambaco
 
 %clean
 rm -fr %buildroot
+
 
