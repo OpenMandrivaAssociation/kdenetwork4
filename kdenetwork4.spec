@@ -782,7 +782,7 @@ KDE 4 library.
 #-----------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdenetwork
+%setup -q -n kdenetwork-%version
 
 %build
 cd $RPM_BUILD_DIR/kdenetwork-%version
