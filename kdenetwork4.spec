@@ -35,7 +35,7 @@ Summary: 	K Desktop Environment - Network Applications
 License: 	GPL
 URL: 		http://www.kde.org
 %if %branch
-Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version-%revision.tar.bz2
+Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%revision.tar.bz2
 %else
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
