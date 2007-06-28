@@ -785,7 +785,7 @@ KDE 4 library.
 %setup -q -n kdenetwork
 
 %build
-cd $RPM_BUILD_DIR/kdenetwork
+cd $RPM_BUILD_DIR/kdenetwork-%version
 
 %cmake_kde4 \
        -DDBUS_SERVICES_DIR=%_kde_datadir/dbus-1/services \
@@ -806,7 +806,7 @@ cd $RPM_BUILD_DIR/kdenetwork
 
 %install
 rm -fr %buildroot
-cd $RPM_BUILD_DIR/kdenetwork/build/
+cd $RPM_BUILD_DIR/kdenetwork-%version/build/
 
 make DESTDIR=%buildroot install
 
