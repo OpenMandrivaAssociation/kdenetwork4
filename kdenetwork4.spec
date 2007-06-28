@@ -1135,8 +1135,8 @@ KDE 4 library.
 cd $RPM_BUILD_DIR/kdenetwork
 
 %cmake_kde4 \
-       -DDBUS_SERVICES_DIR=%_datadir/dbus-1/services \
-       -DDBUS_INTERFACES_DIR=%_datadir/dbus-1/interfaces \
+       -DDBUS_SERVICES_DIR=%_kde_datadir/dbus-1/services \
+       -DDBUS_INTERFACES_DIR=%_kde_datadir/dbus-1/interfaces \
 %if %use_enable_final
       -DKDE4_ENABLE_FINAL=ON \
 %endif
