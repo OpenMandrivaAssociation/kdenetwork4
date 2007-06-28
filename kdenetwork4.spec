@@ -1,19 +1,11 @@
-# remove it when kde4 will be official kde package
-%define _prefix /opt/kde4/
-%define _libdir %_prefix/%_lib
-%define _datadir %_prefix/share/
-%define _bindir %_prefix/bin
-%define _includedir %_prefix/include/
-%define _iconsdir %_datadir/icons/
-%define _sysconfdir %_prefix/etc/
-%define _docdir %_datadir/doc/
-
-%define branch_date 20070502
+%define revision  681220
 %define support_ldap 1
+
+%define _kde_includedir %_kde_prefix/include
+%define _kde_sbindir %_kde_prefix/sbin
 
 %define use_enable_pie 1
 %{?_no_enable_pie: %{expand: %%global use_enable_pie 0}}
-
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -35,58 +27,56 @@
 
 
 Name: 		kdenetwork4
-Version: 	3.90.1
-Release: 	%mkrel 0.%branch_date.1
+Version: 	3.91
+Release: 	%mkrel 0.%revision.1
 Epoch: 		2
 Group: 		Development/KDE and Qt
 Summary: 	K Desktop Environment - Network Applications
 License: 	GPL
 URL: 		http://www.kde.org
-Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
 %if %branch
-Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version-%branch_date.tar.bz2
+Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version-%revision.tar.bz2
 %else
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
-Source1: kdenetwork3-kppp.pamd
-Source2: kdenetwork-lisa
+Source1:        kdenetwork3-kppp.pamd
+Source2:        kdenetwork-lisa
 BuildRoot:	%_tmppath/%name-%version-%release-root
-BuildRequires: freetype2-devel
-BuildRequires: gettext
-%define mini_release %mkrel 0.%branch_date.1
-BuildRequires: kdelibs4-devel >= %version-%mini_release
-BuildRequires: libaudiofile-devel
-BuildRequires: bzip2-devel
-BuildRequires: jpeg-devel
-BuildRequires: lcms-devel
-BuildRequires: mng-devel
-BuildRequires: png-devel
-BuildRequires: libz-devel
-BuildRequires: libxml2-devel
-BuildRequires: libxslt-devel
-BuildRequires: libopenslp-devel
-BuildRequires: libiw-devel
-BuildRequires: wireless-tools
-BuildRequires: libopenssl-devel
-BuildRequires: kdebase4-devel
-BuildRequires: kdepimlibs4-devel
-BuildRequires: libidn-devel
-BuildRequires: libgsmlib-devel
-BuildRequires: mesaglut-devel
-BuildRequires: X11-devel
-BuildRequires: libxtst-devel
+BuildRequires:  freetype2-devel
+BuildRequires:  gettext
+%define mini_release %mkrel 0.%revision.1
+BuildRequires:  kdelibs4-devel
+BuildRequires:  libaudiofile-devel
+BuildRequires:  bzip2-devel
+BuildRequires:  jpeg-devel
+BuildRequires:  lcms-devel
+BuildRequires:  mng-devel
+BuildRequires:  png-devel
+BuildRequires:  libz-devel
+BuildRequires:  libxml2-devel
+BuildRequires:  libxslt-devel
+BuildRequires:  libopenslp-devel
+BuildRequires:  libiw-devel
+BuildRequires:  wireless-tools
+BuildRequires:  libopenssl-devel
+BuildRequires:  kdebase4-devel
+BuildRequires:  kdepimlibs4-devel
+BuildRequires:  libidn-devel
+BuildRequires:  libgsmlib-devel
+BuildRequires:  mesaglut-devel
+BuildRequires:  X11-devel
+BuildRequires:  libxtst-devel
 BuildRequires:	mDNSResponder-devel
 %define release_min_mkrel %mkrel 3
 BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel} 
 #For kopete.
 %define release_min_mkrel_qca2 %mkrel 8
 BuildRequires: qca2-devel >= 2.0-0.beta2.${release_min_mkrel_qca2}
-Requires: %name-kdict  = %epoch:%version-%release	
-Requires: %name-kget = %epoch:%version-%release
-Requires: %name-ktalk = %epoch:%version-%release
-Requires: %name-krfb = %epoch:%version-%release
-Requires: %name-kopete = %epoch:%version-%release
-Requires: %name-knewsticker = %epoch:%version-%release
+Requires: kde4-kget = %epoch:%version-%release
+Requires: kde4-ktalk = %epoch:%version-%release
+Requires: kde4-krfb = %epoch:%version-%release
+Requires: kde4-kopete = %epoch:%version-%release
+Requires: kde4-knewsticker = %epoch:%version-%release
 
 %description
 Networking applications for the K Desktop Environment.
@@ -104,82 +94,42 @@ Networking applications for the K Desktop Environment.
 
 #-----------------------------------------------------------
 
-%package common
+%package core
 Summary:	Common files for kdenetwork
 Group:		Graphical desktop/KDE
 
-#Requires: kdebase4-progs 
-Requires: %lib_name-common = %epoch:%version-%release
+Obsoletes:      %name-common
 
-%description common
+%description core
 Common files for kdenetwork
 
-%files common
+%files core
 %defattr(-,root,root,-)
-%_libdir/kde4/kio_zeroconf.*
+%_kde_libdir/kde4/kio_zeroconf.*
 
-%_datadir/apps/remoteview/*
+%_kde_appsdir/remoteview/*
 
-%dir %_datadir/apps/zeroconf/
-%_datadir/apps/zeroconf/*
-%_datadir/kde4/services/kded/dnssdwatcher.desktop
-%_libdir/kde4/kded_dnssdwatcher.*
-%_datadir/kde4/services/zeroconf.protocol
+%dir %_kde_appsdir/zeroconf/
+%_kde_appsdir/zeroconf/*
+%_kde_datadir/kde4/services/kded/dnssdwatcher.desktop
+%_kde_datadir/kde4/services/fileshare.desktop
+%_kde_datadir/kde4/services/kcmsambaconf.desktop
+%_kde_libdir/kde4/kded_dnssdwatcher.*
+%_kde_datadir/kde4/services/zeroconf.protocol
+%_kde_datadir/dbus-1/interfaces/org.kde.kdnssd.xml
+%_kde_libdir/kde4/fileshare_propsdlgplugin.so
+%_kde_libdir/kde4/kcm_fileshare.so
+%_kde_libdir/kde4/kcm_kcmsambaconf.so
+%_kde_libdir/kde4/libkrichtexteditpart.so
+%_kde_iconsdir/hicolor/16x16/apps/kcmsambaconf.png
+%_kde_datadir/kde4/services/fileshare_propsdlgplugin.desktop
 
-%dir %_docdir/HTML/en/kpf/
-%doc %_docdir/HTML/en/kpf/*.bz2
-%doc %_docdir/HTML/en/kpf/*.docbook
-
-%_libdir/kde4/fileshare_propsdlgplugin.so
-%_libdir/kde4/kcm_fileshare.so
-%_libdir/kde4/libkcm_kcmsambaconf.so
-%_datadir/applications/kde4/fileshare.desktop
-%_datadir/applications/kde4/kcmsambaconf.desktop
-%_iconsdir/hicolor/16x16/apps/kcmsambaconf.png
-
-%_datadir/kde4/services/fileshare_propsdlgplugin.desktop
-
-
-#-----------------------------------------------------------
-
-%package -n %lib_name-common
-Group:      Development/KDE and Qt
-Summary:    Libraries for kdenetwork
-Provides:   %lib_name = %epoch:%version-%release
-
-%description -n %lib_name-common
-Libraries for kdenetwork.
-
-%post -n %lib_name-common -p /sbin/ldconfig
-%postun -n %lib_name-common -p /sbin/ldconfig
-
-%files -n %lib_name-common
-%defattr(-,root,root,-)
-
-#-----------------------------------------------------------
-
-%package  -n %lib_name-common-devel
-Summary:	Header files for kdenetwork
-Group: Development/KDE and Qt
-
-Provides: %name-devel = %epoch:%version-%release
-
-Provides: %lib_name-devel = %epoch:%version-%release
-
-Requires: %lib_name-common = %epoch:%version-%release
-
-%description -n %lib_name-common-devel
-Header files for kdenetwork.
-
-%files -n %lib_name-common-devel
-%defattr(-,root,root,-)
-%_datadir/dbus-1/interfaces/org.kde.kdnssd.xml
 #-----------------------------------------------------------
 
 %package kopete
 Group: Graphical desktop/KDE
 Summary: Kopete
-Requires: %name-common >= %epoch:%version-%release
+Requires: %name-core >= %epoch:%version-%release
 Provides: kopete4
 BuildConflicts: xmms-devel
 #Need for yahoo webcam
@@ -208,505 +158,457 @@ plugin off of.
 
 %files kopete
 %defattr(-,root,root,-)
-%_bindir/kopete
-%_bindir/winpopup-install.sh
-%_bindir/winpopup-send.sh
+%_kde_bindir/kopete
+%_kde_bindir/winpopup-install.sh
+%_kde_bindir/winpopup-send.sh
 
-%_datadir/apps/kopete_jabber/jabberchatui.rc
+%_kde_libdir/kde4/kcm_kopete_*
+%_kde_libdir/kde4/kopete_*
 
-%_datadir/kde4/services/xmpp.protocol
+%_kde_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
 
-%_datadir/apps/kconf_update/kopete-account-0.10.pl
-%_datadir/apps/kconf_update/kopete-account-kconf_update.sh
-%_datadir/apps/kconf_update/kopete-account-kconf_update.upd
-%_datadir/apps/kconf_update/kopete-nameTracking.upd
-%_datadir/apps/kconf_update/kopete-pluginloader.pl
-%_datadir/apps/kconf_update/kopete-pluginloader.upd
-%_datadir/apps/kconf_update/kopete-pluginloader2.sh
-%_datadir/apps/kconf_update/kopete-pluginloader2.upd
-%_datadir/applications/kde4/kopete.desktop
-%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.sh
-%_datadir/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd
-%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.sh
-%_datadir/apps/kconf_update/kopete-jabberproxytype-kconf_update.upd
+%_kde_appsdir/kconf_update/kopete-account-0.10.pl
+%_kde_appsdir/kconf_update/kopete-account-kconf_update.sh
+%_kde_appsdir/kconf_update/kopete-account-kconf_update.upd
+%_kde_appsdir/kconf_update/kopete-nameTracking.upd
+%_kde_appsdir/kconf_update/kopete-pluginloader.pl
+%_kde_appsdir/kconf_update/kopete-pluginloader.upd
+%_kde_appsdir/kconf_update/kopete-pluginloader2.sh
+%_kde_appsdir/kconf_update/kopete-pluginloader2.upd
+%_kde_datadir/applications/kde4/kopete.desktop
+%_kde_appsdir/kconf_update/kopete-jabberpriorityaddition-kconf_update.sh
+%_kde_appsdir/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd
+%_kde_appsdir/kconf_update/kopete-jabberproxytype-kconf_update.sh
+%_kde_appsdir/kconf_update/kopete-jabberproxytype-kconf_update.upd
 
-%_datadir/kde4/services/kopete_*.desktop
-%_datadir/kde4/servicetypes/kopete*.desktop
-%_datadir/sounds/Kopete_*.ogg
-%_datadir/kde4/services/aim.protocol
-%_datadir/kde4/services/chatwindow.desktop
-%_datadir/kde4/services/emailwindow.desktop
-%_datadir/kde4/services/kconfiguredialog/kopete_*.desktop
+%_kde_datadir/kde4/services/kopete_*.desktop
+%_kde_datadir/kde4/servicetypes/kopete*.desktop
+%_kde_datadir/sounds/Kopete_*.ogg
+%_kde_datadir/kde4/services/aim.protocol
+%_kde_datadir/kde4/services/chatwindow.desktop
+%_kde_datadir/kde4/services/emailwindow.desktop
+%_kde_datadir/kde4/services/kconfiguredialog/kopete_*.desktop
 
-%_iconsdir/hicolor/22x22/actions/kopeteavailable.png
-%_iconsdir/hicolor/22x22/actions/kopeteaway.png
-%_iconsdir/hicolor/22x22/apps/kopete.png
-%_iconsdir/hicolor/32x32/actions/kopeteavailable.png
-%_iconsdir/hicolor/32x32/actions/kopeteaway.png
-%_iconsdir/hicolor/32x32/actions/newmessage.mng
-%_iconsdir/hicolor/32x32/apps/kopete.png
-%_iconsdir/hicolor/48x48/actions/kopeteavailable.png
-%_iconsdir/hicolor/48x48/actions/kopeteaway.png
-%_iconsdir/hicolor/48x48/apps/kopete.png
-%_iconsdir/hicolor/64x64/apps/kopete.png
-%_iconsdir/hicolor/scalable/apps/kopete2.svgz
-%_iconsdir/hicolor/128x128/apps/kopete.png
-%_iconsdir/hicolor/16x16/actions/emoticon.png
-%_iconsdir/hicolor/16x16/actions/kopeteavailable.png
-%_iconsdir/hicolor/16x16/actions/kopeteaway.png
-%_iconsdir/hicolor/16x16/actions/newmsg.png
-%_iconsdir/hicolor/16x16/actions/status_unknown.png
-%_iconsdir/hicolor/16x16/actions/status_unknown_overlay.png
-%_iconsdir/hicolor/16x16/apps/kopete.png
+%_kde_iconsdir/hicolor/22x22/apps/kopete.png
+%_kde_iconsdir/hicolor/32x32/apps/kopete.png
+%_kde_iconsdir/hicolor/48x48/apps/kopete.png
+%_kde_iconsdir/hicolor/64x64/apps/kopete.png
+%_kde_iconsdir/hicolor/scalable/apps/kopete2.svgz
+%_kde_iconsdir/hicolor/128x128/apps/kopete.png
+%_kde_iconsdir/hicolor/16x16/apps/kopete.png
 
-%_iconsdir/oxygen/128x128/actions/voicecall.png
-%_iconsdir/oxygen/128x128/actions/webcamreceive.png
-%_iconsdir/oxygen/128x128/actions/webcamsend.png
-%_iconsdir/oxygen/16x16/actions/account_offline_overlay.png
-%_iconsdir/oxygen/16x16/actions/add_user.png
-%_iconsdir/oxygen/16x16/actions/contact_away_overlay.png
-%_iconsdir/oxygen/16x16/actions/contact_busy_overlay.png
-%_iconsdir/oxygen/16x16/actions/contact_food_overlay.png
-%_iconsdir/oxygen/16x16/actions/contact_invisible_overlay.png
-%_iconsdir/oxygen/16x16/actions/contact_phone_overlay.png
-%_iconsdir/oxygen/16x16/actions/contact_xa_overlay.png
-%_iconsdir/oxygen/16x16/actions/delete_user.png
-%_iconsdir/oxygen/16x16/actions/edit_user.png
-%_iconsdir/oxygen/16x16/actions/emoticon.png
-%_iconsdir/oxygen/16x16/actions/kopeteavailable.png
-%_iconsdir/oxygen/16x16/actions/kopeteaway.png
-%_iconsdir/oxygen/16x16/actions/kopeteeditstatusmessage.png
-%_iconsdir/oxygen/16x16/actions/kopetestatusmessage.png
-%_iconsdir/oxygen/16x16/actions/metacontact_away.png
-%_iconsdir/oxygen/16x16/actions/metacontact_offline.png
-%_iconsdir/oxygen/16x16/actions/metacontact_online.png
-%_iconsdir/oxygen/16x16/actions/metacontact_unknown.png
-%_iconsdir/oxygen/16x16/actions/newmsg.png
-%_iconsdir/oxygen/16x16/actions/search_user.png
-%_iconsdir/oxygen/16x16/actions/show_offliners.png
-%_iconsdir/oxygen/16x16/actions/status_unknown.png
-%_iconsdir/oxygen/16x16/actions/status_unknown_overlay.png
-%_iconsdir/oxygen/16x16/actions/voicecall.png
-%_iconsdir/oxygen/16x16/actions/webcamreceive.png
-%_iconsdir/oxygen/16x16/actions/webcamsend.png
-%_iconsdir/oxygen/16x16/mimetypes/kopete_emoticons.png
-%_iconsdir/oxygen/22x22/actions/account_offline_overlay.png
-%_iconsdir/oxygen/22x22/actions/add_user.png
-%_iconsdir/oxygen/22x22/actions/delete_user.png
-%_iconsdir/oxygen/22x22/actions/edit_user.png
-%_iconsdir/oxygen/22x22/actions/kopeteavailable.png
-%_iconsdir/oxygen/22x22/actions/kopeteaway.png
-%_iconsdir/oxygen/22x22/actions/kopeteeditstatusmessage.png
-%_iconsdir/oxygen/22x22/actions/search_user.png
-%_iconsdir/oxygen/22x22/actions/show_offliners.png
-%_iconsdir/oxygen/22x22/actions/voicecall.png
-%_iconsdir/oxygen/22x22/actions/webcamreceive.png
-%_iconsdir/oxygen/22x22/actions/webcamsend.png
-%_iconsdir/oxygen/22x22/apps/kopete_all_away.png
-%_iconsdir/oxygen/22x22/apps/kopete_offline.png
-%_iconsdir/oxygen/22x22/apps/kopete_some_away.png
-%_iconsdir/oxygen/22x22/apps/kopete_some_online.png
-%_iconsdir/oxygen/22x22/mimetypes/kopete_emoticons.png
-%_iconsdir/oxygen/32x32/actions/account_offline_overlay.png
-%_iconsdir/oxygen/32x32/actions/add_user.png
-%_iconsdir/oxygen/32x32/actions/delete_user.png
-%_iconsdir/oxygen/32x32/actions/edit_user.png
-%_iconsdir/oxygen/32x32/actions/kopeteavailable.png
-%_iconsdir/oxygen/32x32/actions/kopeteaway.png
-%_iconsdir/oxygen/32x32/actions/kopeteeditstatusmessage.png
-%_iconsdir/oxygen/32x32/actions/metacontact_away.png
-%_iconsdir/oxygen/32x32/actions/metacontact_offline.png
-%_iconsdir/oxygen/32x32/actions/metacontact_online.png
-%_iconsdir/oxygen/32x32/actions/metacontact_unknown.png
-%_iconsdir/oxygen/32x32/actions/newmessage.mng
-%_iconsdir/oxygen/32x32/actions/newmsg.png
-%_iconsdir/oxygen/32x32/actions/search_user.png
-%_iconsdir/oxygen/32x32/actions/show_offliners.png
-%_iconsdir/oxygen/32x32/actions/voicecall.png
-%_iconsdir/oxygen/32x32/actions/webcamreceive.png
-%_iconsdir/oxygen/32x32/actions/webcamsend.png
-%_iconsdir/oxygen/48x48/actions/kopeteavailable.png
-%_iconsdir/oxygen/48x48/actions/kopeteaway.png
-%_iconsdir/oxygen/48x48/actions/metacontact_away.png
-%_iconsdir/oxygen/48x48/actions/metacontact_offline.png
-%_iconsdir/oxygen/48x48/actions/metacontact_online.png
-%_iconsdir/oxygen/48x48/actions/voicecall.png
-%_iconsdir/oxygen/48x48/actions/webcamreceive.png
-%_iconsdir/oxygen/48x48/actions/webcamsend.png
-%_iconsdir/oxygen/64x64/actions/voicecall.png
-%_iconsdir/oxygen/64x64/actions/webcamreceive.png
-%_iconsdir/oxygen/64x64/actions/webcamsend.png
+%_kde_iconsdir/oxygen/128x128/actions/voicecall.png
+%_kde_iconsdir/oxygen/128x128/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/128x128/actions/webcamsend.png
+%_kde_iconsdir/oxygen/128x128/actions/kopeteavailable.png
+%_kde_iconsdir/oxygen/16x16/actions/account_offline_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/add_user.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_away_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_busy_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_food_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_invisible_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_phone_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/contact_xa_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/delete_user.png
+%_kde_iconsdir/oxygen/16x16/actions/edit_user.png
+%_kde_iconsdir/oxygen/16x16/actions/emoticon.png
+%_kde_iconsdir/oxygen/16x16/actions/kopeteavailable.png
+%_kde_iconsdir/oxygen/16x16/actions/kopeteaway.png
+%_kde_iconsdir/oxygen/16x16/actions/kopeteeditstatusmessage.png
+%_kde_iconsdir/oxygen/16x16/actions/kopetestatusmessage.png
+%_kde_iconsdir/oxygen/16x16/actions/metacontact_away.png
+%_kde_iconsdir/oxygen/16x16/actions/metacontact_offline.png
+%_kde_iconsdir/oxygen/16x16/actions/metacontact_online.png
+%_kde_iconsdir/oxygen/16x16/actions/metacontact_unknown.png
+%_kde_iconsdir/oxygen/16x16/actions/newmsg.png
+%_kde_iconsdir/oxygen/16x16/actions/search_user.png
+%_kde_iconsdir/oxygen/16x16/actions/show_offliners.png
+%_kde_iconsdir/oxygen/16x16/actions/status_unknown.png
+%_kde_iconsdir/oxygen/16x16/actions/status_unknown_overlay.png
+%_kde_iconsdir/oxygen/16x16/actions/voicecall.png
+%_kde_iconsdir/oxygen/16x16/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/16x16/actions/webcamsend.png
+%_kde_iconsdir/oxygen/16x16/mimetypes/kopete_emoticons.png
+%_kde_iconsdir/oxygen/22x22/actions/account_offline_overlay.png
+%_kde_iconsdir/oxygen/22x22/actions/add_user.png
+%_kde_iconsdir/oxygen/22x22/actions/delete_user.png
+%_kde_iconsdir/oxygen/22x22/actions/edit_user.png
+%_kde_iconsdir/oxygen/22x22/actions/kopeteavailable.png
+%_kde_iconsdir/oxygen/22x22/actions/kopeteaway.png
+%_kde_iconsdir/oxygen/22x22/actions/kopeteeditstatusmessage.png
+%_kde_iconsdir/oxygen/22x22/actions/search_user.png
+%_kde_iconsdir/oxygen/22x22/actions/show_offliners.png
+%_kde_iconsdir/oxygen/22x22/actions/voicecall.png
+%_kde_iconsdir/oxygen/22x22/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/22x22/actions/webcamsend.png
+%_kde_iconsdir/oxygen/22x22/apps/kopete_all_away.png
+%_kde_iconsdir/oxygen/22x22/apps/kopete_offline.png
+%_kde_iconsdir/oxygen/22x22/apps/kopete_some_away.png
+%_kde_iconsdir/oxygen/22x22/apps/kopete_some_online.png
+%_kde_iconsdir/oxygen/22x22/mimetypes/kopete_emoticons.png
+%_kde_iconsdir/oxygen/32x32/actions/account_offline_overlay.png
+%_kde_iconsdir/oxygen/32x32/actions/add_user.png
+%_kde_iconsdir/oxygen/32x32/actions/delete_user.png
+%_kde_iconsdir/oxygen/32x32/actions/edit_user.png
+%_kde_iconsdir/oxygen/32x32/actions/kopeteavailable.png
+%_kde_iconsdir/oxygen/32x32/actions/kopeteaway.png
+%_kde_iconsdir/oxygen/32x32/actions/kopeteeditstatusmessage.png
+%_kde_iconsdir/oxygen/32x32/actions/metacontact_away.png
+%_kde_iconsdir/oxygen/32x32/actions/metacontact_offline.png
+%_kde_iconsdir/oxygen/32x32/actions/metacontact_online.png
+%_kde_iconsdir/oxygen/32x32/actions/metacontact_unknown.png
+%_kde_iconsdir/oxygen/32x32/actions/newmessage.mng
+%_kde_iconsdir/oxygen/32x32/actions/newmsg.png
+%_kde_iconsdir/oxygen/32x32/actions/search_user.png
+%_kde_iconsdir/oxygen/32x32/actions/show_offliners.png
+%_kde_iconsdir/oxygen/32x32/actions/voicecall.png
+%_kde_iconsdir/oxygen/32x32/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/32x32/actions/webcamsend.png
+%_kde_iconsdir/oxygen/48x48/actions/kopeteavailable.png
+%_kde_iconsdir/oxygen/48x48/actions/kopeteaway.png
+%_kde_iconsdir/oxygen/48x48/actions/metacontact_away.png
+%_kde_iconsdir/oxygen/48x48/actions/metacontact_offline.png
+%_kde_iconsdir/oxygen/48x48/actions/metacontact_online.png
+%_kde_iconsdir/oxygen/48x48/actions/voicecall.png
+%_kde_iconsdir/oxygen/48x48/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/48x48/actions/webcamsend.png
+%_kde_iconsdir/oxygen/48x48/actions/kopeteeditstatusmessage.png
+%_kde_iconsdir/oxygen/64x64/actions/voicecall.png
+%_kde_iconsdir/oxygen/64x64/actions/webcamreceive.png
+%_kde_iconsdir/oxygen/64x64/actions/webcamsend.png
+%_kde_iconsdir/oxygen/64x64/actions/kopeteavailable.png
 
-%_iconsdir/oxygen/scalable/actions/account_offline_overlay.svgz
+%_kde_iconsdir/oxygen/scalable/actions/account_offline_overlay.svgz
+%_kde_iconsdir/oxygen/scalable/actions/kopeteavailable.svgz
+%_kde_iconsdir/oxygen/scalable/actions/kopeteeditstatusmessage.svgz
+%_kde_iconsdir/oxygen/scalable/actions/voicecall.svgz
+%_kde_iconsdir/oxygen/scalable/actions/webcamreceive.svgz
+%_kde_iconsdir/oxygen/scalable/actions/webcamsend.svgz
 
-%dir %_datadir/apps/kopete_history/
-%_datadir/apps/kopete_history/historychatui.rc
-%_datadir/apps/kopete_history/historyui.rc
-%dir %_datadir/apps/kopete_msn/
-%_datadir/apps/kopete_msn/msnchatui.rc
-%dir %_datadir/apps/kopete_privacy/
-%_datadir/apps/kopete_privacy/privacychatui.rc
-%_datadir/apps/kopete_privacy/privacyui.rc
-%dir %_datadir/apps/kopete_translator/
-%_datadir/apps/kopete_translator/translatorchatui.rc
-%_datadir/apps/kopete_translator/translatorui.rc
-%dir %_datadir/apps/kopete_yahoo/
-%_datadir/apps/kopete_yahoo/yahoochatui.rc
-%_datadir/apps/kopete_yahoo/yahooconferenceui.rc
-%_datadir/apps/kopete_yahoo/yahooimui.rc
-%_datadir/apps/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
-%_datadir/config.kcfg/historyconfig.kcfg
-%_datadir/config.kcfg/kopeteappearancesettings.kcfg
-%_datadir/config.kcfg/kopetebehaviorsettings.kcfg
-%_datadir/config.kcfg/kopetegeneralsettings.kcfg
-%_datadir/config.kcfg/kopeteidentityconfigpreferences.kcfg
-%_datadir/config.kcfg/nowlisteningconfig.kcfg
-%_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/aim_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/gg_con.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/icq_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/jabber_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/msn_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/qq_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/16x16/actions/yahoo_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/22x22/actions/qq_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/32x32/actions/qq_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/48x48/actions/qq_connecting.mng
-%_datadir/apps/kopete/icons/crystalsvg/64x64/actions/qq_connecting.mng
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/aim_away.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/aim_connecting.mng
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/aim_offline.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/aim_online.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_away.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_connecting.mng
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_dnd.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_ffc.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_invisible.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_na.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_occupied.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_offline.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_online.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus0.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus1.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus10.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus11.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus12.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus13.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus14.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus15.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus16.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus17.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus18.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus19.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus2.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus20.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus21.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus22.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus23.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus24.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus25.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus26.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus27.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus28.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus29.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus3.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus30.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus31.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus4.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus5.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus6.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus7.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus8.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/icq_xstatus9.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_away.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_chatty.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_connecting.mng
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_group.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_invisible.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_na.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_offline.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_online.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_original.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_raw.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_serv_off.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_serv_on.png
-%_datadir/apps/kopete/icons/hicolor/16x16/actions/jabber_xa.png
-%_datadir/apps/kopete/icons/hicolor/16x16/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/hicolor/16x16/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/hicolor/16x16/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/hicolor/32x32/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/hicolor/32x32/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/hicolor/32x32/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/hicolor/48x48/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/msn_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/sms_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/testbed_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/wp_protocol.png
-%_datadir/apps/kopete/icons/oxygen/128x128/apps/yahoo_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/aim_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/aim_offline.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/aim_online.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/aim_overlay.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_busy.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_busy_d.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_connecting.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_ignored.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_invi.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_invi_d.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_offline.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_offline_d.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_online.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/gg_online_d.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_dnd.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_ffc.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_invisible.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_na.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_occupied.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_offline.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_online.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/icq_overlay.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_chatty.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_group.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_invisible.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_na.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_offline.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_online.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_original.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_raw.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_serv_off.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_serv_on.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/jabber_xa.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/kgpg_key1.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/kgpg_key2.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/kgpg_key3.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_blocked.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_brb.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_busy.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_invisible.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_lunch.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_na.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_newmsg.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_offline.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_online.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/msn_phone.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/wp_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_away.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_busy.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_idle.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_invisible.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_mobile.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_stealthed.png
-%_datadir/apps/kopete/icons/oxygen/16x16/actions/yahoo_tea.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/gadu_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_aim.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_gadu.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_http-ws.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_icq.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_irc.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_msn.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_qq.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_sms.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_smtp.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_tlen.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_gateway_yahoo.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/msn_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/sms_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/testbed_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/wp_protocol.png
-%_datadir/apps/kopete/icons/oxygen/16x16/apps/yahoo_protocol.png
-%_datadir/apps/kopete/icons/oxygen/22x22/actions/yahoo_stealthed.png
-%_datadir/apps/kopete/icons/oxygen/22x22/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/actions/yahoo_stealthed.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/autoreplace.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/gadu_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/highlight.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/latex.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/msn_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/sms_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/testbed_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/texteffect.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/wp_protocol.png
-%_datadir/apps/kopete/icons/oxygen/32x32/apps/yahoo_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/jabber_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/msn_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/sms_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/testbed_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/wp_protocol.png
-%_datadir/apps/kopete/icons/oxygen/48x48/apps/yahoo_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/aim_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/icq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/msn_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/qq_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/sms_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/testbed_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/wp_protocol.png
-%_datadir/apps/kopete/icons/oxygen/64x64/apps/yahoo_protocol.png
+%dir %_kde_appsdir/kopete_history/
+%_kde_appsdir/kopete_history/historychatui.rc
+%_kde_appsdir/kopete_history/historyui.rc
+%dir %_kde_appsdir/kopete_msn/
+%_kde_appsdir/kopete_msn/msnchatui.rc
+%dir %_kde_appsdir/kopete_privacy/
+%_kde_appsdir/kopete_privacy/privacychatui.rc
+%_kde_appsdir/kopete_privacy/privacyui.rc
+%dir %_kde_appsdir/kopete_translator/
+%_kde_appsdir/kopete_translator/translatorchatui.rc
+%_kde_appsdir/kopete_translator/translatorui.rc
+%dir %_kde_appsdir/kopete_yahoo/
+%_kde_appsdir/kopete_yahoo/yahoochatui.rc
+%_kde_appsdir/kopete_yahoo/yahooconferenceui.rc
+%_kde_appsdir/kopete_yahoo/yahooimui.rc
+%_kde_appsdir/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
+%_kde_datadir/config.kcfg/historyconfig.kcfg
+%_kde_datadir/config.kcfg/kopeteappearancesettings.kcfg
+%_kde_datadir/config.kcfg/kopetebehaviorsettings.kcfg
+%_kde_datadir/config.kcfg/kopetegeneralsettings.kcfg
+%_kde_datadir/config.kcfg/kopeteidentityconfigpreferences.kcfg
+%_kde_datadir/config.kcfg/nowlisteningconfig.kcfg
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/aim_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/gg_con.mng
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/icq_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/msn_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/qq_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/16x16/actions/yahoo_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/22x22/actions/qq_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/32x32/actions/qq_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/48x48/actions/qq_connecting.mng
+%_kde_appsdir/kopete/icons/crystalsvg/64x64/actions/qq_connecting.mng
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/aim_away.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/aim_connecting.mng
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/aim_offline.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/aim_online.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_away.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_connecting.mng
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_dnd.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_ffc.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_invisible.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_na.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_occupied.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_offline.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_online.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus0.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus1.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus10.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus11.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus12.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus13.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus14.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus15.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus16.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus17.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus18.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus19.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus2.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus20.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus21.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus22.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus23.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus24.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus25.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus26.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus27.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus28.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus29.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus3.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus30.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus31.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus4.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus5.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus6.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus7.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus8.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/actions/icq_xstatus9.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/hicolor/16x16/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/hicolor/32x32/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/hicolor/32x32/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/msn_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/sms_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/testbed_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/wp_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/128x128/apps/yahoo_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/aim_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/aim_offline.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/aim_online.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/aim_overlay.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_busy.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_busy_d.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_connecting.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_ignored.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_invi.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_invi_d.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_offline.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_offline_d.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_online.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/gg_online_d.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_dnd.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_ffc.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_invisible.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_na.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_occupied.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_offline.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_online.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/icq_overlay.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/kgpg_key1.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/kgpg_key2.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/kgpg_key3.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_blocked.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_brb.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_busy.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_invisible.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_lunch.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_na.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_newmsg.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_offline.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_online.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/msn_phone.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/wp_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_away.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_busy.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_idle.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_invisible.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_mobile.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_stealthed.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/actions/yahoo_tea.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/gadu_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/msn_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/sms_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/testbed_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/wp_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/16x16/apps/yahoo_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/22x22/actions/yahoo_stealthed.png
+%_kde_appsdir/kopete/icons/oxygen/22x22/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/actions/yahoo_stealthed.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/autoreplace.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/gadu_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/highlight.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/latex.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/msn_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/sms_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/testbed_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/texteffect.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/wp_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/yahoo_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/msn_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/sms_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/testbed_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/wp_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/48x48/apps/yahoo_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/aim_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/icq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/msn_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/qq_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/sms_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/testbed_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/wp_protocol.png
+%_kde_appsdir/kopete/icons/oxygen/64x64/apps/yahoo_protocol.png
 
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/puce.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Incoming/Action.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Incoming/buddy_icon.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Outgoing/Action.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Outgoing/buddy_icon.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Variants/Big_pictures.css
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/Variants/Contact_color.css
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/images/action.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/images/important.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/images/system.png
+%_kde_appsdir/kopete/styles/Kopete/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Incoming/Action.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Outgoing/Action.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Retropete/Contents/Resources/main.css
+%_kde_appsdir/kopete/webpresence/webpresence_html.xsl
+%_kde_appsdir/kopete/webpresence/webpresence_html_images.xsl
+%_kde_appsdir/kopete/webpresence/webpresence_xhtml.xsl
+%_kde_appsdir/kopete/webpresence/webpresence_xhtml_images.xsl
+%_kde_appsdir/kopete_contactnotes/contactnotesui.rc
+%_kde_appsdir/kopete_cryptography/cryptographychatui.rc
+%_kde_appsdir/kopete_cryptography/cryptographyui.rc
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Dark2.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Light-Noback.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Light.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Light2-Noback.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Light2.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/images/background.png
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/images/background2.png
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/images/kopete.png
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Hacker/README
+%_kde_appsdir/kopete/styles/Hacker/gpl.txt
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Incoming/buddy_icon.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Outgoing/buddy_icon.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_moon.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_moon_without_transparency.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_without_transparency.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_green.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_green_without_trans.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/Side_green_without_transparency.css
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre1.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre2.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre3.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre4.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre5.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre6.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-blue.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-green.png
+%_kde_appsdir/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-moon.jpg
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Incoming/Action.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Outgoing/Action.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Variants/Contact-Colors.css
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Variants/Name-Colors.css
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Variants/No-Colors.css
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/Variants/Status-Colors.css
+%_kde_appsdir/kopete/styles/Gaim/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Hacker/COPYRIGHT
+%_kde_appsdir/kopete/styles/Hacker/Contents/Info.plist
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/Action.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/Context.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/NextContext.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Incoming/buddy_icon.png
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/Action.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/Context.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/NextContext.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Outgoing/buddy_icon.png
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Dark-Noback.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Dark.css
+%_kde_appsdir/kopete/styles/Hacker/Contents/Resources/Variants/Dark2-Noback.css
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Outgoing/Action.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Outgoing/buddy_icon.png
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Status.html
+"%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Variants/No avatars.css"
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/images/*.png
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Gaim/Contents/Info.plist
 
+%_kde_appsdir/kopete/kopete.notifyrc
+%_kde_appsdir/kopete/kopetechatwindow.rc
+%_kde_appsdir/kopete/kopetecommandui.rc
+%_kde_appsdir/kopete/kopeteemailwindow.rc
+%_kde_appsdir/kopete/kopeteui.rc
+%_kde_appsdir/kopete/nowlisteningchatui.rc
+%_kde_appsdir/kopete/nowlisteningui.rc
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Incoming/*.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Incoming/buddy_icon.png
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Outgoing/Content.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Outgoing/NextContent.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Outgoing/buddy_icon.png
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/Status.html
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/images/action.png
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/images/important.png
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/images/internal.png
+%_kde_appsdir/kopete/styles/Clean/Contents/Resources/main.css
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Footer.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Header.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Incoming/Action.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Incoming/Content.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Incoming/NextContent.html
+%_kde_appsdir/kopete/styles/Clear/Contents/Resources/Incoming/buddy_icon.png
 
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/puce.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Incoming/Action.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Incoming/buddy_icon.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Outgoing/Action.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Outgoing/buddy_icon.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Variants/Big_pictures.css
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/Variants/Contact_color.css
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/images/action.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/images/important.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/images/system.png
-%_datadir/apps/kopete/styles/Kopete/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Incoming/Action.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Outgoing/Action.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Retropete/Contents/Resources/main.css
-%_datadir/apps/kopete/webpresence/webpresence_html.xsl
-%_datadir/apps/kopete/webpresence/webpresence_html_images.xsl
-%_datadir/apps/kopete/webpresence/webpresence_xhtml.xsl
-%_datadir/apps/kopete/webpresence/webpresence_xhtml_images.xsl
-%_datadir/apps/kopete_contactnotes/contactnotesui.rc
-%_datadir/apps/kopete_cryptography/cryptographychatui.rc
-%_datadir/apps/kopete_cryptography/cryptographyui.rc
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Dark2.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Light-Noback.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Light.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Light2-Noback.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Light2.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/images/background.png
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/images/background2.png
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/images/kopete.png
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Hacker/README
-%_datadir/apps/kopete/styles/Hacker/gpl.txt
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Incoming/buddy_icon.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Outgoing/buddy_icon.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_moon.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_moon_without_transparency.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_blue_without_transparency.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_green.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_green_without_trans.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/Side_green_without_transparency.css
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre1.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre2.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre3.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre4.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre5.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/cadre6.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-blue.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-green.png
-%_datadir/apps/kopete/styles/Konqi/Contents/Resources/Variants/konqui/konqui-moon.jpg
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Incoming/Action.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Outgoing/Action.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Variants/Contact-Colors.css
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Variants/Name-Colors.css
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Variants/No-Colors.css
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/Variants/Status-Colors.css
-%_datadir/apps/kopete/styles/Gaim/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Hacker/COPYRIGHT
-%_datadir/apps/kopete/styles/Hacker/Contents/Info.plist
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/Action.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/Context.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/NextContext.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Incoming/buddy_icon.png
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/Action.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/Context.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/NextContext.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Outgoing/buddy_icon.png
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Dark-Noback.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Dark.css
-%_datadir/apps/kopete/styles/Hacker/Contents/Resources/Variants/Dark2-Noback.css
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Outgoing/Action.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Outgoing/buddy_icon.png
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Status.html
-"%_datadir/apps/kopete/styles/Clear/Contents/Resources/Variants/No avatars.css"
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/images/*.png
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Gaim/Contents/Info.plist
+%dir %_kde_docdir/HTML/en/kopete/
+%doc %_kde_docdir/HTML/en/kopete/*.bz2
+%doc %_kde_docdir/HTML/en/kopete/*.docbook
 
-%_datadir/apps/kopete/kopete.notifyrc
-%_datadir/apps/kopete/kopetechatwindow.rc
-%_datadir/apps/kopete/kopetecommandui.rc
-%_datadir/apps/kopete/kopeteemailwindow.rc
-%_datadir/apps/kopete/kopeteui.rc
-%_datadir/apps/kopete/nowlisteningchatui.rc
-%_datadir/apps/kopete/nowlisteningui.rc
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Incoming/*.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Incoming/buddy_icon.png
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Outgoing/Content.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Outgoing/NextContent.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Outgoing/buddy_icon.png
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/Status.html
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/images/action.png
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/images/important.png
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/images/internal.png
-%_datadir/apps/kopete/styles/Clean/Contents/Resources/main.css
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Footer.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Header.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Incoming/Action.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Incoming/Content.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Incoming/NextContent.html
-%_datadir/apps/kopete/styles/Clear/Contents/Resources/Incoming/buddy_icon.png
-
-%dir %_docdir/HTML/en/kopete/
-%doc %_docdir/HTML/en/kopete/*.bz2
-%doc %_docdir/HTML/en/kopete/*.docbook
+#-----------------------------------------------------------
 
 %package  kopete-latex
 Group: Graphical desktop/KDE
@@ -719,18 +621,16 @@ Kopete latex plugin for write andd read mesages in latexinder
 
 %files kopete-latex
 %defattr(-,root,root,-)
-%_bindir/kopete_latexconvert.sh
-%_datadir/apps/kopete_latex/latexchatui.rc
-%_datadir/config.kcfg/latexconfig.kcfg
-%_libdir/kde4/kopete_latex.so
-
+%_kde_bindir/kopete_latexconvert.sh
+%_kde_appsdir/kopete_latex/latexchatui.rc
+%_kde_datadir/config.kcfg/latexconfig.kcfg
+%_kde_libdir/kde4/kopete_latex.so
 
 #-----------------------------------------------------------
 
 %package -n %lib_name-kopete-devel
 Summary: Devel file.
 Group:		Development/KDE and Qt 
-#Provides: libkopete1-devel = %{epoch}:%version-%release
 Requires: %lib_name-kopete = %{epoch}:%version-%release
 
 %description -n %lib_name-kopete-devel
@@ -738,75 +638,28 @@ Kopete Devel files
 
 %files -n %lib_name-kopete-devel
 %defattr(-, root, root)
-%_libdir/libkopete.so
-%_libdir/libkopete_msn_shared.so
-%_libdir/libkopete_oscar.so
-%_libdir/libkopete_videodevice.so
-%_libdir/libgadu_kopete.so
-%_libdir/libkopeteaddaccountwizard.so
-%_libdir/libkopetechatwindow_shared.so
-%_libdir/libkopeteprivacy.so
-%_libdir/libkyahoo.so
-%_libdir/liboscar.so
-%_libdir/libpapillon_kopete.so
-%_libdir/libiris_kopete.so
+%_kde_libdir/libkopete.so
+%_kde_libdir/libkopete_msn_shared.so
+%_kde_libdir/libkopete_oscar.so
+%_kde_libdir/libkopete_videodevice.so
+%_kde_libdir/libgadu_kopete.so
+%_kde_libdir/libkopeteaddaccountwizard.so
+%_kde_libdir/libkopetechatwindow_shared.so
+%_kde_libdir/libkopeteprivacy.so
+%_kde_libdir/libkyahoo.so
+%_kde_libdir/liboscar.so
 
-%dir %_includedir/kopete/
-%dir %_includedir/kopete/ui/
-%_includedir/kopete/ui/*.h
-%_includedir/kopete/*.h
-
-#-----------------------------------------------------------
-
-%package -n %lib_name-kopete
-Summary: Multi-protocol plugin-based instant messenger
-Group: 		Development/KDE and Qt
-#Provides:	libkopete1 = %epoch:%version-%release
-
-%description -n %lib_name-kopete
-Kopete is a flexible and extendable multiple protocol instant messaging
-system designed as a plugin-based system.
-
-All protocols are plugins and allow modular installment, configuration,
-and usage without the main application knowing anything about the plugin
-being loaded.
-
-The goal of Kopete is to provide users with a standard and easy to use
-interface between all of their instant messaging systems, but at the same
-time also providing developers with the ease of writing plugins to support
-a new protocol.
-
-The core Kopete development team provides a handful of plugins that most
-users can use, in addition to templates for new developers to base a
-plugin off of.
-
-%post -n %lib_name-kopete -p /sbin/ldconfig
-%postun -n %lib_name-kopete -p /sbin/ldconfig
-
-%files -n %lib_name-kopete
-%defattr(-, root, root)
-%_libdir/kde4/kcm_kopete_*.so
-%_libdir/kde4/kopete_*.so
-%_libdir/kde4/libkrichtexteditpart.so
-%_libdir/libkopeteprivacy.so.*
-%_libdir/libkyahoo.so.*
-%_libdir/liboscar.so.*
-%_libdir/libkopeteaddaccountwizard.so.*
-%_libdir/libkopetechatwindow_shared.so.*
-%_libdir/libgadu_kopete.so.*
-%_libdir/libkopete.so.*
-%_libdir/libkopete_msn_shared.so.*
-%_libdir/libkopete_oscar.so.*
-%_libdir/libkopete_videodevice.so.*
-%_libdir/libiris_kopete.so.*
-%_libdir/libpapillon_kopete.so.*
+%dir %_kde_includedir/kopete/
+%dir %_kde_includedir/kopete/ui/
+%_kde_includedir/kopete/ui/*.h
+%_kde_includedir/kopete/*.h
 
 #-----------------------------------------------------------
 
 %package -n lisa4
 Group: Graphical desktop/KDE
 Summary: Lisa server
-Requires: %name-common >= %{epoch}:%version-%release
+Requires: %name-core >= %{epoch}:%version-%release
 
 %description -n lisa4
 LISa is intended to provide a kind of "network neighbourhood" but only
@@ -824,31 +677,32 @@ relying on the TCP/IP protocol stack, no smb or whatever.
 %files -n lisa4
 %defattr(-,root,root)
 %config(noreplace) /etc/rc.d/init.d/lisa4
-%_libdir/kde4/kcm_lanbrowser.so
-%_libdir/kde4/kio_lan.so
-%_prefix/sbin/lisad
-%dir %_datadir/apps/konqsidebartng/virtual_folders/services/
-%_datadir/apps/konqsidebartng/virtual_folders/services/lisa.desktop
-%dir %_datadir/apps/konqueror/dirtree/remote/
-%_datadir/apps/konqueror/dirtree/remote/lan.desktop
-%_datadir/apps/konqueror/servicemenus/smb2rdc.desktop
-%_datadir/apps/lisa/README
-%_datadir/kde4/services/kcmkiolan.desktop
-%_datadir/kde4/services/kcmlisa.desktop
-%_datadir/kde4/services/lan.protocol
-%_datadir/kde4/services/rdp.protocol
-%dir %_docdir/HTML/en/lanbrowser/
-%doc %_docdir/HTML/en/lanbrowser/*.docbook
-%doc %_docdir/HTML/en/lanbrowser/*.bz2
-%dir %_docdir/HTML/en/lisa/
-%doc %_docdir/HTML/en/lisa/*.docbook
-%doc %_docdir/HTML/en/lisa/*.bz2
+%_kde_libdir/kde4/kcm_lanbrowser.so
+%_kde_libdir/kde4/kio_lan.so
+%_kde_sbindir/lisad
+%dir %_kde_appsdir/konqsidebartng/virtual_folders/services/
+%_kde_appsdir/konqsidebartng/virtual_folders/services/lisa.desktop
+%dir %_kde_appsdir/konqueror/dirtree/remote/
+%_kde_appsdir/konqueror/dirtree/remote/lan.desktop
+%_kde_appsdir/konqueror/servicemenus/smb2rdc.desktop
+%_kde_appsdir/lisa/README
+%_kde_datadir/kde4/services/kcmkiolan.desktop
+%_kde_datadir/kde4/services/kcmlisa.desktop
+%_kde_datadir/kde4/services/lan.protocol
+%_kde_datadir/kde4/services/rdp.protocol
+%dir %_kde_docdir/HTML/en/lanbrowser/
+%doc %_kde_docdir/HTML/en/lanbrowser/*.docbook
+%doc %_kde_docdir/HTML/en/lanbrowser/*.bz2
+%dir %_kde_docdir/HTML/en/lisa/
+%doc %_kde_docdir/HTML/en/lisa/*.docbook
+%doc %_kde_docdir/HTML/en/lisa/*.bz2
 
 #-----------------------------------------------------------
 
 %package kppp
 Group: Graphical desktop/KDE
 Summary: Dialer and front end for pppd
+Requires: %name-core >= %epoch:%version-%release
 Requires: ppp, %name-kppp-provider
 Provides: kppp4
 
@@ -863,21 +717,21 @@ Kppp is a dialer and front end for pppd.
 %defattr(-,root,root,-)
 %dir %_sysconfdir/pam.d/
 %config(noreplace) %_sysconfdir/pam.d/kppp
-%attr(4755,root,root) %_bindir/kppp
-%_bindir/kppplogview
-%dir %_datadir/apps/kppp
-%_datadir/apps/kppp/*
-%_datadir/applications/kde4/Kppp.desktop
-%_datadir/applications/kde4/kppplogview.desktop
-%_iconsdir/*/*/*/kppp.png
-%_datadir/dbus-1/interfaces/org.kde.kppp.xml
-%exclude %_datadir/apps/kppp/Rules
-%exclude %_datadir/apps/kppp/Provider
+%attr(4755,root,root) %_kde_bindir/kppp
+%_kde_bindir/kppplogview
+%dir %_kde_appsdir/kppp
+%_kde_appsdir/kppp/*
+%_kde_datadir/applications/kde4/Kppp.desktop
+%_kde_datadir/applications/kde4/kppplogview.desktop
+%_kde_iconsdir/*/*/*/kppp.png
+%_kde_datadir/dbus-1/interfaces/org.kde.kppp.xml
+%exclude %_kde_appsdir/kppp/Rules
+%exclude %_kde_appsdir/kppp/Provider
 
-%dir %_docdir/HTML/en/kppp/
-%doc %_docdir/HTML/en/kppp/*.docbook
-%doc %_docdir/HTML/en/kppp/*.bz2
-%doc %_docdir/HTML/en/kppp/*.png
+%dir %_kde_docdir/HTML/en/kppp/
+%doc %_kde_docdir/HTML/en/kppp/*.docbook
+%doc %_kde_docdir/HTML/en/kppp/*.bz2
+%doc %_kde_docdir/HTML/en/kppp/*.png
 
 #-----------------------------------------------------------
 
@@ -890,38 +744,8 @@ List of providers for kppp
 
 %files kppp-provider
 %defattr(-,root,root,-)
-%_datadir/apps/kppp/Rules
-%_datadir/apps/kppp/Provider
-
-#-----------------------------------------------------------
-
-
-%package kwifimanager
-Group: Graphical desktop/KDE
-Summary: KWifimanager
-Requires: %lib_name-kwifimanager = %{epoch}:%version-%release
-Provides: kwifimanager4
-Requires: wireless-tools
-
-%description kwifimanager
-A wireless LAN connection monitor.
-
-%post kwifimanager -p /sbin/ldconfig
-
-%postun kwifimanager -p /sbin/ldconfig
-
-%files kwifimanager
-%defattr(-,root,root,-)
-%_bindir/kwifimanager
-%_datadir/applications/kde4/kwifimanager.desktop
-%dir %_datadir/apps/kwifimanager/
-%_datadir/apps/kwifimanager/*
-%_iconsdir/*/*/*/kwifimanager*
-%_datadir/config.kcfg/kwifimanager.kcfg
-
-%dir %_docdir/HTML/en/kwifimanager/
-%doc %_docdir/HTML/en/kwifimanager/*.docbook
-%doc %_docdir/HTML/en/kwifimanager/*.bz2
+%_kde_appsdir/kppp/Rules
+%_kde_appsdir/kppp/Provider
 
 #-----------------------------------------------------------
 
@@ -941,63 +765,11 @@ Libraries for kwifimanager
 
 #-----------------------------------------------------------
 
-%package kdict
-Group: Graphical desktop/KDE
-Summary: Kdict program
-Provides: kdict4
-Requires:	%lib_name-kdict = %{epoch}:%version-%release
-
-%description -n %name-kdict
-Kdict is a graphical client for the DICT Protocol. It enables you 
-to search through dictionary-like databases for a word or phrase, then 
-displays suitable definitions. 
-
-%post kdict -p /sbin/ldconfig
-
-%postun kdict -p /sbin/ldconfig
-
-%files kdict
-%defattr(-,root,root,-)
-%_bindir/kdict
-%_datadir/apps/kdict/icons/crystalsvg/16x16/actions/define_clip.png
-%_datadir/apps/kdict/icons/crystalsvg/16x16/actions/query_erase.png
-%_datadir/apps/kdict/icons/crystalsvg/22x22/actions/define_clip.png
-%_datadir/apps/kdict/icons/crystalsvg/32x32/actions/define_clip.png
-%_datadir/apps/kdict/kdictui.rc
-%_datadir/apps/kicker/applets/kdictapplet.desktop
-%_datadir/applications/kde4/kdict.desktop
-%dir %_docdir/HTML/en/kdict/
-%doc %_docdir/HTML/en/kdict/*.bz2
-%doc %_docdir/HTML/en/kdict/*.docbook
-%doc %_docdir/HTML/en/kdict/*.png
-
-%_iconsdir/hicolor/128x128/apps/kdict.png
-%_iconsdir/hicolor/16x16/apps/kdict.png
-%_iconsdir/hicolor/32x32/apps/kdict.png
-%_iconsdir/hicolor/48x48/apps/kdict.png
-%_iconsdir/hicolor/64x64/apps/kdict.png
-%_iconsdir/hicolor/scalable/apps/kdict.svgz
-
-%package -n %lib_name-kdict
-Group:      Development/KDE and Qt 
-Summary:    Libraries for kdict
-
-%description -n %lib_name-kdict
-Libraries for kwifimanager
-
-%files -n %lib_name-kdict
-%defattr(-,root,root,-)
-%_libdir/kde4/kdict_panelapplet.so
-%_libdir/libkdeinit4_kdict.so
-%_datadir/dbus-1/interfaces/org.kde.kdict.xml
-
-#-----------------------------------------------------------
-
 %package kget
 Group: Graphical desktop/KDE
 Summary: Kget program
 Provides: kget4
-Requires:	%lib_name-kget = %{epoch}:%version-%release
+Requires: %name-core >= %epoch:%version-%release
 
 %description kget
 An advanced download manager for KDE.
@@ -1008,36 +780,35 @@ An advanced download manager for KDE.
 
 %files kget
 %defattr(-,root,root,-)
-%dir %_docdir/HTML/en/kget/
-%doc %_docdir/HTML/en/kget/*.bz2
-%doc %_docdir/HTML/en/kget/*.docbook
-%doc %_docdir/HTML/en/kget/*.png
-%_bindir/kget
-%_datadir/applications/kde4/kget.desktop
-%_iconsdir/crystalsvg/16x16/apps/kget.png
-%_iconsdir/crystalsvg/16x16/mimetypes/kget_list.png
-%_iconsdir/crystalsvg/22x22/apps/kget.png
-%_iconsdir/crystalsvg/22x22/mimetypes/kget_list.png
-%_iconsdir/crystalsvg/32x32/apps/kget.png
-%_iconsdir/crystalsvg/32x32/mimetypes/kget_list.png
-%_iconsdir/crystalsvg/48x48/apps/kget.png
-%_iconsdir/crystalsvg/48x48/mimetypes/kget_list.png
-%_datadir/kde4/services/kget_kiofactory.desktop
-%_datadir/kde4/services/kget_metalinkfactory.desktop
-%_datadir/kde4/services/kget_multisegkiofactory.desktop
-%_datadir/kde4/servicetypes/kget_plugin.desktop
-%_datadir/sounds/KGet_Added.ogg
-%_datadir/sounds/KGet_Finished.ogg
-%_datadir/sounds/KGet_Finished_All.ogg
-%_datadir/sounds/KGet_Started.ogg
-%_datadir/apps/kget/icons/crystalsvg/32x32/actions/transfers_list.png
-%_datadir/apps/kget/kget.notifyrc
-%_datadir/apps/kget/kgetui.rc
-%_datadir/apps/kget/pics/kget_splash.png
-%_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
-%_datadir/apps/konqueror/servicemenus/kget_download.desktop
-%_datadir/config.kcfg/kget.kcfg
-%_datadir/config.kcfg/kget_multisegkiofactory.kcfg
+%dir %_kde_docdir/HTML/en/kget/
+%doc %_kde_docdir/HTML/en/kget/*.bz2
+%doc %_kde_docdir/HTML/en/kget/*.docbook
+%doc %_kde_docdir/HTML/en/kget/*.png
+%_kde_bindir/kget
+%_kde_datadir/applications/kde4/kget.desktop
+%_kde_iconsdir/crystalsvg/16x16/apps/kget.png
+%_kde_iconsdir/crystalsvg/16x16/mimetypes/kget_list.png
+%_kde_iconsdir/crystalsvg/22x22/apps/kget.png
+%_kde_iconsdir/crystalsvg/22x22/mimetypes/kget_list.png
+%_kde_iconsdir/crystalsvg/32x32/apps/kget.png
+%_kde_iconsdir/crystalsvg/32x32/mimetypes/kget_list.png
+%_kde_iconsdir/crystalsvg/48x48/apps/kget.png
+%_kde_iconsdir/crystalsvg/48x48/mimetypes/kget_list.png
+%_kde_datadir/kde4/services/kget_kiofactory.desktop
+%_kde_datadir/kde4/services/kget_multisegkiofactory.desktop
+%_kde_datadir/kde4/servicetypes/kget_plugin.desktop
+%_kde_datadir/sounds/KGet_Added.ogg
+%_kde_datadir/sounds/KGet_Finished.ogg
+%_kde_datadir/sounds/KGet_Finished_All.ogg
+%_kde_datadir/sounds/KGet_Started.ogg
+%_kde_appsdir/kget/icons/crystalsvg/32x32/actions/transfers_list.png
+%_kde_appsdir/kget/kget.notifyrc
+%_kde_appsdir/kget/kgetui.rc
+%_kde_appsdir/kget/pics/kget_splash.png
+%_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
+%_kde_appsdir/konqueror/servicemenus/kget_download.desktop
+%_kde_datadir/config.kcfg/kget.kcfg
+%_kde_datadir/config.kcfg/kget_multisegkiofactory.kcfg
 
 
 #-----------------------------------------------------------
@@ -1055,12 +826,10 @@ Libraries for kget.
 
 %files -n %lib_name-kget
 %defattr(-,root,root,-)
-%_libdir/kde4/khtml_kget.so
-%_libdir/kde4/libkget_kiofactory.so
-%_libdir/kde4/libkget_metalinkfactory.so
-%_libdir/kde4/libkget_multisegkiofactory.so
-%_libdir/libkgetcore.so.*
-
+%_kde_libdir/kde4/khtml_kget.so
+%_kde_libdir/kde4/libkget_kiofactory.so
+%_kde_libdir/kde4/libkget_multisegkiofactory.so
+%_kde_libdir/libkgetcore.so.*
 
 #-----------------------------------------------------------
 
@@ -1075,7 +844,7 @@ Header files for kget.
 
 %files -n %lib_name-kget-devel
 %defattr(-,root,root,-)
-%_libdir/libkgetcore.so
+%_kde_libdir/libkgetcore.so
 
 #-----------------------------------------------------------
 
@@ -1083,6 +852,7 @@ Header files for kget.
 Group: Graphical desktop/KDE
 Summary: Krfb, Krdc program
 Provides: krdc4, krfb4
+Requires: %name-core >= %epoch:%version-%release
 
 %description krfb
 KDE Desktop Sharing allows you to invite somebody at a remote 
@@ -1094,32 +864,32 @@ location to watch and possibly control your desktop.
 
 %files krfb
 %defattr(-,root,root,-)
-%_bindir/krdc
-%_bindir/krfb
-%_datadir/kde4/services/vnc.protocol
-%dir %_datadir/apps/krdc/
-%_datadir/apps/krdc/*
-%_iconsdir/*/*/*/krdc*
-%_datadir/applications/kde4/krdc.desktop
-%_datadir/applications/kde4/krfb.desktop
+%_kde_bindir/krdc
+%_kde_bindir/krfb
+%_kde_datadir/kde4/services/vnc.protocol
+%dir %_kde_appsdir/krdc/
+%_kde_appsdir/krdc/*
+%_kde_iconsdir/*/*/*/krdc*
+%_kde_datadir/applications/kde4/krdc.desktop
+%_kde_datadir/applications/kde4/krfb.desktop
 
-%_datadir/apps/krfb/krfb.notifyrc
-%_datadir/apps/krfb/pics/connection-side-image.png
-%_datadir/apps/krfb/pics/eyes-closed24.png
-%_datadir/apps/krfb/pics/eyes-open24.png
-%_iconsdir/hicolor/16x16/apps/krfb.png
-%_iconsdir/hicolor/32x32/apps/krfb.png
-%_iconsdir/hicolor/48x48/apps/krfb.png
+%_kde_appsdir/krfb/krfb.notifyrc
+%_kde_appsdir/krfb/pics/connection-side-image.png
+%_kde_appsdir/krfb/pics/eyes-closed24.png
+%_kde_appsdir/krfb/pics/eyes-open24.png
+%_kde_iconsdir/hicolor/16x16/apps/krfb.png
+%_kde_iconsdir/hicolor/32x32/apps/krfb.png
+%_kde_iconsdir/hicolor/48x48/apps/krfb.png
 
-%dir %_docdir/HTML/en/krdc/
-%doc %_docdir/HTML/en/krdc/*.png
-%doc %_docdir/HTML/en/krdc/*.docbook
-%doc %_docdir/HTML/en/krdc/*.bz2
+%dir %_kde_docdir/HTML/en/krdc/
+%doc %_kde_docdir/HTML/en/krdc/*.png
+%doc %_kde_docdir/HTML/en/krdc/*.docbook
+%doc %_kde_docdir/HTML/en/krdc/*.bz2
 
-%dir %_docdir/HTML/en/krfb/
-%doc %_docdir/HTML/en/krfb/*.png
-%doc %_docdir/HTML/en/krfb/*.bz2
-%doc %_docdir/HTML/en/krfb/*.docbook
+%dir %_kde_docdir/HTML/en/krfb/
+%doc %_kde_docdir/HTML/en/krfb/*.png
+%doc %_kde_docdir/HTML/en/krfb/*.bz2
+%doc %_kde_docdir/HTML/en/krfb/*.docbook
 
 
 #-----------------------------------------------------------
@@ -1128,6 +898,7 @@ location to watch and possibly control your desktop.
 Group: Graphical desktop/KDE
 Summary: RDF newsticker applet
 Provides: knewsticker4
+Requires: %name-core >= %epoch:%version-%release
 Requires: %lib_name-knewsticker = %{epoch}:%version-%release
 
 %description knewsticker
@@ -1139,52 +910,233 @@ Knewsticker: RDF newsticker applet
 
 %files knewsticker
 %defattr(-,root,root,-)
-%_bindir/knewstickerstub 
-%_datadir/applications/kde4/knewsticker-standalone.desktop
-%dir %_datadir/apps/knewsticker/
-%_datadir/apps/knewsticker/*
-%_datadir/apps/kicker/applets/knewsticker.desktop
-%dir %_datadir/apps/kconf_update/
-%_datadir/apps/kconf_update/knewsticker.upd
-%_datadir/apps/kconf_update/knt-0.1-0.2.pl
-%_iconsdir/*/*/*/knewsticker.png
-%_datadir/applnk/.hidden/knewstickerstub.desktop
+%_kde_bindir/knewstickerstub 
+%_kde_libdir/kde4/knewsticker_panelapplet.so
+%_kde_datadir/applications/kde4/knewsticker-standalone.desktop
+%dir %_kde_appsdir/knewsticker/
+%_kde_appsdir/knewsticker/*
+%_kde_appsdir/kicker/applets/knewsticker.desktop
+%dir %_kde_appsdir/kconf_update/
+%_kde_appsdir/kconf_update/knewsticker.upd
+%_kde_appsdir/kconf_update/knt-0.1-0.2.pl
+%_kde_iconsdir/*/*/*/knewsticker.png
+%_kde_datadir/applnk/.hidden/knewstickerstub.desktop
 
-%dir %_docdir/HTML/en/knewsticker/
-%doc %_docdir/HTML/en/knewsticker/*.png
-%doc %_docdir/HTML/en/knewsticker/*.docbook
-%doc %_docdir/HTML/en/knewsticker/*.bz2
+%dir %_kde_docdir/HTML/en/knewsticker/
+%doc %_kde_docdir/HTML/en/knewsticker/*.png
+%doc %_kde_docdir/HTML/en/knewsticker/*.docbook
+%doc %_kde_docdir/HTML/en/knewsticker/*.bz2
 
-
-#-----------------------------------------------------------
-
-%package -n %lib_name-knewsticker
-Group:      Development/KDE and Qt 
-Summary:    Librarie for knewsticker
-
-%description -n %lib_name-knewsticker
-Library for knewsticker
-
-%post -n %lib_name-knewsticker -p /sbin/ldconfig
-%postun -n %lib_name-knewsticker -p /sbin/ldconfig
-
-%files -n %lib_name-knewsticker
-%defattr(-,root,root,-)
-%_libdir/kde4/knewsticker_panelapplet.*
 
 #-----------------------------------------------------------
+
+%define libgadu_kopete %mklibname gadu_kopete 1
+
+%package -n %libgadu_kopete
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libgadu_kopete
+KDE 4 library.
+
+%post -n %libgadu_kopete -p /sbin/ldconfig
+%postun -n %libgadu_kopete -p /sbin/ldconfig
+
+%files -n %libgadu_kopete
+%defattr(-,root,root)
+%_kde_libdir/libgadu_kopete.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkgetcore %mklibname kgetcore 5
+
+%package -n %libkgetcore
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkgetcore
+KDE 4 library.
+
+%post -n %libkgetcore -p /sbin/ldconfig
+%postun -n %libkgetcore -p /sbin/ldconfig
+
+%files -n %libkgetcore
+%defattr(-,root,root)
+%_kde_libdir/libkgetcore.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopete %mklibname kopete 5
+
+%package -n %libkopete
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopete
+KDE 4 library.
+
+%post -n %libkopete -p /sbin/ldconfig
+%postun -n %libkopete -p /sbin/ldconfig
+
+%files -n %libkopete
+%defattr(-,root,root)
+%_kde_libdir/libkopete.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopete_msn_shared %mklibname kopete_msn_shared 5
+
+%package -n %libkopete_msn_shared
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopete_msn_shared
+KDE 4 library.
+
+%post -n %libkopete_msn_shared -p /sbin/ldconfig
+%postun -n %libkopete_msn_shared -p /sbin/ldconfig
+
+%files -n %libkopete_msn_shared
+%defattr(-,root,root)
+%_kde_libdir/libkopete_msn_shared.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopete_oscar %mklibname kopete_oscar 5
+
+%package -n %libkopete_oscar
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopete_oscar
+KDE 4 library.
+
+%post -n %libkopete_oscar -p /sbin/ldconfig
+%postun -n %libkopete_oscar -p /sbin/ldconfig
+
+%files -n %libkopete_oscar
+%defattr(-,root,root)
+%_kde_libdir/libkopete_oscar.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopete_videodevice %mklibname kopete_videodevice 5
+
+%package -n %libkopete_videodevice
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopete_videodevice
+KDE 4 library.
+
+%post -n %libkopete_videodevice -p /sbin/ldconfig
+%postun -n %libkopete_videodevice -p /sbin/ldconfig
+
+%files -n %libkopete_videodevice
+%defattr(-,root,root)
+%_kde_libdir/libkopete_videodevice.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopeteaddaccountwizard %mklibname kopeteaddaccountwizard 1
+
+%package -n %libkopeteaddaccountwizard
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopeteaddaccountwizard
+KDE 4 library.
+
+%post -n %libkopeteaddaccountwizard -p /sbin/ldconfig
+%postun -n %libkopeteaddaccountwizard -p /sbin/ldconfig
+
+%files -n %libkopeteaddaccountwizard
+%defattr(-,root,root)
+%_kde_libdir/libkopeteaddaccountwizard.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopetechatwindow_shared %mklibname kopetechatwindow_shared 1
+
+%package -n %libkopetechatwindow_shared
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopetechatwindow_shared
+KDE 4 library.
+
+%post -n %libkopetechatwindow_shared -p /sbin/ldconfig
+%postun -n %libkopetechatwindow_shared -p /sbin/ldconfig
+
+%files -n %libkopetechatwindow_shared
+%defattr(-,root,root)
+%_kde_libdir/libkopetechatwindow_shared.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkopeteprivacy %mklibname kopeteprivacy 1
+
+%package -n %libkopeteprivacy
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopeteprivacy
+KDE 4 library.
+
+%post -n %libkopeteprivacy -p /sbin/ldconfig
+%postun -n %libkopeteprivacy -p /sbin/ldconfig
+
+%files -n %libkopeteprivacy
+%defattr(-,root,root)
+%_kde_libdir/libkopeteprivacy.so.*
+
+#-----------------------------------------------------------------------------
+
+%define libkyahoo %mklibname kyahoo 1
+
+%package -n %libkyahoo
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkyahoo
+KDE 4 library.
+
+%post -n %libkyahoo -p /sbin/ldconfig
+%postun -n %libkyahoo -p /sbin/ldconfig
+
+%files -n %libkyahoo
+%defattr(-,root,root)
+%_kde_libdir/libkyahoo.so.*
+
+#-----------------------------------------------------------------------------
+
+%define liboscar %mklibname oscar 1
+
+%package -n %liboscar
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %liboscar
+KDE 4 library.
+
+%post -n %liboscar -p /sbin/ldconfig
+%postun -n %liboscar -p /sbin/ldconfig
+
+%files -n %liboscar
+%defattr(-,root,root)
+%_kde_libdir/liboscar.so.*
+
+#-----------------------------------------------------------------------------
 
 %prep
-%setup -q -nkdenetwork-%version-%branch_date
+%setup -q -n kdenetwork
 
 %build
-cd $RPM_BUILD_DIR/kdenetwork-%version-%branch_date
-mkdir build
-cd build
-export QTDIR=/usr/lib/qt4/
-export PATH=$QTDIR/bin:$PATH
+cd $RPM_BUILD_DIR/kdenetwork
 
-cmake -DCMAKE_INSTALL_PREFIX=%_prefix \
+%cmake_kde4 \
+       -DDBUS_SERVICES_DIR=%_datadir/dbus-1/services \
+       -DDBUS_INTERFACES_DIR=%_datadir/dbus-1/interfaces \
 %if %use_enable_final
       -DKDE4_ENABLE_FINAL=ON \
 %endif
@@ -1192,44 +1144,26 @@ cmake -DCMAKE_INSTALL_PREFIX=%_prefix \
       -DKDE4_ENABLE_FPIE=ON \
 %endif
 %if %unstable
-      -DCMAKE_BUILD_TYPE=Debug \
+      -DCMAKE_BUILD_TYPE=debugfull
 %endif
-%if "%{_lib}" != "lib"
-      -DLIB_SUFFIX=64 \
-%endif
-        ../
+
 
 %make
 
 
 %install
 rm -fr %buildroot
-cd $RPM_BUILD_DIR/kdenetwork-%version-%branch_date/build/
+cd $RPM_BUILD_DIR/kdenetwork/build/
 
 make DESTDIR=%buildroot install
 
-install -d -m 0755 %buildroot/etc/rc.d/init.d
-install -m 0755 %SOURCE2 %buildroot/etc/rc.d/init.d/lisa4
+install -d -m 0755 %buildroot%_sysconfdir/rc.d/init.d
+install -m 0755 %SOURCE2 %buildroot%_sysconfdir/rc.d/init.d/lisa4
 
 
 #TODO install it into real sysconfig dir
 install -d -m 0755 %buildroot/%_sysconfdir/pam.d/
 install -m 0644 %SOURCE1 %buildroot/%_sysconfdir/pam.d/kppp
-
-
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/Kppp.desktop "Internet/Remote Access" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/krdc.desktop "Internet/Remote Access" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/knewsticker-standalone.desktop Internet/Other 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kppplogview.desktop "Internet/Remote Access" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kcmktalkd.desktop System/Configuration/KDE/Network kde 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kcmkrfb.desktop System/Configuration/KDE/Network kde 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/krfb.desktop "Internet/Remote Access" kde
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kdict.desktop "Office/Accessories" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kcmwifi.desktop System/Configuration/KDE/Network kde 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kwifimanager.desktop  System/Monitoring kde 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kopete.desktop "Internet/Instant Messaging" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/fileshare.desktop "System/Configuration/KDE/Network" 
-mandriva-add-xdg-categories.pl %buildroot/%_datadir/applications/kde4/kcmsambaconf.desktop "System/Configuration/KDE/Network" 
 
 %clean
 rm -fr %buildroot
