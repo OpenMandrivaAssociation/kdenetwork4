@@ -72,7 +72,6 @@ BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel}
 #For kopete.
 #TODO readd when qca2-cyrus-sasl will be updated
 #BuildRequires: qca2-devel 
-BuildRequires:
 Requires: kde4-kget = %epoch:%version-%release
 Requires: kde4-ktalk = %epoch:%version-%release
 Requires: kde4-krfb = %epoch:%version-%release
