@@ -70,8 +70,9 @@ BuildRequires:	mDNSResponder-devel
 %define release_min_mkrel %mkrel 3
 BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel} 
 #For kopete.
-%define release_min_mkrel_qca2 %mkrel 8
-BuildRequires: qca2-devel >= 2.0-0.beta2.${release_min_mkrel_qca2}
+#TODO readd when qca2-cyrus-sasl will be updated
+#BuildRequires: qca2-devel 
+BuildRequires:
 Requires: kde4-kget = %epoch:%version-%release
 Requires: kde4-ktalk = %epoch:%version-%release
 Requires: kde4-krfb = %epoch:%version-%release
@@ -130,6 +131,7 @@ Common files for kdenetwork
 Group: Graphical desktop/KDE
 Summary: Kopete
 Requires: %name-core >= %epoch:%version-%release
+Requires: decibel
 Provides: kopete4
 BuildConflicts: xmms-devel
 #Need for yahoo webcam
