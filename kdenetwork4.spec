@@ -440,14 +440,6 @@ An advanced download manager for KDE.
 %doc %_kde_docdir/HTML/en/kget/*.png
 %_kde_bindir/kget
 %_kde_datadir/applications/kde4/kget.desktop
-%_kde_iconsdir/crystalsvg/16x16/apps/kget.png
-%_kde_iconsdir/crystalsvg/16x16/mimetypes/kget_list.png
-%_kde_iconsdir/crystalsvg/22x22/apps/kget.png
-%_kde_iconsdir/crystalsvg/22x22/mimetypes/kget_list.png
-%_kde_iconsdir/crystalsvg/32x32/apps/kget.png
-%_kde_iconsdir/crystalsvg/32x32/mimetypes/kget_list.png
-%_kde_iconsdir/crystalsvg/48x48/apps/kget.png
-%_kde_iconsdir/crystalsvg/48x48/mimetypes/kget_list.png
 %_kde_datadir/kde4/services/kget_kiofactory.desktop
 %_kde_datadir/kde4/services/kget_multisegkiofactory.desktop
 %_kde_datadir/kde4/servicetypes/kget_plugin.desktop
