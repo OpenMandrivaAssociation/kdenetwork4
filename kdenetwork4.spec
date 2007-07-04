@@ -1,4 +1,4 @@
-%define revision 680437
+%define revision 683133
 %define support_ldap 1
 
 %define _kde_includedir %_kde_prefix/include
