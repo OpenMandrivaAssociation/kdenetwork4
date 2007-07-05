@@ -69,6 +69,7 @@ BuildRequires:  libxtst-devel
 BuildRequires:	mDNSResponder-devel
 %define release_min_mkrel %mkrel 3
 BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel} 
+BuildRequires:  decibel-devel
 #For kopete.
 #TODO readd when qca2-cyrus-sasl will be updated
 #BuildRequires: qca2-devel 
