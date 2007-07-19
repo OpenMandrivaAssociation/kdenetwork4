@@ -20,31 +20,25 @@
 %define dont_strip 1
 %endif
 
-%define lib_name_orig lib%{name}
-%define lib_major 2
-%define lib_name %mklibname kdenetwork4 %lib_major
 
-
-
-Name: 		kdenetwork4
-Version: 	3.91
-Release: 	%mkrel 0.%revision.1
-Epoch: 		2
-Group: 		Development/KDE and Qt
-Summary: 	K Desktop Environment - Network Applications
-License: 	GPL
-URL: 		http://www.kde.org
+Name: kdenetwork4
+Version: 3.91
+Release: %mkrel 0.%revision.1
+Epoch: 2
+Group: Development/KDE and Qt
+Summary: K Desktop Environment - Network Applications
+License: GPL
+URL: http://www.kde.org
 %if %branch
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%revision.tar.bz2
 %else
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
-Source1:        kdenetwork3-kppp.pamd
-Source2:        kdenetwork-lisa
-BuildRoot:	%_tmppath/%name-%version-%release-root
+Source1: kdenetwork3-kppp.pamd
+Source2: kdenetwork-lisa
+BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires:  freetype2-devel
 BuildRequires:  gettext
-%define mini_release %mkrel 0.%revision.1
 BuildRequires:  kdelibs4-devel
 BuildRequires:  libaudiofile-devel
 BuildRequires:  bzip2-devel
@@ -67,15 +61,14 @@ BuildRequires:  mesaglut-devel
 BuildRequires:  X11-devel
 BuildRequires:  libxtst-devel
 BuildRequires:	mDNSResponder-devel
-%define release_min_mkrel %mkrel 3
-BuildRequires:	libvncserver-devel >= 0.8.2-%{release_min_mkrel} 
+BuildRequires:	libvncserver-devel >= 0.8.2-%mkrel 3
 BuildRequires:  decibel-devel
 BuildRequires: qca2-devel 
-Requires: kde4-kget = %epoch:%version-%release
-Requires: kde4-ktalk = %epoch:%version-%release
-Requires: kde4-krfb = %epoch:%version-%release
-Requires: kde4-kopete = %epoch:%version-%release
-Requires: kde4-knewsticker = %epoch:%version-%release
+Requires: kde4-kget
+Requires: kde4-krfb
+Requires: kde4-kopete
+Requires: kde4-knewsticker
+Requires: kde4-kppp
 
 %description
 Networking applications for the K Desktop Environment.
@@ -84,7 +77,6 @@ Networking applications for the K Desktop Environment.
 - kit: AOL instant messenger client, using the TOC protocol
 - knewsticker: RDF newsticker applet
 - kpf: public fileserver applet
-- ktalkd: talk daemon
 - lanbrowsing: lan browsing kio slave
 - krfb: Desktop Sharing server, allow others to access your desktop via VNC
 - krdc: a client for Desktop Sharing and other VNC servers
@@ -96,8 +88,8 @@ Networking applications for the K Desktop Environment.
 %package core
 Summary:	Common files for kdenetwork
 Group:		Graphical desktop/KDE
-
-Obsoletes:      %name-common
+Obsoletes: %name-common
+Obsoletes: %{_lib}kdenetwork42-kwifimanager
 
 %description core
 Common files for kdenetwork
@@ -120,22 +112,21 @@ Common files for kdenetwork
 %_kde_libdir/kde4/kcm_fileshare.so
 %_kde_libdir/kde4/kcm_kcmsambaconf.so
 %_kde_libdir/kde4/libkrichtexteditpart.so
-%_kde_iconsdir/hicolor/16x16/apps/kcmsambaconf.png
 %_kde_datadir/kde4/services/fileshare_propsdlgplugin.desktop
+%_kde_iconsdir/*/*/*/*
 
 #-----------------------------------------------------------
 
-%package kopete
+%package -n kde4-kopete
 Group: Graphical desktop/KDE
 Summary: Kopete
-Requires: %name-core >= %epoch:%version-%release
+Requires: %name-core
 Requires: decibel
-Provides: kopete4
+Requires: jasper
+Obsoletes: kdenetwork4-kopete
 BuildConflicts: xmms-devel
-#Need for yahoo webcam
-Requires:	jasper
 
-%description kopete
+%description -n kde4-kopete
 Kopete is a flexible and extendable multiple protocol instant messaging
 system designed as a plugin-based system.
 
@@ -152,24 +143,16 @@ The core Kopete development team provides a handful of plugins that most
 users can use, in addition to templates for new developers to base a 
 plugin off of.
 
-%post kopete -p /sbin/ldconfig
-
-%postun kopete -p /sbin/ldconfig
-
-%files kopete
+%files -n kde4-kopete
 %defattr(-,root,root,-)
 %_kde_bindir/kopete
 %_kde_bindir/winpopup-install.sh
 %_kde_bindir/winpopup-send.sh
-
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
-
 %_kde_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
-
 %_kde_appsdir/kconf_update/kopete*
 %_kde_datadir/applications/kde4/kopete.desktop
-
 %_kde_datadir/kde4/services/kopete_*.desktop
 %_kde_datadir/kde4/servicetypes/kopete*.desktop
 %_kde_datadir/sounds/Kopete_*.ogg
@@ -177,157 +160,50 @@ plugin off of.
 %_kde_datadir/kde4/services/chatwindow.desktop
 %_kde_datadir/kde4/services/emailwindow.desktop
 %_kde_datadir/kde4/services/kconfiguredialog/kopete_*.desktop
-
-%_kde_iconsdir/hicolor/*/apps/kopete*
-
-%_kde_iconsdir/oxygen/*/actions/voicecall.*
-%_kde_iconsdir/oxygen/*/actions/webcamreceive.*
-%_kde_iconsdir/oxygen/*/actions/webcamsend.png
-%_kde_iconsdir/oxygen/*/actions/kopeteavailable.png
-%_kde_iconsdir/oxygen/*/actions/account_offline_overlay.*
-%_kde_iconsdir/oxygen/*/actions/add_user.png
-%_kde_iconsdir/oxygen/*/actions/contact_*
-%_kde_iconsdir/oxygen/*/actions/delete_user.png
-%_kde_iconsdir/oxygen/*/actions/edit_user.png
-%_kde_iconsdir/oxygen/*/actions/emoticon.png
-%_kde_iconsdir/oxygen/*/actions/kopeteaway.png
-%_kde_iconsdir/oxygen/*/*/kopete*
-%_kde_iconsdir/oxygen/*/actions/metacontact_*
-%_kde_iconsdir/oxygen/*/actions/newmsg.png
-%_kde_iconsdir/oxygen/*/actions/search_user.png
-%_kde_iconsdir/oxygen/*/actions/show_offliners.png
-%_kde_iconsdir/oxygen/*/actions/status_unknown.png
-%_kde_iconsdir/oxygen/*/actions/status_unknown_overlay.png
-%_kde_iconsdir/oxygen/*/actions/search_user.png
-%_kde_iconsdir/oxygen/*/actions/newmessage.mng
-%_kde_iconsdir/oxygen/*/actions/search_user.png
-%_kde_iconsdir/oxygen/*/actions/webcamsend.svgz
-
-%dir %_kde_appsdir/kopete_history/
-%_kde_appsdir/kopete_history/historychatui.rc
-%_kde_appsdir/kopete_history/historyui.rc
-%dir %_kde_appsdir/kopete_msn/
-%_kde_appsdir/kopete_msn/msnchatui.rc
-%dir %_kde_appsdir/kopete_privacy/
-%_kde_appsdir/kopete_privacy/privacychatui.rc
-%_kde_appsdir/kopete_privacy/privacyui.rc
-%dir %_kde_appsdir/kopete_translator/
-%_kde_appsdir/kopete_translator/translatorchatui.rc
-%_kde_appsdir/kopete_translator/translatorui.rc
-%dir %_kde_appsdir/kopete_yahoo/
-%_kde_appsdir/kopete_yahoo/yahoochatui.rc
-%_kde_appsdir/kopete_yahoo/yahooconferenceui.rc
-%_kde_appsdir/kopete_yahoo/yahooimui.rc
-%_kde_appsdir/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
+%_kde_appsdir/kopete*
 %_kde_datadir/config.kcfg/historyconfig.kcfg
-%_kde_datadir/config.kcfg/kopeteappearancesettings.kcfg
-%_kde_datadir/config.kcfg/kopetebehaviorsettings.kcfg
-%_kde_datadir/config.kcfg/kopetegeneralsettings.kcfg
-%_kde_datadir/config.kcfg/kopeteidentityconfigpreferences.kcfg
+%_kde_datadir/config.kcfg/kopete*
 %_kde_datadir/config.kcfg/nowlisteningconfig.kcfg
-%_kde_appsdir/kopete/icons/*/*/*/qq*
-%_kde_appsdir/kopete/icons/*/*/*/aim*
-%_kde_appsdir/kopete/icons/*/*/*/gg*
-%_kde_appsdir/kopete/icons/*/*/*/icq*
-%_kde_appsdir/kopete/icons/*/*/*/kgpg*
-%_kde_appsdir/kopete/icons/*/*/*/msn*
-%_kde_appsdir/kopete/icons/*/*/*/wp*
-%_kde_appsdir/kopete/icons/*/*/*/yahoo*
-%_kde_appsdir/kopete/icons/*/*/*/testbed*
-%_kde_appsdir/kopete/icons/*/*/*/sms*
-%_kde_appsdir/kopete/icons/*/*/*/gadu*
-%_kde_appsdir/kopete/icons/*/*/*/autoreplace.png
-%_kde_appsdir/kopete/icons/*/*/*/texteffect.png
-%_kde_appsdir/kopete/icons/*/*/*/latex.png
-%_kde_appsdir/kopete/icons/*/*/*/highlight.png
-
-%_kde_appsdir/kopete/styles/*/*/*/*
-%_kde_appsdir/kopete/styles/Hacker/*
-%_kde_appsdir/kopete/styles/Gaim/Contents/Info.plist
-%_kde_appsdir/kopete/webpresence/*
-%_kde_appsdir/kopete_contactnotes/contactnotesui.rc
-%_kde_appsdir/kopete_cryptography/cryptographychatui.rc
-%_kde_appsdir/kopete_cryptography/cryptographyui.rc
-
-%_kde_appsdir/kopete/kopete.notifyrc
-%_kde_appsdir/kopete/kopetechatwindow.rc
-%_kde_appsdir/kopete/kopetecommandui.rc
-%_kde_appsdir/kopete/kopeteemailwindow.rc
-%_kde_appsdir/kopete/kopeteui.rc
-%_kde_appsdir/kopete/nowlisteningchatui.rc
-%_kde_appsdir/kopete/nowlisteningui.rc
-
-%dir %_kde_docdir/HTML/en/kopete/
-%doc %_kde_docdir/HTML/en/kopete/*.bz2
-%doc %_kde_docdir/HTML/en/kopete/*.docbook
+%_kde_docdir/HTML/en/kopete
+%exclude %_kde_appsdir/kopete_latex
 
 #-----------------------------------------------------------
 
-%package  kopete-latex
+%package  -n kde4-kopete-latex
 Group: Graphical desktop/KDE
 Summary: Kopete latex plugin for write andd read mesages in latex
-Requires: kopete4
+Requires: kde4-kopete
 Requires: ImageMagick	
 
-%description kopete-latex
+%description -n kde4-kopete-latex
 Kopete latex plugin for write andd read mesages in latexinder
 
-%files kopete-latex
+%files -n kde4-kopete-latex
 %defattr(-,root,root,-)
 %_kde_bindir/kopete_latexconvert.sh
-%_kde_appsdir/kopete_latex/latexchatui.rc
+%_kde_appsdir/kopete_latex
 %_kde_datadir/config.kcfg/latexconfig.kcfg
 %_kde_libdir/kde4/kopete_latex.so
 
 #-----------------------------------------------------------
 
-%package -n %lib_name-kopete-devel
-Summary: Devel file.
-Group:		Development/KDE and Qt 
-Requires: %lib_name-kopete = %{epoch}:%version-%release
-
-%description -n %lib_name-kopete-devel
-Kopete Devel files
-
-%files -n %lib_name-kopete-devel
-%defattr(-, root, root)
-%_kde_libdir/libkopete.so
-%_kde_libdir/libkopete_msn_shared.so
-%_kde_libdir/libkopete_oscar.so
-%_kde_libdir/libkopete_videodevice.so
-%_kde_libdir/libgadu_kopete.so
-%_kde_libdir/libkopeteaddaccountwizard.so
-%_kde_libdir/libkopetechatwindow_shared.so
-%_kde_libdir/libkopeteprivacy.so
-%_kde_libdir/libkyahoo.so
-%_kde_libdir/liboscar.so
-
-%dir %_kde_includedir/kopete/
-%dir %_kde_includedir/kopete/ui/
-%_kde_includedir/kopete/ui/*.h
-%_kde_includedir/kopete/*.h
-
-#-----------------------------------------------------------
-
-%package -n lisa4
+%package -n kde4-lisa
 Group: Graphical desktop/KDE
 Summary: Lisa server
-Requires: %name-core >= %{epoch}:%version-%release
+Requires: %name-core 
+Obsoletes: lisa4
 
-%description -n lisa4
+%description -n kde4-lisa
 LISa is intended to provide a kind of "network neighbourhood" but only
 relying on the TCP/IP protocol stack, no smb or whatever.
 
-%post -n lisa4
-/sbin/ldconfig
-%_post_service lisa4
+%post -n kde4-lisa
+%_post_service kde4-lisa
 
-%preun -n lisa4
+%preun -n kde4-lisa
 %_preun_service lisa4
 
-%postun -n lisa4 -p /sbin/ldconfig
-
-%files -n lisa4
+%files -n kde4-lisa
 %defattr(-,root,root)
 %config(noreplace) /etc/rc.d/init.d/lisa4
 %_kde_libdir/kde4/kcm_lanbrowser.so
@@ -352,91 +228,44 @@ relying on the TCP/IP protocol stack, no smb or whatever.
 
 #-----------------------------------------------------------
 
-%package kppp
+%package -n kde4-kppp
 Group: Graphical desktop/KDE
 Summary: Dialer and front end for pppd
-Requires: %name-core >= %epoch:%version-%release
-Requires: ppp, %name-kppp-provider
-Provides: kppp4
+Obsoletes: knetwork4-kppp
+Obsoletes: kdenetwork4-kppp-provider
+Requires: %name-core
+Requires: ppp 
 
-%description kppp
+%description -n kde4-kppp
 Kppp is a dialer and front end for pppd.
 
-%post kppp -p /sbin/ldconfig
-
-%postun kppp -p /sbin/ldconfig
-
-%files kppp
+%files -n kde4-kppp
 %defattr(-,root,root,-)
 %dir %_sysconfdir/pam.d/
 %config(noreplace) %_sysconfdir/pam.d/kppp
 %attr(4755,root,root) %_kde_bindir/kppp
 %_kde_bindir/kppplogview
 %dir %_kde_appsdir/kppp
-%_kde_appsdir/kppp/*
+%_kde_appsdir/kppp
 %_kde_datadir/applications/kde4/Kppp.desktop
 %_kde_datadir/applications/kde4/kppplogview.desktop
-%_kde_iconsdir/*/*/*/kppp.png
 %_kde_datadir/dbus-1/interfaces/org.kde.kppp.xml
-%exclude %_kde_appsdir/kppp/Rules
-%exclude %_kde_appsdir/kppp/Provider
-
-%dir %_kde_docdir/HTML/en/kppp/
-%doc %_kde_docdir/HTML/en/kppp/*.docbook
-%doc %_kde_docdir/HTML/en/kppp/*.bz2
-%doc %_kde_docdir/HTML/en/kppp/*.png
+%doc %_kde_docdir/HTML/en/kppp
 
 #-----------------------------------------------------------
 
-%package kppp-provider
-Group: Graphical desktop/KDE
-Summary: List of providers for pppd
-
-%description kppp-provider
-List of providers for kppp
-
-%files kppp-provider
-%defattr(-,root,root,-)
-%_kde_appsdir/kppp/Rules
-%_kde_appsdir/kppp/Provider
-
-#-----------------------------------------------------------
-
-%package -n %lib_name-kwifimanager
-Group:      Development/KDE and Qt 
-Summary:    Libraries for kwifimanager
-BuildRequires:	wireless-tools
-
-%description -n %lib_name-kwifimanager
-Libraries for kwifimanager
-
-%post -n %lib_name-kwifimanager -p /sbin/ldconfig
-%postun -n %lib_name-kwifimanager -p /sbin/ldconfig
-
-%files -n %lib_name-kwifimanager
-%defattr(-,root,root,-)
-
-#-----------------------------------------------------------
-
-%package kget
+%package -n kde4-kget
 Group: Graphical desktop/KDE
 Summary: Kget program
-Provides: kget4
-Requires: %name-core >= %epoch:%version-%release
+Obsoletes: kdenetwork4-kget
+Requires: %name-core
 
-%description kget
+%description -n kde4-kget
 An advanced download manager for KDE.
 
-%post kget -p /sbin/ldconfig
-
-%postun kget -p /sbin/ldconfig
-
-%files kget
+%files -n kde4-kget
 %defattr(-,root,root,-)
-%dir %_kde_docdir/HTML/en/kget/
-%doc %_kde_docdir/HTML/en/kget/*.bz2
-%doc %_kde_docdir/HTML/en/kget/*.docbook
-%doc %_kde_docdir/HTML/en/kget/*.png
+%doc %_kde_docdir/HTML/en/kget
 %_kde_bindir/kget
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/kget_kiofactory.desktop
@@ -446,132 +275,101 @@ An advanced download manager for KDE.
 %_kde_datadir/sounds/KGet_Finished.ogg
 %_kde_datadir/sounds/KGet_Finished_All.ogg
 %_kde_datadir/sounds/KGet_Started.ogg
-%_kde_appsdir/kget/icons/crystalsvg/32x32/actions/transfers_list.png
-%_kde_appsdir/kget/kget.notifyrc
-%_kde_appsdir/kget/kgetui.rc
-%_kde_appsdir/kget/pics/kget_splash.png
+%_kde_appsdir/kget
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/konqueror/servicemenus/kget_download.desktop
 %_kde_datadir/config.kcfg/kget.kcfg
 %_kde_datadir/config.kcfg/kget_multisegkiofactory.kcfg
-
-
-#-----------------------------------------------------------
-
-%package -n %lib_name-kget
-Group:      Development/KDE and Qt
-Summary:    Libraries for kget
-Provides:   %lib_name = %epoch:%version-%release
-
-%description -n %lib_name-kget
-Libraries for kget.
-
-%post -n %lib_name-kget -p /sbin/ldconfig
-%postun -n %lib_name-kget -p /sbin/ldconfig
-
-%files -n %lib_name-kget
-%defattr(-,root,root,-)
 %_kde_libdir/kde4/khtml_kget.so
 %_kde_libdir/kde4/libkget_kiofactory.so
 %_kde_libdir/kde4/libkget_multisegkiofactory.so
+
+#-----------------------------------------------------------
+
+%define libkgetcore %mklibname kgetcore 4
+
+%package -n %libkgetcore
+Summary: KDE 4 library
+Group: System/Libraries
+Obsoletes: %{_lib}kdenetwork42-kget
+Obsoletes: %{_lib}kgetcore5
+
+%description -n %libkgetcore
+KDE 4 library.
+
+%post -n %libkgetcore -p /sbin/ldconfig
+%postun -n %libkgetcore -p /sbin/ldconfig
+
+%files -n %libkgetcore
+%defattr(-,root,root)
 %_kde_libdir/libkgetcore.so.*
 
 #-----------------------------------------------------------
 
-%package  -n %lib_name-kget-devel
-Summary:        Header files for kget
-Group: Development/KDE and Qt
-
-Provides: kget4-devel = %epoch:%version-%release
-
-%description -n %lib_name-kget-devel
-Header files for kget.
-
-%files -n %lib_name-kget-devel
-%defattr(-,root,root,-)
-%_kde_libdir/libkgetcore.so
-
-#-----------------------------------------------------------
-
-%package krfb
+%package -n kde4-krfb
 Group: Graphical desktop/KDE
 Summary: Krfb, Krdc program
-Provides: krdc4, krfb4
-Requires: %name-core >= %epoch:%version-%release
+Obsoletes: kdenetwork4-krfb
+Requires: %name-core
 
-%description krfb
+%description -n kde4-krfb
 KDE Desktop Sharing allows you to invite somebody at a remote 
 location to watch and possibly control your desktop.
 
-%post krfb -p /sbin/ldconfig
-
-%postun krfb -p /sbin/ldconfig
-
-%files krfb
+%files -n kde4-krfb
 %defattr(-,root,root,-)
 %_kde_bindir/krdc
 %_kde_bindir/krfb
 %_kde_datadir/kde4/services/vnc.protocol
 %dir %_kde_appsdir/krdc/
 %_kde_appsdir/krdc/*
-%_kde_iconsdir/*/*/*/krdc*
 %_kde_datadir/applications/kde4/krdc.desktop
 %_kde_datadir/applications/kde4/krfb.desktop
-
-%_kde_appsdir/krfb/krfb.notifyrc
-%_kde_appsdir/krfb/pics/connection-side-image.png
-%_kde_appsdir/krfb/pics/eyes-closed24.png
-%_kde_appsdir/krfb/pics/eyes-open24.png
-%_kde_iconsdir/hicolor/16x16/apps/krfb.png
-%_kde_iconsdir/hicolor/32x32/apps/krfb.png
-%_kde_iconsdir/hicolor/48x48/apps/krfb.png
-
-%dir %_kde_docdir/HTML/en/krdc/
-%doc %_kde_docdir/HTML/en/krdc/*.png
-%doc %_kde_docdir/HTML/en/krdc/*.docbook
-%doc %_kde_docdir/HTML/en/krdc/*.bz2
-
-%dir %_kde_docdir/HTML/en/krfb/
-%doc %_kde_docdir/HTML/en/krfb/*.png
-%doc %_kde_docdir/HTML/en/krfb/*.bz2
-%doc %_kde_docdir/HTML/en/krfb/*.docbook
-
+%_kde_appsdir/krfb
+%doc %_kde_docdir/HTML/*/krdc
+%doc %_kde_docdir/HTML/*/krfb
 
 #-----------------------------------------------------------
 
-%package knewsticker
+%package -n kde4-knewsticker
 Group: Graphical desktop/KDE
 Summary: RDF newsticker applet
-Provides: knewsticker4
-Requires: %name-core >= %epoch:%version-%release
-Requires: %lib_name-knewsticker = %{epoch}:%version-%release
+Obsoletes: kdenetwork4-knewsticker
+Requires: %name-core
 
-%description knewsticker
+%description -n kde4-knewsticker
 Knewsticker: RDF newsticker applet
 
-%post knewsticker -p /sbin/ldconfig
-
-%postun knewsticker -p /sbin/ldconfig
-
-%files knewsticker
+%files -n kde4-knewsticker
 %defattr(-,root,root,-)
 %_kde_bindir/knewstickerstub 
 %_kde_libdir/kde4/knewsticker_panelapplet.so
 %_kde_datadir/applications/kde4/knewsticker-standalone.desktop
-%dir %_kde_appsdir/knewsticker/
-%_kde_appsdir/knewsticker/*
+%_kde_appsdir/knewsticker
 %_kde_appsdir/kicker/applets/knewsticker.desktop
 %dir %_kde_appsdir/kconf_update/
 %_kde_appsdir/kconf_update/knewsticker.upd
 %_kde_appsdir/kconf_update/knt-0.1-0.2.pl
-%_kde_iconsdir/*/*/*/knewsticker.png
 %_kde_datadir/applnk/.hidden/knewstickerstub.desktop
+%doc %_kde_docdir/HTML/en/knewsticker
 
-%dir %_kde_docdir/HTML/en/knewsticker/
-%doc %_kde_docdir/HTML/en/knewsticker/*.png
-%doc %_kde_docdir/HTML/en/knewsticker/*.docbook
-%doc %_kde_docdir/HTML/en/knewsticker/*.bz2
+#-----------------------------------------------------------
 
+%define libpapillon_kopete %mklibname papillon_kopete 1
+
+%package -n %libpapillon_kopete
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libpapillon_kopete
+KDE 4 library.
+
+%post -n %libpapillon_kopete -p /sbin/ldconfig
+%postun -n %libpapillon_kopete -p /sbin/ldconfig
+
+%files -n %libpapillon_kopete
+%defattr(-,root,root)
+%_kde_libdir/libpapillon_kopete.so.*
 
 #-----------------------------------------------------------
 
@@ -590,24 +388,6 @@ KDE 4 library.
 %files -n %libgadu_kopete
 %defattr(-,root,root)
 %_kde_libdir/libgadu_kopete.so.*
-
-#-----------------------------------------------------------------------------
-
-%define libkgetcore %mklibname kgetcore 5
-
-%package -n %libkgetcore
-Summary: KDE 4 library
-Group: System/Libraries
-
-%description -n %libkgetcore
-KDE 4 library.
-
-%post -n %libkgetcore -p /sbin/ldconfig
-%postun -n %libkgetcore -p /sbin/ldconfig
-
-%files -n %libkgetcore
-%defattr(-,root,root)
-%_kde_libdir/libkgetcore.so.*
 
 #-----------------------------------------------------------------------------
 
@@ -770,6 +550,38 @@ KDE 4 library.
 %files -n %liboscar
 %defattr(-,root,root)
 %_kde_libdir/liboscar.so.*
+
+#-----------------------------------------------------------
+
+%package devel
+Summary: Devel stuff for kdenetwork
+Group: Development/KDE and Qt
+Requires: kde4-macros
+Requires: kdelibs4-devel
+Requires: %name-core
+Requires: %libkgetcore
+Requires: %libpapillon_kopete
+Requires: %libgadu_kopete
+Requires: %libkopete
+Requires: %libkopete_msn_shared
+Requires: %libkopete_oscar
+Requires: %libkopete_videodevice
+Requires: %libkopeteaddaccountwizard
+Requires: %libkopetechatwindow_shared
+Requires: %libkopeteprivacy
+Requires: %libkyahoo
+Requires: %liboscar
+Obsoletes: %{_lib}kdenetwork42-devel
+Obsoletes: %{_lib}kdenetwork42-kopete-devel
+Obsoletes: %{_lib}kdebetwork42-kget-devel
+
+%description  devel
+This package contains header files needed if you wish to build applications based on kdegraphics.
+
+%files devel
+%defattr(-,root,root)
+%_kde_libdir/*.so
+%_kde_prefix/include/*
 
 #-----------------------------------------------------------------------------
 
