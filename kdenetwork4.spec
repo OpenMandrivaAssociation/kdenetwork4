@@ -1,9 +1,6 @@
 %define revision 695413
 %define support_ldap 1
 
-%define _kde_includedir %_kde_prefix/include
-%define _kde_sbindir %_kde_prefix/sbin
-
 %define use_enable_pie 1
 %{?_no_enable_pie: %{expand: %%global use_enable_pie 0}}
 
@@ -13,8 +10,14 @@
 %define unstable 1
 %{?_unstable: %{expand: %%global unstable 1}}
 
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
+
+%define with_kopete 0
+%{?_with_kopete: %{expand: %%global with_kopete 1}}
+
+%define with_knewsticker 0
+%{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 %if %unstable
 %define dont_strip 1
@@ -22,8 +25,8 @@
 
 
 Name: kdenetwork4
-Version: 3.92.0
-Release: %mkrel 0.%revision.1
+Version: 3.93.0
+Release: %mkrel 1
 Epoch: 2
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -69,8 +72,12 @@ BuildRequires: qca2-devel
 Requires: kde4-filesharing
 Requires: kde4-kdnssd
 Requires: kde4-kget
+%if %with_knewsticker
 Requires: kde4-knewsticker
+%endif
+%if %with_kopete
 Requires: kde4-kopete
+%endif
 Requires: kde4-kppp
 Requires: kde4-krdc
 Requires: kde4-krfb
@@ -166,6 +173,8 @@ KDE 4 library
 
 #---------------------------------------------
 
+%if %{with_knewsticker}
+
 %package -n kde4-knewsticker
 Summary: %{name} knewsticker
 Group: Graphical desktop/KDE
@@ -185,6 +194,8 @@ Obsoletes: %name-knewsticker
 %_kde_libdir/kde4/knewsticker_panelapplet.so
 %_kde_datadir/applications/kde4/knewsticker-standalone.desktop
 %_kde_docdir/HTML/*/knewsticker
+
+%endif
 
 #---------------------------------------------
 
@@ -213,6 +224,8 @@ Obsoletes: %name-kget
 
 #---------------------------------------------
 
+%if %with_kopete
+
 %package -n kde4-kopete
 Summary: %{name} kopete
 Group: Graphical desktop/KDE
@@ -225,37 +238,12 @@ Obsoletes: %name-kopete
 %files -n kde4-kopete
 %defattr(-,root,root)
 %_kde_appsdir/kconf_update
-%_kde_appsdir/kopete_privacy
-%_kde_appsdir/kopeterichtexteditpart
-%_kde_appsdir/kopete_latex
-%_kde_appsdir/kopete_yahoo
-%_kde_appsdir/kopete_contactnotes
-%_kde_appsdir/kopete_jabber
-%_kde_appsdir/kopete_translator
-%_kde_appsdir/kopete
-%_kde_appsdir/kopete_msn
-%_kde_appsdir/kopete_history
+%_kde_appsdir/kopet*
 %_kde_bindir/kopete
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install.sh
 %_kde_bindir/winpopup-send.sh
-%_kde_libdir/kde4/kcm_kopete_accountconfig.so
-%_kde_libdir/kde4/kcm_kopete_addbookmarks.so
-%_kde_libdir/kde4/kcm_kopete_alias.so
-%_kde_libdir/kde4/kcm_kopete_appearanceconfig.so
-%_kde_libdir/kde4/kcm_kopete_autoreplace.so
-%_kde_libdir/kde4/kcm_kopete_behaviorconfig.so
-%_kde_libdir/kde4/kcm_kopete_chatwindowconfig.so
-%_kde_libdir/kde4/kcm_kopete_highlight.so
-%_kde_libdir/kde4/kcm_kopete_history.so
-%_kde_libdir/kde4/kcm_kopete_identityconfig.so
-%_kde_libdir/kde4/kcm_kopete_latex.so
-%_kde_libdir/kde4/kcm_kopete_nowlistening.so
-%_kde_libdir/kde4/kcm_kopete_pluginconfig.so
-%_kde_libdir/kde4/kcm_kopete_privacy.so
-%_kde_libdir/kde4/kcm_kopete_texteffect.so
-%_kde_libdir/kde4/kcm_kopete_translator.so
-%_kde_libdir/kde4/kcm_kopete_webpresence.so
+%_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/kde4/libkrichtexteditpart.so
 %_kde_datadir/applications/kde4/kopete.desktop
@@ -269,51 +257,10 @@ Obsoletes: %name-kopete
 %_kde_datadir/kde4/services/aim.protocol
 %_kde_datadir/kde4/services/chatwindow.desktop
 %_kde_datadir/kde4/services/emailwindow.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_addbookmarks_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_alias_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_autoreplace_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_highlight_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_history_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_latex_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_nowlistening_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_privacy_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_texteffect_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_translator_config.desktop
-%_kde_datadir/kde4/services/kconfiguredialog/kopete_webpresence_config.desktop
-%_kde_datadir/kde4/services/kopete_accountconfig.desktop
-%_kde_datadir/kde4/services/kopete_addbookmarks.desktop
-%_kde_datadir/kde4/services/kopete_aim.desktop
-%_kde_datadir/kde4/services/kopete_alias.desktop
-%_kde_datadir/kde4/services/kopete_appearanceconfig.desktop
-%_kde_datadir/kde4/services/kopete_autoreplace.desktop
-%_kde_datadir/kde4/services/kopete_behaviorconfig.desktop
-%_kde_datadir/kde4/services/kopete_chatwindowconfig.desktop
-%_kde_datadir/kde4/services/kopete_connectionstatus.desktop
-%_kde_datadir/kde4/services/kopete_contactnotes.desktop
-%_kde_datadir/kde4/services/kopete_gadu.desktop
-%_kde_datadir/kde4/services/kopete_highlight.desktop
-%_kde_datadir/kde4/services/kopete_history.desktop
-%_kde_datadir/kde4/services/kopete_icq.desktop
-%_kde_datadir/kde4/services/kopete_identityconfig.desktop
-%_kde_datadir/kde4/services/kopete_jabber.desktop
-%_kde_datadir/kde4/services/kopete_latex.desktop
-%_kde_datadir/kde4/services/kopete_messenger.desktop
-%_kde_datadir/kde4/services/kopete_msn.desktop
-%_kde_datadir/kde4/services/kopete_nowlistening.desktop
-%_kde_datadir/kde4/services/kopete_pluginconfig.desktop
-%_kde_datadir/kde4/services/kopete_privacy.desktop
-%_kde_datadir/kde4/services/kopete_qq.desktop
-%_kde_datadir/kde4/services/kopete_sms.desktop
-%_kde_datadir/kde4/services/kopete_testbed.desktop
-%_kde_datadir/kde4/services/kopete_texteffect.desktop
-%_kde_datadir/kde4/services/kopete_translator.desktop
-%_kde_datadir/kde4/services/kopete_webpresence.desktop
-%_kde_datadir/kde4/services/kopete_wp.desktop
-%_kde_datadir/kde4/services/kopete_yahoo.desktop
+%_kde_datadir/kde4/services/kconfiguredialog/kopete_*
+%_kde_datadir/kde4/services/kopete_*
 %_kde_datadir/kde4/services/xmpp.protocol
-%_kde_datadir/kde4/servicetypes/kopeteplugin.desktop
-%_kde_datadir/kde4/servicetypes/kopeteprotocol.desktop
-%_kde_datadir/kde4/servicetypes/kopeteui.desktop
+%_kde_datadir/kde4/servicetypes/kopete*
 %_kde_datadir/sounds/Kopete_Event.ogg
 %_kde_datadir/sounds/Kopete_Received.ogg
 %_kde_datadir/sounds/Kopete_Sent.ogg
@@ -537,6 +484,8 @@ KDE 4 library
 %defattr(-,root,root)
 %_kde_libdir/liboscar.so.*
 
+%endif
+
 #---------------------------------------------
 
 %package -n kde4-kppp
@@ -623,8 +572,8 @@ Obsoletes: %name-lisa
 %_kde_datadir/kde4/services/kcmkiolan.desktop
 %_kde_datadir/kde4/services/kcmlisa.desktop
 %_kde_datadir/kde4/services/lan.protocol
-%_kde_docdir/HTML/*/lanbrowser
 %_kde_docdir/HTML/*/lisa
+%_kde_docdir/HTML/*/kcontrol/lanbrowser
 
 #---------------------------------------------
 
@@ -634,6 +583,7 @@ Group: Development/KDE and Qt
 Requires: kde4-macros
 Requires: kdelibs4-devel
 Requires: %libkgetcore = %version
+%if %{with_kopete}
 Requires: %libgadu_kopete = %version
 Requires: %libkyahoo = %version
 Requires: %libkopete_videodevice = %version
@@ -646,13 +596,14 @@ Requires: %libiris_kopete = %version
 Requires: %libkopete_oscar = %version
 Requires: %libkopete_msn_shared = %version
 Requires: %liboscar = %version
+%endif
+
 %description  devel
 This package contains header files needed if you wish to build applications based on %{name}.
 
 %files devel
 %defattr(-,root,root)
 %_kde_libdir/*.so
-%_kde_prefix/include/*
 
 #-------------------------------------------
 
