@@ -1,4 +1,4 @@
-%define revision 695413
+%define revision 711034
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -10,7 +10,7 @@
 %define unstable 1
 %{?_unstable: %{expand: %%global unstable 1}}
 
-%define branch 0
+%define branch 1
 %{?_branch: %{expand: %%global branch 1}}
 
 %define with_kopete 0
@@ -26,7 +26,7 @@
 
 Name: kdenetwork4
 Version: 3.93.0
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 2
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -63,25 +63,25 @@ BuildRequires: libgsmlib-devel
 BuildRequires: mesaglut-devel
 BuildRequires: X11-devel
 BuildRequires: libxtst-devel
-BuildRequires:mDNSResponder-devel
-BuildRequires:libvncserver-devel >= 0.8.2-%mkrel 3
+BuildRequires: mDNSResponder-devel
+BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
 BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel 
-Requires: kde4-filesharing
-Requires: kde4-kdnssd
-Requires: kde4-kget
+Requires:      kde4-filesharing
+Requires:      kde4-kdnssd
+Requires:      kde4-kget
 %if %with_knewsticker
-Requires: kde4-knewsticker
+Requires:      kde4-knewsticker
 %endif
 %if %with_kopete
-Requires: kde4-kopete
+Requires:      kde4-kopete
 %endif
-Requires: kde4-kppp
-Requires: kde4-krdc
-Requires: kde4-krfb
-Requires: kde4-lanbrowsing
+Requires:      kde4-kppp
+Requires:      kde4-krdc
+Requires:      kde4-krfb
+Requires:      kde4-lanbrowsing
 
 %description
 Networking applications for the K Desktop Environment.
