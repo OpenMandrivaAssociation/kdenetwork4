@@ -1,4 +1,4 @@
-%define revision 711034
+%define revision 712018
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -37,8 +37,11 @@ Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%revi
 %else
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
-Source1: kdenetwork3-kppp.pamd
-BuildRoot: %_tmppath/%name-%version-%release-root
+Source1:       kdenetwork3-kppp.pamd
+%if ! %with_kopete
+Patch0:        kdenetwork-3.93.0-without-kopete.patch
+%endif
+BuildRoot:     %_tmppath/%name-%version-%release-root
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -609,6 +612,9 @@ This package contains header files needed if you wish to build applications base
 
 %prep
 %setup -q -n kdenetwork-%version
+%if ! %with_kopete
+%patch0 -p0
+%endif
 
 %build
 %cmake_kde4 
