@@ -1,4 +1,4 @@
-%define revision 712018
+%define revision 712114
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -26,7 +26,7 @@
 
 Name: kdenetwork4
 Version: 3.93.0
-Release: %mkrel 2
+Release: %mkrel 0.%revision.1
 Epoch: 2
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -39,7 +39,7 @@ Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.b
 %endif
 Source1:       kdenetwork3-kppp.pamd
 %if ! %with_kopete
-Patch0:        kdenetwork-3.93.0-without-kopete.patch
+Patch0: kdenetwork-3.93.0-without-kopete.patch
 %endif
 BuildRoot:     %_tmppath/%name-%version-%release-root
 BuildRequires: kde4-macros
