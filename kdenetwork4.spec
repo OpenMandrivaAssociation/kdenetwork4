@@ -1,4 +1,4 @@
-%define revision 713092
+%define revision 714148
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -27,7 +27,7 @@
 Name: kdenetwork4
 Version: 3.93.0
 Release: %mkrel 0.%revision.1
-Epoch: 2
+Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
 License: GPL
@@ -120,8 +120,8 @@ Core files for %{name}.
 %package -n kde4-filesharing
 Summary: %{name} filesharing
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-filesharing
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 
 %description -n kde4-filesharing
 %{name} filesharing.
@@ -140,8 +140,8 @@ Obsoletes: %name-filesharing
 %package -n kde4-kdnssd
 Summary: %{name} kdnssd
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-kdnssd
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 
 %description -n kde4-kdnssd
 %{name} kdnssd.
@@ -181,8 +181,8 @@ KDE 4 library
 %package -n kde4-knewsticker
 Summary: %{name} knewsticker
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-knewsticker
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
 
 %description -n kde4-knewsticker
 %{name} knewsticker.
@@ -205,8 +205,8 @@ Obsoletes: %name-knewsticker
 %package -n kde4-kget
 Summary: %{name} kget
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-kget
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 
 %description -n kde4-kget
 %{name} kget.
@@ -232,8 +232,8 @@ Obsoletes: %name-kget
 %package -n kde4-kopete
 Summary: %{name} kopete
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-kopete
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 
 %description -n kde4-kopete
 %{name} kopete.
@@ -494,8 +494,8 @@ KDE 4 library
 %package -n kde4-kppp
 Summary: %{name} kppp
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-kppp
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 
 %description -n kde4-kppp
 %{name} kppp.
@@ -516,8 +516,8 @@ Obsoletes: %name-kppp
 %package -n kde4-krdc
 Summary: %{name} krdc
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-krdc
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-krdc < 2:3.93.0-0.714148.1
 
 %description -n kde4-krdc
 %{name} krdc.
@@ -538,8 +538,8 @@ Obsoletes: %name-krdc
 %package -n kde4-krfb
 Summary: %{name} krfb
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-krfb
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 
 %description -n kde4-krfb
 %{name} krfb.
@@ -556,9 +556,9 @@ Obsoletes: %name-krfb
 %package -n kde4-lanbrowsing
 Summary: %{name} lanbrowsing
 Group: Graphical desktop/KDE
-Requires: %name-core = %version
-Obsoletes: %name-lanbrowsing
-Obsoletes: %name-lisa
+Requires: %name-core >= %epoch:%version
+Obsoletes: %name-lanbrowsing < 2:3.93.0-0.714148.1
+Obsoletes: %name-lisa < 2:3.93.0-0.714148.1
 
 %description -n kde4-lanbrowsing
 %{name} lanbrowsing.
@@ -585,20 +585,20 @@ Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
 Requires: kde4-macros
 Requires: kdelibs4-devel
-Requires: %libkgetcore = %version
+Requires: %libkgetcore >= %version
 %if %{with_kopete}
-Requires: %libgadu_kopete = %version
-Requires: %libkyahoo = %version
-Requires: %libkopete_videodevice = %version
-Requires: %libkopeteaddaccountwizard = %version
-Requires: %libkopete = %version
-Requires: %libpapillon_kopete = %version
-Requires: %libkopeteprivacy = %version
-Requires: %libkopetechatwindow_shared = %version
-Requires: %libiris_kopete = %version
-Requires: %libkopete_oscar = %version
-Requires: %libkopete_msn_shared = %version
-Requires: %liboscar = %version
+Requires: %libgadu_kopete >= %version
+Requires: %libkyahoo >= %version
+Requires: %libkopete_videodevice >= %version
+Requires: %libkopeteaddaccountwizard >= %version
+Requires: %libkopete >= %version
+Requires: %libpapillon_kopete >= %version
+Requires: %libkopeteprivacy >= %version
+Requires: %libkopetechatwindow_shared >= %version
+Requires: %libiris_kopete >= %version
+Requires: %libkopete_oscar >= %version
+Requires: %libkopete_msn_shared >= %version
+Requires: %liboscar >= %version
 %endif
 
 %description  devel
