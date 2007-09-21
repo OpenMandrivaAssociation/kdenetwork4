@@ -72,6 +72,9 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel 
+%if %with_kopete
+BuildRequires: sqlite-devel
+%endif
 Requires:      kde4-filesharing
 Requires:      kde4-kdnssd
 Requires:      kde4-kget
