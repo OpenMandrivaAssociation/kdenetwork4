@@ -68,12 +68,14 @@ BuildRequires: X11-devel
 BuildRequires: libxtst-devel
 BuildRequires: mDNSResponder-devel
 BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
+BuildRequires: qca2-devel 
+BuildRequires: kdebase4-devel
+%if %with_kopete
+BuildRequires: sqlite-devel
 BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
-BuildRequires: qca2-devel 
-%if %with_kopete
-BuildRequires: sqlite-devel
+BuildRequires: qca2-devel
 %endif
 Requires:      kde4-filesharing
 Requires:      kde4-kdnssd
