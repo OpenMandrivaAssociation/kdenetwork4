@@ -1,4 +1,4 @@
-%define revision 714148
+%define revision 726703
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -16,7 +16,7 @@
 %define with_kopete 0
 %{?_with_kopete: %{expand: %%global with_kopete 1}}
 
-%define with_knewsticker 0
+%define with_knewsticker 1
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 %if %unstable
@@ -25,7 +25,7 @@
 
 
 Name: kdenetwork4
-Version: 3.93.0
+Version: 3.94.0
 Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -193,10 +193,10 @@ Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
 %files -n kde4-knewsticker
 %defattr(-,root,root)
 %_kde_appsdir/knewsticker
-%_kde_appsdir/kconf_update
-%_kde_appsdir/kicker
+%_kde_appsdir/kconf_update/*
+%_kde_appsdir/kicker/applets/knewsticker.desktop
 %_kde_bindir/knewstickerstub
-%_kde_datadir/applnk/.hidden/knewstickerstub.desktop
+%_kde_datadir/applications/kde4/knewstickerstub.desktop
 %_kde_libdir/kde4/knewsticker_panelapplet.so
 %_kde_datadir/applications/kde4/knewsticker-standalone.desktop
 %_kde_docdir/HTML/*/knewsticker
@@ -220,6 +220,10 @@ Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 %_kde_appsdir/kget
 %_kde_libdir/kde4/khtml_kget.so
 %_kde_libdir/kde4/libkget_*
+%_kde_libdir/kde4/plasma_applet_kget.so
+%_kde_libdir/kde4/plasma_engine_kget.so
+%_kde_datadir/kde4/services/plasma-engine-kget.desktop
+%_kde_datadir/kde4/services/plasma-kget-default.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/config.kcfg/kget*
 %_kde_datadir/kde4/services/kget_*
