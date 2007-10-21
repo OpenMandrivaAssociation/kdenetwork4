@@ -153,8 +153,11 @@ Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 
 %files -n kde4-kdnssd
 %defattr(-,root,root)
-%_kde_appsdir/remoteview
-%_kde_appsdir/zeroconf
+%dir %_kde_appsdir/remoteview
+%_kde_appsdir/remoteview/lan.desktop
+%_kde_appsdir/remoteview/zeroconf.desktop
+%dir %_kde_appsdir/zeroconf
+%_kde_appsdir/zeroconf/*._tcp
 %_kde_libdir/kde4/kded_dnssdwatcher.so
 %_kde_libdir/kde4/kio_zeroconf.so
 %_kde_datadir/kde4/services/kded/dnssdwatcher.desktop
@@ -194,7 +197,8 @@ Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
 
 %files -n kde4-knewsticker
 %defattr(-,root,root)
-%_kde_appsdir/knewsticker
+%dir %_kde_appsdir/knewsticker
+%_kde_appsdir/knewsticker/knewsticker.notifyrc
 %_kde_appsdir/kconf_update/*
 %_kde_appsdir/kicker/applets/knewsticker.desktop
 %_kde_bindir/knewstickerstub
@@ -219,7 +223,8 @@ Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 %files -n kde4-kget
 %defattr(-,root,root)
 %_kde_bindir/kget
-%_kde_appsdir/kget
+%dir %_kde_appsdir/kget
+%_kde_appsdir/kget/*
 %_kde_libdir/kde4/khtml_kget.so
 %_kde_libdir/kde4/libkget_*
 %_kde_libdir/kde4/plasma_applet_kget.so
@@ -227,6 +232,7 @@ Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/kde4/services/plasma-kget-default.desktop
 %_kde_datadir/applications/kde4/kget.desktop
+%_kde_appsdir/konqueror/servicemenus/kget_download.desktop
 %_kde_datadir/config.kcfg/kget*
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
@@ -249,8 +255,8 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 
 %files -n kde4-kopete
 %defattr(-,root,root)
-%_kde_appsdir/kconf_update
-%_kde_appsdir/kopet*
+#%_kde_appsdir/kconf_update
+#%_kde_appsdir/kopet*
 %_kde_bindir/kopete
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install.sh
@@ -533,9 +539,10 @@ Obsoletes: %name-krdc < 2:3.93.0-0.714148.1
 
 %files -n kde4-krdc
 %defattr(-,root,root)
-%_kde_appsdir/krdc
-%_kde_appsdir/zeroconf
 %_kde_bindir/krdc
+%dir %_kde_appsdir/krdc
+%_kde_appsdir/krdc/krdcui.rc
+%_kde_appsdir/krdc/pics/*.png
 %_kde_datadir/applications/kde4/krdc.desktop
 %_kde_datadir/config.kcfg/krdc.kcfg
 %_kde_datadir/kde4/services/rdp.protocol
@@ -555,8 +562,9 @@ Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 
 %files -n kde4-krfb
 %defattr(-,root,root)
-%_kde_appsdir/krfb
 %_kde_bindir/krfb
+%dir %_kde_appsdir/krfb
+%_kde_appsdir/krfb/krfb.notifyrc
 %_kde_datadir/applications/kde4/krfb.desktop
 %_kde_docdir/HTML/*/krfb
 
@@ -575,10 +583,10 @@ Obsoletes: %name-lisa < 2:3.93.0-0.714148.1
 %files -n kde4-lanbrowsing
 %defattr(-,root,root)
 %attr(4755,root,root) %_kde_prefix/sbin/lisad
-%_kde_appsdir/lisa
-%_kde_appsdir/remoteview
-%_kde_appsdir/konqsidebartng
-%_kde_appsdir/konqueror
+%dir %_kde_appsdir/lisa
+%_kde_appsdir/lisa/README
+%_kde_appsdir/konqsidebartng/virtual_folders/services/lisa.desktop
+%_kde_appsdir/konqueror/dirtree/remote/lan.desktop
 %_kde_libdir/kde4/kcm_lanbrowser.so
 %_kde_libdir/kde4/kio_lan.so
 %_kde_datadir/kde4/services/kcmkiolan.desktop
