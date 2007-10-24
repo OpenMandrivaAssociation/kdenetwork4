@@ -1,4 +1,4 @@
-%define revision 726703
+%define revision 728807
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -25,7 +25,7 @@
 
 
 Name: kdenetwork4
-Version: 3.94.0
+Version: 3.94.1
 Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
