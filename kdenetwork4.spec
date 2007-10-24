@@ -197,16 +197,9 @@ Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
 
 %files -n kde4-knewsticker
 %defattr(-,root,root)
-%dir %_kde_appsdir/knewsticker
-%_kde_appsdir/knewsticker/knewsticker.notifyrc
-%_kde_appsdir/kconf_update/*
-%_kde_appsdir/kicker/applets/knewsticker.desktop
-%_kde_bindir/knewstickerstub
-%_kde_datadir/applications/kde4/knewstickerstub.desktop
-%_kde_libdir/kde4/knewsticker_panelapplet.so
-%_kde_datadir/applications/kde4/knewsticker-standalone.desktop
+%_kde_libdir/kde4/plasma_applet_knewsticker.so
+%_kde_datadir/kde4/services/plasma-knewsticker-default.desktop
 %_kde_docdir/HTML/*/knewsticker
-
 %endif
 
 #---------------------------------------------
