@@ -26,7 +26,7 @@
 
 Name: kdenetwork4
 Version: 3.94.1
-Release: %mkrel 0.%revision.1
+Release: %mkrel 0.%revision.2
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -144,10 +144,11 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 #---------------------------------------------
 
 %package -n kde4-kdnssd
-Summary: %{name} kdnssd
-Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Summary:   %{name} kdnssd
+Group:     Graphical desktop/KDE
+Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
+Conflicts: kde4-lanbrowsing <= 3:3.93.0-0.714148.1
 
 %description -n kde4-kdnssd
 %{name} kdnssd.
