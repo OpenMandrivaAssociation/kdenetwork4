@@ -1,4 +1,4 @@
-%define revision 728807
+%define revision 729249
 %define support_ldap 1
 
 %define use_enable_pie 1
