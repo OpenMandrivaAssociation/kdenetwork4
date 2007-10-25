@@ -13,7 +13,7 @@
 %define branch 1
 %{?_branch: %{expand: %%global branch 1}}
 
-%define with_kopete 0
+%define with_kopete 1
 %{?_with_kopete: %{expand: %%global with_kopete 1}}
 
 %define with_knewsticker 1
