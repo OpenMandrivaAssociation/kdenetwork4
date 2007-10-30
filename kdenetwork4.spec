@@ -71,7 +71,7 @@ BuildRequires: kdebase4-workspace-devel
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
 %if %with_kopete
-BuildRequires: sqlite-devel
+BuildRequires: sqlite3-devel
 BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
