@@ -248,8 +248,7 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 
 %files -n kde4-kopete
 %defattr(-,root,root)
-#%_kde_appsdir/kconf_update
-#%_kde_appsdir/kopet*
+%_kde_appsdir/kconf_update/kopete-*
 %_kde_bindir/kopete
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install.sh
@@ -261,8 +260,6 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 %_kde_datadir/config.kcfg/historyconfig.kcfg
 %_kde_datadir/config.kcfg/kopeteappearancesettings.kcfg
 %_kde_datadir/config.kcfg/kopetebehaviorsettings.kcfg
-%_kde_datadir/config.kcfg/kopetegeneralsettings.kcfg
-%_kde_datadir/config.kcfg/kopeteidentityconfigpreferences.kcfg
 %_kde_datadir/config.kcfg/latexconfig.kcfg
 %_kde_datadir/config.kcfg/nowlisteningconfig.kcfg
 %_kde_datadir/kde4/services/aim.protocol
@@ -276,7 +273,44 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 %_kde_datadir/sounds/Kopete_Received.ogg
 %_kde_datadir/sounds/Kopete_Sent.ogg
 %_kde_datadir/sounds/Kopete_User_is_Online.ogg
+%dir %_kde_appsdir/kopete
+%_kde_appsdir/kopete/icons/*/*/*/
+%_kde_appsdir/kopete/styles
+%_kde_appsdir/kopete/kopete.notifyrc
+%_kde_appsdir/kopete/kopetechatwindow.rc
+%_kde_appsdir/kopete/kopetecommandui.rc
+%_kde_appsdir/kopete/kopeteemailwindow.rc
+%_kde_appsdir/kopete/kopeteui.rc
+%_kde_appsdir/kopete/nowlisteningchatui.rc
+%_kde_appsdir/kopete/nowlisteningui.rc
+%_kde_appsdir/kopete/pics/statistics/*.png
+%dir %_kde_appsdir/kopete/webpresence
+%_kde_appsdir/kopete/webpresence/*
+%dir %_kde_appsdir/kopete_contactnotes
+%_kde_appsdir/kopete_contactnotes/*
+%dir %_kde_appsdir/kopete_history
+%_kde_appsdir/kopete_history/*
+%dir %_kde_appsdir/kopete_jabber
+%_kde_appsdir/kopete_jabber/*
+%dir %_kde_appsdir/kopete_latex
+%_kde_appsdir/kopete_latex/*
+%dir %_kde_appsdir/kopete_msn
+%_kde_appsdir/kopete_msn/*
+%dir %_kde_appsdir/kopete_privacy
+%_kde_appsdir/kopete_privacy/*
+%dir %_kde_appsdir/kopete_statistics
+%_kde_appsdir/kopete_statistics/*
+%dir %_kde_appsdir/kopete_translator
+%_kde_appsdir/kopete_translator/*
+%dir %_kde_appsdir/kopete_yahoo
+%_kde_appsdir/kopete_yahoo/*
+%dir %_kde_appsdir/kopeterichtexteditpart
+%_kde_appsdir/kopeterichtexteditpart/*
+%_kde_datadir/config.kcfg/motionawayconfig.kcfg
+%_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
+%_datadir/dbus-1/interfaces/org.kde.Kopete.xml
+%_datadir/dbus-1/interfaces/org.kde.kopete.Statistics.xml
 %_kde_docdir/HTML/*/kopete
 
 #---------------------------------------------
@@ -495,6 +529,24 @@ KDE 4 library
 %defattr(-,root,root)
 %_kde_libdir/liboscar.so.*
 
+
+#---------------------------------------------
+
+%define libkopeteidentity %mklibname kopeteidentity 1
+
+%package -n %libkopeteidentity
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopeteidentity
+KDE 4 library
+
+%post -n %libkopeteidentity -p /sbin/ldconfig
+%postun -n %libkopeteidentity -p /sbin/ldconfig
+
+%files -n %libkopeteidentity
+%defattr(-,root,root)
+%_kde_libdir/libkopeteidentity.so.*
 %endif
 
 #---------------------------------------------
@@ -617,7 +669,12 @@ This package contains header files needed if you wish to build applications base
 %files devel
 %defattr(-,root,root)
 %_kde_libdir/*.so
-
+%if %with_kopete
+%dir %_kde_includedir/kopete
+%_kde_includedir/kopete/*.h
+%dir %_kde_includedir/kopete/ui
+%_kde_includedir/kopete/ui/*.h
+%endif
 #-------------------------------------------
 
 %prep
