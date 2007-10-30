@@ -69,6 +69,7 @@ BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
 BuildRequires: qca2-devel 
 BuildRequires: kdebase4-workspace-devel
 BuildRequires: boost-devel
+BuildRequires: qimageblitz-devel
 %if %with_kopete
 BuildRequires: sqlite-devel
 BuildRequires: decibel-devel
