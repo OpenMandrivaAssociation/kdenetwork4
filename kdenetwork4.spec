@@ -1,4 +1,4 @@
-%define revision 731770
+%define revision 732092
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -26,7 +26,7 @@
 
 Name: kdenetwork4
 Version: 3.95.1
-Release: %mkrel 0.%revision.2
+Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -307,7 +307,6 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 %_kde_appsdir/kopete_yahoo/*
 %dir %_kde_appsdir/kopeterichtexteditpart
 %_kde_appsdir/kopeterichtexteditpart/*
-%_kde_datadir/config.kcfg/motionawayconfig.kcfg
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
 %_datadir/dbus-1/interfaces/org.kde.Kopete.xml
