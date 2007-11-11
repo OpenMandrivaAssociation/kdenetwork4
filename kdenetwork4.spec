@@ -1,4 +1,4 @@
-%define revision 732092
+%define revision 734821
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -25,7 +25,7 @@
 
 
 Name: kdenetwork4
-Version: 3.95.1
+Version: 3.95.2
 Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -226,7 +226,7 @@ Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/kde4/services/plasma-kget-default.desktop
 %_kde_datadir/applications/kde4/kget.desktop
-%_kde_appsdir/konqueror/servicemenus/kget_download.desktop
+%_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
 %_kde_datadir/config.kcfg/kget*
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
