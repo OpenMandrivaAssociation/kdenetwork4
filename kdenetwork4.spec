@@ -1,4 +1,4 @@
-%define revision 734821
+%define revision 737162
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -25,7 +25,7 @@
 
 
 Name: kdenetwork4
-Version: 3.95.2
+Version: 3.96.0
 Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -243,6 +243,7 @@ Summary: %{name} kopete
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
+Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 
 %description -n kde4-kopete
 %{name} kopete.
@@ -284,6 +285,7 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 %_kde_appsdir/kopete/kopeteui.rc
 %_kde_appsdir/kopete/nowlisteningchatui.rc
 %_kde_appsdir/kopete/nowlisteningui.rc
+%_kde_appsdir/kopete_groupwise/gwchatui.rc
 %_kde_appsdir/kopete/pics/statistics/*.png
 %dir %_kde_appsdir/kopete/webpresence
 %_kde_appsdir/kopete/webpresence/*
@@ -402,24 +404,6 @@ KDE 4 library
 %files -n %libkopete
 %defattr(-,root,root)
 %_kde_libdir/libkopete.so.*
-
-#---------------------------------------------
-
-%define libpapillon_kopete %mklibname papillon_kopete 1
-
-%package -n %libpapillon_kopete
-Summary: KDE 4 library
-Group: System/Libraries
-
-%description -n %libpapillon_kopete
-KDE 4 library
-
-%post -n %libpapillon_kopete -p /sbin/ldconfig
-%postun -n %libpapillon_kopete -p /sbin/ldconfig
-
-%files -n %libpapillon_kopete
-%defattr(-,root,root)
-%_kde_libdir/libpapillon_kopete.so.*
 
 #---------------------------------------------
 
@@ -654,7 +638,6 @@ Requires: %libkyahoo >= %version
 Requires: %libkopete_videodevice >= %version
 Requires: %libkopeteaddaccountwizard >= %version
 Requires: %libkopete >= %version
-Requires: %libpapillon_kopete >= %version
 Requires: %libkopeteprivacy >= %version
 Requires: %libkopetechatwindow_shared >= %version
 Requires: %libiris_kopete >= %version
