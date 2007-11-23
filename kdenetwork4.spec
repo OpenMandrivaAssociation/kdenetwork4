@@ -210,6 +210,7 @@ Summary: %{name} kget
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
+Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 
 %description -n kde4-kget
 %{name} kget.
@@ -394,6 +395,7 @@ KDE 4 library
 %package -n %libkopete
 Summary: KDE 4 library
 Group: System/Libraries
+Obsoletes: %{_lib}kopete5 < 2:3.91-0.689748.1
 
 %description -n %libkopete
 KDE 4 library
@@ -484,6 +486,7 @@ KDE 4 library
 %package -n %libkopete_msn_shared
 Summary: KDE 4 library
 Group: System/Libraries
+Obsoletes: %{_lib}kopete_msn_shared5 < 2:3.91-0.689748.1
 
 %description -n %libkopete_msn_shared
 KDE 4 library
