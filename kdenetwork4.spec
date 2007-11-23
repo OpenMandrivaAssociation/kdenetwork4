@@ -1,4 +1,4 @@
-%define revision 737162
+%define revision 740247
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -25,7 +25,7 @@
 
 
 Name: kdenetwork4
-Version: 3.96.0
+Version: 3.96.1
 Release: %mkrel 0.%revision.1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -220,8 +220,8 @@ Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 %_kde_bindir/kget
 %dir %_kde_appsdir/kget
 %_kde_appsdir/kget/*
+%_kde_libdir/kde4/kget_*
 %_kde_libdir/kde4/khtml_kget.so
-%_kde_libdir/kde4/libkget_*
 %_kde_libdir/kde4/plasma_applet_kget.so
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
@@ -245,6 +245,7 @@ Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
+Conflicts: %name-devel < 3:3.96.1-0.740247.1
 
 %description -n kde4-kopete
 %{name} kopete.
@@ -258,6 +259,7 @@ Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 %_kde_bindir/winpopup-send.sh
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
+%_kde_libdir/libqgroupwise.so
 %_kde_libdir/kde4/libkrichtexteditpart.so
 %_kde_datadir/applications/kde4/kopete.desktop
 %_kde_datadir/config.kcfg/historyconfig.kcfg
@@ -655,6 +657,7 @@ This package contains header files needed if you wish to build applications base
 %files devel
 %defattr(-,root,root)
 %_kde_libdir/*.so
+%exclude %_kde_libdir/libqgroupwise.so
 %if %with_kopete
 %dir %_kde_includedir/kopete
 %_kde_includedir/kopete/*.h
