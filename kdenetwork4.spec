@@ -26,7 +26,7 @@
 
 Name: kdenetwork4
 Version: 3.96.1
-Release: %mkrel 0.%revision.1
+Release: %mkrel 0.%revision.2
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -112,7 +112,7 @@ Networking applications for the K Desktop Environment.
 Summary: %name core files
 Group: Graphical desktop/KDE
 Requires: kdelibs4-core
-
+Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
 %description core
 Core files for %{name}.
 
