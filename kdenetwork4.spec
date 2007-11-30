@@ -1,4 +1,4 @@
-%define revision 740247
+%define revision 743004
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -262,6 +262,7 @@ Conflicts: %name-devel < 3:3.96.1-0.740247.1
 %_kde_libdir/libqgroupwise.so
 %_kde_libdir/kde4/libkrichtexteditpart.so
 %_kde_datadir/applications/kde4/kopete.desktop
+%_kde_datadir/config/kopeterc
 %_kde_datadir/config.kcfg/historyconfig.kcfg
 %_kde_datadir/config.kcfg/kopeteappearancesettings.kcfg
 %_kde_datadir/config.kcfg/kopetebehaviorsettings.kcfg
