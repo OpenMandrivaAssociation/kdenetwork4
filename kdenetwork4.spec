@@ -1,4 +1,4 @@
-%define revision 746684
+%define revision 752200
 %define support_ldap 1
 
 %define use_enable_pie 1
@@ -26,15 +26,16 @@
 
 Name: kdenetwork4
 Version: 3.97.1
-Release: %mkrel 0.%revision.2
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
 %if %branch
+Release: %mkrel 0.%revision.1
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%revision.tar.bz2
 %else
+Release: %mkrel 1
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
 Source1:       kdenetwork3-kppp.pamd
