@@ -40,6 +40,7 @@ Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.b
 %endif
 Source1:       kdenetwork3-kppp.pamd
 Patch0: kdenetwork-3.93.0-without-kopete.patch
+BuildRoot:     %_tmppath/%name-%version-%release-root
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
