@@ -10,11 +10,8 @@
 %define unstable 1
 %{?_unstable: %{expand: %%global unstable 1}}
 
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
-
-%define with_kopete 1
-%{?_with_kopete: %{expand: %%global with_kopete 1}}
 
 %define with_knewsticker 1
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
@@ -25,7 +22,7 @@
 
 
 Name: kdenetwork4
-Version: 3.97.1
+Version: 4.0.0
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
@@ -39,8 +36,6 @@ Release: %mkrel 1
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
 Source1:       kdenetwork3-kppp.pamd
-Patch0: kdenetwork-3.93.0-without-kopete.patch
-BuildRoot:     %_tmppath/%name-%version-%release-root
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -71,26 +66,22 @@ BuildRequires: qca2-devel
 BuildRequires: kdebase4-workspace-devel
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
-%if %with_kopete
 BuildRequires: sqlite3-devel
 BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
-%endif
 Requires:      kde4-filesharing
 Requires:      kde4-kdnssd
 Requires:      kde4-kget
 %if %with_knewsticker
 Requires:      kde4-knewsticker
 %endif
-%if %with_kopete
 Requires:      kde4-kopete
-%endif
 Requires:      kde4-kppp
 Requires:      kde4-krdc
 Requires:      kde4-krfb
-Requires:      kde4-lanbrowsing
+Obsoletes:      kde4-lanbrowsing
 
 %description
 Networking applications for the K Desktop Environment.
@@ -99,7 +90,6 @@ Networking applications for the K Desktop Environment.
 - kit: AOL instant messenger client, using the TOC protocol
 - knewsticker: RDF newsticker applet
 - kpf: public fileserver applet
-- lanbrowsing: lan browsing kio slave
 - krfb: Desktop Sharing server, allow others to access your desktop via VNC
 - krdc: a client for Desktop Sharing and other VNC servers
 
@@ -148,7 +138,7 @@ Summary:   %{name} kdnssd
 Group:     Graphical desktop/KDE
 Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
-Conflicts: kde4-lanbrowsing <= 3:3.93.0-0.714148.1
+Obsoletes: kde4-lanbrowsing 
 
 %description -n kde4-kdnssd
 %{name} kdnssd.
@@ -156,7 +146,6 @@ Conflicts: kde4-lanbrowsing <= 3:3.93.0-0.714148.1
 %files -n kde4-kdnssd
 %defattr(-,root,root)
 %dir %_kde_appsdir/remoteview
-%_kde_appsdir/remoteview/lan.desktop
 %_kde_appsdir/remoteview/zeroconf.desktop
 %dir %_kde_appsdir/zeroconf
 %_kde_appsdir/zeroconf/*._tcp
@@ -234,11 +223,10 @@ Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
 %_kde_datadir/sounds/KGet*
+%_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_docdir/HTML/*/kget
 
 #---------------------------------------------
-
-%if %with_kopete
 
 %package -n kde4-kopete
 Summary: %{name} kopete
@@ -538,7 +526,6 @@ KDE 4 library
 %files -n %libkopeteidentity
 %defattr(-,root,root)
 %_kde_libdir/libkopeteidentity.so.*
-%endif
 
 #---------------------------------------------
 
@@ -606,40 +593,12 @@ Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 
 #---------------------------------------------
 
-%package -n kde4-lanbrowsing
-Summary: %{name} lanbrowsing
-Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
-Obsoletes: %name-lanbrowsing < 2:3.93.0-0.714148.1
-Obsoletes: %name-lisa < 2:3.93.0-0.714148.1
-
-%description -n kde4-lanbrowsing
-%{name} lanbrowsing.
-
-%files -n kde4-lanbrowsing
-%defattr(-,root,root)
-%attr(4755,root,root) %_kde_prefix/sbin/lisad
-%dir %_kde_appsdir/lisa
-%_kde_appsdir/lisa/README
-%_kde_appsdir/konqsidebartng/virtual_folders/services/lisa.desktop
-%_kde_appsdir/konqueror/dirtree/remote/lan.desktop
-%_kde_libdir/kde4/kcm_lanbrowser.so
-%_kde_libdir/kde4/kio_lan.so
-%_kde_datadir/kde4/services/kcmkiolan.desktop
-%_kde_datadir/kde4/services/kcmlisa.desktop
-%_kde_datadir/kde4/services/lan.protocol
-%_kde_docdir/HTML/*/lisa
-%_kde_docdir/HTML/*/kcontrol/lanbrowser
-
-#---------------------------------------------
-
 %package devel
 Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
 Requires: kde4-macros
 Requires: kdelibs4-devel
 Requires: %libkgetcore >= %version
-%if %{with_kopete}
 Requires: %libgadu_kopete >= %version
 Requires: %libkyahoo >= %version
 Requires: %libkopete_videodevice >= %version
@@ -651,7 +610,6 @@ Requires: %libiris_kopete >= %version
 Requires: %libkopete_oscar >= %version
 Requires: %libkopete_msn_shared >= %version
 Requires: %liboscar >= %version
-%endif
 
 %description  devel
 This package contains header files needed if you wish to build applications based on %{name}.
@@ -660,19 +618,15 @@ This package contains header files needed if you wish to build applications base
 %defattr(-,root,root)
 %_kde_libdir/*.so
 %exclude %_kde_libdir/libqgroupwise.so
-%if %with_kopete
 %dir %_kde_includedir/kopete
 %_kde_includedir/kopete/*.h
 %dir %_kde_includedir/kopete/ui
 %_kde_includedir/kopete/ui/*.h
-%endif
+
 #-------------------------------------------
 
 %prep
 %setup -q -n kdenetwork-%version
-%if ! %with_kopete
-%patch0 -p0
-%endif
 
 %build
 %cmake_kde4 
