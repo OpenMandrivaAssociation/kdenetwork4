@@ -1,40 +1,15 @@
-%define revision 752200
-%define support_ldap 1
-
-%define use_enable_pie 1
-%{?_no_enable_pie: %{expand: %%global use_enable_pie 0}}
-
-%define use_enable_final 0
-%{?_no_enable_final: %{expand: %%global use_enable_final 0}}
-
-%define unstable 1
-%{?_unstable: %{expand: %%global unstable 1}}
-
-%define branch 0
-%{?_branch: %{expand: %%global branch 1}}
-
 %define with_knewsticker 1
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
-%if %unstable
-%define dont_strip 1
-%endif
-
-
 Name: kdenetwork4
-Version: 4.0.0
+Version: 4.0.1
 Epoch: 3
 Group: Development/KDE and Qt
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-%if %branch
-Release: %mkrel 0.%revision.1
-Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%revision.tar.bz2
-%else
 Release: %mkrel 1
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-%endif
 Source1:       kdenetwork3-kppp.pamd
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
