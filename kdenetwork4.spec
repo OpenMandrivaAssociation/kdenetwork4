@@ -587,7 +587,8 @@ Requires: %libkopete_msn_shared >= %version
 Requires: %liboscar >= %version
 
 %description  devel
-This package contains header files needed if you wish to build applications based on %{name}.
+This package contains header files needed if you wish to build applications
+based on %{name}.
 
 %files devel
 %defattr(-,root,root)
