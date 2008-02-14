@@ -5,6 +5,7 @@ Name: kdenetwork4
 Version: 4.0.1
 Epoch: 3
 Group: Development/KDE and Qt
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
