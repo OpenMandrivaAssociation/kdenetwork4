@@ -2,14 +2,14 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.0.2
+Version: 4.0.3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Release: %mkrel 2
+Release: %mkrel 1
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Source1:       kdenetwork3-kppp.pamd
 BuildRequires: kde4-macros
