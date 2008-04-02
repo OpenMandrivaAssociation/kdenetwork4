@@ -9,9 +9,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Release: %mkrel 1
+Release: %mkrel 2
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Source1:       kdenetwork3-kppp.pamd
+Patch1:        kdenetwork4-post-4.0.3-792654-fix-jabber-crash.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -604,6 +605,7 @@ based on %{name}.
 
 %prep
 %setup -q -n kdenetwork-%version
+%patch1 -p0 -b .post403
 
 %build
 %cmake_kde4 
