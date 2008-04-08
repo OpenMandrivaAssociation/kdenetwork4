@@ -2,17 +2,15 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.0.3
+Version: 4.0.68
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Release: %mkrel 2
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-Source1:       kdenetwork3-kppp.pamd
-Patch1:        kdenetwork4-post-4.0.3-792654-fix-jabber-crash.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -37,6 +35,8 @@ BuildRequires: libgsmlib-devel
 BuildRequires: mesaglut-devel
 BuildRequires: X11-devel
 BuildRequires: libxtst-devel
+BuildRequires: gmp-devel
+BuildRequires: libotr-devel
 BuildRequires: mDNSResponder-devel
 BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
 BuildRequires: qca2-devel 
@@ -48,17 +48,17 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
-Requires:      kde4-filesharing
-Requires:      kde4-kdnssd
-Requires:      kde4-kget
+Requires: kdnssd
+Requires: kget
 %if %with_knewsticker
-Requires:      kde4-knewsticker
+Requires: knewsticker
 %endif
-Requires:      kde4-kopete
-Requires:      kde4-kppp
-Requires:      kde4-krdc
-Requires:      kde4-krfb
-Obsoletes:      kde4-lanbrowsing
+Requires: kopete
+Requires: kppp
+Requires: krdc
+Requires: krfb
+Requires: kde4-filesharing
+Obsoletes: kde4-lanbrowsing
 
 %description
 Networking applications for the K Desktop Environment.
@@ -107,25 +107,26 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 %_kde_datadir/kde4/services/fileshare.desktop
 %_kde_datadir/kde4/services/fileshare_propsdlgplugin.desktop
 %_kde_datadir/kde4/services/kcmsambaconf.desktop
+%_kde_datadir/kde4/services/ServiceMenus/smb2rdc.desktop
 
 #---------------------------------------------
 
-%package -n kde4-kdnssd
+%package -n kdnssd
 Summary:   %{name} kdnssd
 Group:     Graphical desktop/KDE
 Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
-Obsoletes: kde4-lanbrowsing 
+Obsoletes: kde4-lanbrowsing
+Obsoletes: kde4-kdnssd < 3:4.0.68
+Provides: kde4-kdnssd = %epoch:%version
 
-%description -n kde4-kdnssd
+%description -n kdnssd
 %{name} kdnssd.
 
-%files -n kde4-kdnssd
+%files -n kdnssd
 %defattr(-,root,root)
 %dir %_kde_appsdir/remoteview
 %_kde_appsdir/remoteview/zeroconf.desktop
-%dir %_kde_appsdir/zeroconf
-%_kde_appsdir/zeroconf/*._tcp
 %_kde_libdir/kde4/kded_dnssdwatcher.so
 %_kde_libdir/kde4/kio_zeroconf.so
 %_kde_datadir/kde4/services/kded/dnssdwatcher.desktop
@@ -154,16 +155,18 @@ KDE 4 library
 
 %if %{with_knewsticker}
 
-%package -n kde4-knewsticker
+%package -n knewsticker
 Summary: %{name} knewsticker
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
+Obsoletes: kde4-knewsticker < 3:4.0.68
+Provides: kde4-knewsticker = %epoch:%version
 
-%description -n kde4-knewsticker
+%description -n knewsticker
 %{name} knewsticker.
 
-%files -n kde4-knewsticker
+%files -n knewsticker
 %defattr(-,root,root)
 %_kde_libdir/kde4/plasma_applet_knewsticker.so
 %_kde_datadir/kde4/services/plasma-knewsticker-default.desktop
@@ -172,17 +175,19 @@ Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
 
 #---------------------------------------------
 
-%package -n kde4-kget
+%package -n kget
 Summary: %{name} kget
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
+Obsoletes: kde4-kget < 3:4.0.68
+Provides: kde4-kget = %epoch:%version
 
-%description -n kde4-kget
+%description -n kget
 %{name} kget.
 
-%files -n kde4-kget
+%files -n kget
 %defattr(-,root,root)
 %_kde_bindir/kget
 %dir %_kde_appsdir/kget
@@ -199,24 +204,27 @@ Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
-%_kde_datadir/sounds/KGet*
 %_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_docdir/HTML/*/kget
 
 #---------------------------------------------
 
-%package -n kde4-kopete
+%package -n kopete
 Summary: %{name} kopete
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
+Obsoletes: kde4-kopete < 3:4.0.68
+Provides: kde4-kopete = %epoch:%version
+# Provides TLS access to gtalk
+Requires: qca2-openssl
 
-%description -n kde4-kopete
+%description -n kopete
 %{name} kopete.
 
-%files -n kde4-kopete
+%files -n kopete
 %defattr(-,root,root)
 %_kde_appsdir/kconf_update/kopete-*
 %_kde_bindir/kopete
@@ -246,19 +254,7 @@ Conflicts: %name-devel < 3:3.96.1-0.740247.1
 %_kde_datadir/sounds/Kopete_Sent.ogg
 %_kde_datadir/sounds/Kopete_User_is_Online.ogg
 %dir %_kde_appsdir/kopete
-%_kde_appsdir/kopete/icons/*/*/*/
-%_kde_appsdir/kopete/styles
-%_kde_appsdir/kopete/kopete.notifyrc
-%_kde_appsdir/kopete/kopetechatwindow.rc
-%_kde_appsdir/kopete/kopetecommandui.rc
-%_kde_appsdir/kopete/kopeteemailwindow.rc
-%_kde_appsdir/kopete/kopeteui.rc
-%_kde_appsdir/kopete/nowlisteningchatui.rc
-%_kde_appsdir/kopete/nowlisteningui.rc
-%_kde_appsdir/kopete_groupwise/gwchatui.rc
-%_kde_appsdir/kopete/pics/statistics/*.png
-%dir %_kde_appsdir/kopete/webpresence
-%_kde_appsdir/kopete/webpresence/*
+%_kde_appsdir/kopete/*
 %dir %_kde_appsdir/kopete_contactnotes
 %_kde_appsdir/kopete_contactnotes/*
 %dir %_kde_appsdir/kopete_history
@@ -279,6 +275,8 @@ Conflicts: %name-devel < 3:3.96.1-0.740247.1
 %_kde_appsdir/kopete_yahoo/*
 %dir %_kde_appsdir/kopeterichtexteditpart
 %_kde_appsdir/kopeterichtexteditpart/*
+%dir %_kde_appsdir/kopete_groupwise
+%_kde_appsdir/kopete_groupwise/*
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
 %_datadir/dbus-1/interfaces/org.kde.Kopete.xml
@@ -375,6 +373,7 @@ KDE 4 library
 %files -n %libkopete
 %defattr(-,root,root)
 %_kde_libdir/libkopete.so.*
+%_kde_datadir/config.kcfg/kopetestatussettings.kcfg
 
 #---------------------------------------------
 
@@ -432,6 +431,45 @@ KDE 4 library
 
 #---------------------------------------------
 
+%define libkopete_otr_shared %mklibname kopete_otr_shared 1
+
+%package -n %libkopete_otr_shared
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopete_otr_shared
+KDE 4 library
+
+%post -n %libkopete_otr_shared -p /sbin/ldconfig
+%postun -n %libkopete_otr_shared -p /sbin/ldconfig
+
+%files -n %libkopete_otr_shared
+%defattr(-,root,root)
+%_kde_libdir/libkopete_otr_shared.so.*
+%dir %_kde_appsdir/kopete_otr
+%_kde_appsdir/kopete_otr/*
+%_kde_datadir/config.kcfg/kopete_otr.kcfg
+
+#---------------------------------------------
+
+%define libkopetestatusmenu %mklibname kopetestatusmenu 1
+
+%package -n %libkopetestatusmenu
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkopetestatusmenu
+KDE 4 library
+
+%post -n %libkopetestatusmenu -p /sbin/ldconfig
+%postun -n %libkopetestatusmenu -p /sbin/ldconfig
+
+%files -n %libkopetestatusmenu
+%defattr(-,root,root)
+%_kde_libdir/libkopetestatusmenu.so.*
+
+#---------------------------------------------
+
 %define libkopete_oscar %mklibname kopete_oscar 4
 
 %package -n %libkopete_oscar
@@ -485,7 +523,6 @@ KDE 4 library
 %defattr(-,root,root)
 %_kde_libdir/liboscar.so.*
 
-
 #---------------------------------------------
 
 %define libkopeteidentity %mklibname kopeteidentity 1
@@ -506,16 +543,18 @@ KDE 4 library
 
 #---------------------------------------------
 
-%package -n kde4-kppp
+%package -n kppp
 Summary: %{name} kppp
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
+Obsoletes: kde4-kppp < 3:4.0.68
+Provides: kde4-kppp = %epoch:%version
 
-%description -n kde4-kppp
+%description -n kppp
 %{name} kppp.
 
-%files -n kde4-kppp
+%files -n kppp
 %defattr(-,root,root)
 %_kde_appsdir/kppp
 %_kde_bindir/kppp
@@ -524,20 +563,21 @@ Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 %_kde_datadir/applications/kde4/kppplogview.desktop
 %_datadir/dbus-1/interfaces/org.kde.kppp.xml
 %_kde_docdir/HTML/*/kppp
-%exclude %_sysconfdir/pam.d/kppp
 
 #---------------------------------------------
 
-%package -n kde4-krdc
+%package -n krdc
 Summary: %{name} krdc
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-krdc < 2:3.93.0-0.714148.1
+Obsoletes: kde4-krdc < 3:4.0.68
+Provides: kde4-krdc = %epoch:%version
 
-%description -n kde4-krdc
+%description -n krdc
 %{name} krdc.
 
-%files -n kde4-krdc
+%files -n krdc
 %defattr(-,root,root)
 %_kde_bindir/krdc
 %dir %_kde_appsdir/krdc
@@ -551,16 +591,18 @@ Obsoletes: %name-krdc < 2:3.93.0-0.714148.1
 
 #---------------------------------------------
 
-%package -n kde4-krfb
+%package -n krfb
 Summary: %{name} krfb
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
+Obsoletes: kde4-krfb < 3:4.0.68
+Provides: kde4-krfb = %epoch:%version
 
-%description -n kde4-krfb
+%description -n krfb
 %{name} krfb.
 
-%files -n kde4-krfb
+%files -n krfb
 %defattr(-,root,root)
 %_kde_bindir/krfb
 %dir %_kde_appsdir/krfb
@@ -596,16 +638,12 @@ based on %{name}.
 %defattr(-,root,root)
 %_kde_libdir/*.so
 %exclude %_kde_libdir/libqgroupwise.so
-%dir %_kde_includedir/kopete
-%_kde_includedir/kopete/*.h
-%dir %_kde_includedir/kopete/ui
-%_kde_includedir/kopete/ui/*.h
+%_kde_includedir/*
 
 #-------------------------------------------
 
 %prep
 %setup -q -n kdenetwork-%version
-%patch1 -p0 -b .post403
 
 %build
 %cmake_kde4 
@@ -615,15 +653,8 @@ based on %{name}.
 
 %install
 rm -fr %buildroot
-cd build
 
-make DESTDIR=%buildroot install
-
-install -d -m 0755 %buildroot%_sysconfdir/rc.d/init.d
-
-#TODO install it into real sysconfig dir
-install -d -m 0755 %buildroot/%_sysconfdir/pam.d/
-install -m 0644 %SOURCE1 %buildroot/%_sysconfdir/pam.d/kppp
+make -C build DESTDIR=%buildroot install
 
 %clean
 rm -fr %buildroot
