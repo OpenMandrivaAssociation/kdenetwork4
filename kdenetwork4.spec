@@ -2,7 +2,7 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.0.68
+Version: 4.0.69
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -219,7 +219,7 @@ Conflicts: %name-devel < 3:3.96.1-0.740247.1
 Obsoletes: kde4-kopete < 3:4.0.68
 Provides: kde4-kopete = %epoch:%version
 # Provides TLS access to gtalk
-Requires: qca2-openssl
+Requires: qca2-plugin-openssl-%{_lib}
 
 %description -n kopete
 %{name} kopete.
