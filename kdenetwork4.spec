@@ -194,17 +194,17 @@ Provides: kde4-kget = %epoch:%version
 %_kde_appsdir/kget/*
 %_kde_libdir/kde4/kget_*
 %_kde_libdir/kde4/khtml_kget.so
-%_kde_libdir/kde4/plasma_applet_kget.so
-%_kde_libdir/kde4/plasma_engine_kget.so
-%_kde_datadir/kde4/services/plasma-engine-kget.desktop
-%_kde_datadir/kde4/services/plasma-kget-default.desktop
+#%_kde_libdir/kde4/plasma_applet_kget.so
+#%_kde_libdir/kde4/plasma_engine_kget.so
+#%_kde_datadir/kde4/services/plasma-engine-kget.desktop
+#%_kde_datadir/kde4/services/plasma-kget-default.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
 %_kde_datadir/config.kcfg/kget*
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
-%_kde_appsdir/desktoptheme/default/widgets/kget.svg
+#%_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_docdir/HTML/*/kget
 
 #---------------------------------------------
