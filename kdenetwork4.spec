@@ -48,6 +48,7 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
+BuildRequires: webkitkde
 Requires: kdnssd
 Requires: kget
 %if %with_knewsticker
@@ -203,7 +204,8 @@ Provides: kde4-kget = %epoch:%version
 %_kde_datadir/config.kcfg/kget*
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
-%_kde_datadir/apps/khtml/kpartplugins/kget_plug_in.rc
+%_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
+%_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
 #%_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_docdir/HTML/*/kget
 
