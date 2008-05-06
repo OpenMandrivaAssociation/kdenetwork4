@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.0.72
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -48,7 +48,7 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
-BuildRequires: webkitkde
+BuildRequires: webkitkde-devel
 Requires: kdnssd
 Requires: kget
 %if %with_knewsticker
