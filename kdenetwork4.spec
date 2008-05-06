@@ -11,7 +11,6 @@ Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
 Source: 	ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-Patch0:        kdenetwork-4.0.72-fix-build.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -647,7 +646,6 @@ based on %{name}.
 
 %prep
 %setup -q -n kdenetwork-%version
-%patch0 -p0
 
 %build
 %cmake_kde4 
