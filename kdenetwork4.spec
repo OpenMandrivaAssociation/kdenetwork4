@@ -195,7 +195,7 @@ Provides: kde4-kget = %epoch:%version
 %_kde_appsdir/kget/*
 %_kde_libdir/kde4/kget_*
 %_kde_libdir/kde4/khtml_kget.so
-%kde_libdir/kde4/plasma_applet_kget.so
+%_kde_libdir/kde4/plasma_applet_kget.so
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/kde4/services/plasma-kget-default.desktop
