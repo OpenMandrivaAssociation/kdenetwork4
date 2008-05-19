@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.0.74
-Release: %mkrel 1
+Release: %mkrel 2 
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -170,7 +170,7 @@ Obsoletes: kde4-knewsticker < 3:4.0.68
 Provides: kde4-knewsticker = %epoch:%version
 
 %description -n knewsticker
-%{name} knewsticker.
+Knewsticker: RDF newsticker applet
 
 %files -n knewsticker
 %defattr(-,root,root)
@@ -191,7 +191,7 @@ Obsoletes: kde4-kget < 3:4.0.68
 Provides: kde4-kget = %epoch:%version
 
 %description -n kget
-%{name} kget.
+An advanced download manager for KDE.
 
 %files -n kget
 %defattr(-,root,root)
@@ -229,7 +229,21 @@ Provides: kde4-kopete = %epoch:%version
 Requires: qca2-plugin-openssl-%{_lib}
 
 %description -n kopete
-%{name} kopete.
+Kopete is a flexible and extendable multiple protocol instant messaging
+system designed as a plugin-based system.
+
+All protocols are plugins and allow modular installment, configuration,
+and usage without the main application knowing anything about the plugin
+being loaded.
+
+The goal of Kopete is to provide users with a standard and easy to use
+interface between all of their instant messaging systems, but at the same
+time also providing developers with the ease of writing plugins to support
+a new protocol.
+
+The core Kopete development team provides a handful of plugins that most
+users can use, in addition to templates for new developers to base a
+plugin off of.
 
 %files -n kopete
 %defattr(-,root,root)
@@ -582,7 +596,8 @@ Obsoletes: kde4-krdc < 3:4.0.68
 Provides: kde4-krdc = %epoch:%version
 
 %description -n krdc
-%{name} krdc.
+KDE Desktop Sharing allows you to invite somebody at a remote
+location to watch and possibly control your desktop.
 
 %files -n krdc
 %defattr(-,root,root)
@@ -607,7 +622,8 @@ Obsoletes: kde4-krfb < 3:4.0.68
 Provides: kde4-krfb = %epoch:%version
 
 %description -n krfb
-%{name} krfb.
+KDE Desktop Sharing allows you to invite somebody at a remote
+location to watch and possibly control your desktop.
 
 %files -n krfb
 %defattr(-,root,root)
