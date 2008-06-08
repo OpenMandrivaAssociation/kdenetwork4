@@ -457,6 +457,7 @@ KDE 4 library
 %package -n %libkopete_otr_shared
 Summary: KDE 4 library
 Group: System/Libraries
+Conflicts: kopete-otr < 0.8
 
 %description -n %libkopete_otr_shared
 KDE 4 library
