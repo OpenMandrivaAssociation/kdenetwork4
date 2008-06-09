@@ -150,8 +150,12 @@ Group: System/Libraries
 %description -n %libkgetcore
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkgetcore -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkgetcore -p /sbin/ldconfig
+%endif
 
 %files -n %libkgetcore
 %defattr(-,root,root)
@@ -315,8 +319,12 @@ Group: System/Libraries
 %description -n %libgadu_kopete
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libgadu_kopete -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libgadu_kopete -p /sbin/ldconfig
+%endif
 
 %files -n %libgadu_kopete
 %defattr(-,root,root)
@@ -333,8 +341,12 @@ Group: System/Libraries
 %description -n %libkyahoo
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkyahoo -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkyahoo -p /sbin/ldconfig
+%endif
 
 %files -n %libkyahoo
 %defattr(-,root,root)
@@ -351,8 +363,12 @@ Group: System/Libraries
 %description -n %libkopete_videodevice
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopete_videodevice -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopete_videodevice -p /sbin/ldconfig
+%endif
 
 %files -n %libkopete_videodevice
 %defattr(-,root,root)
@@ -369,8 +385,12 @@ Group: System/Libraries
 %description -n %libkopeteaddaccountwizard
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopeteaddaccountwizard -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopeteaddaccountwizard -p /sbin/ldconfig
+%endif
 
 %files -n %libkopeteaddaccountwizard
 %defattr(-,root,root)
@@ -388,8 +408,12 @@ Obsoletes: %{_lib}kopete5 < 2:3.91-0.689748.1
 %description -n %libkopete
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopete -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopete -p /sbin/ldconfig
+%endif
 
 %files -n %libkopete
 %defattr(-,root,root)
@@ -407,8 +431,12 @@ Group: System/Libraries
 %description -n %libkopeteprivacy
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopeteprivacy -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopeteprivacy -p /sbin/ldconfig
+%endif
 
 %files -n %libkopeteprivacy
 %defattr(-,root,root)
@@ -425,8 +453,12 @@ Group: System/Libraries
 %description -n %libkopetechatwindow_shared
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopetechatwindow_shared -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopetechatwindow_shared -p /sbin/ldconfig
+%endif
 
 %files -n %libkopetechatwindow_shared
 %defattr(-,root,root)
@@ -443,8 +475,12 @@ Group: System/Libraries
 %description -n %libiris_kopete
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libiris_kopete -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libiris_kopete -p /sbin/ldconfig
+%endif
 
 %files -n %libiris_kopete
 %defattr(-,root,root)
@@ -462,8 +498,12 @@ Conflicts: kopete-otr < 0.8
 %description -n %libkopete_otr_shared
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopete_otr_shared -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopete_otr_shared -p /sbin/ldconfig
+%endif
 
 %files -n %libkopete_otr_shared
 %defattr(-,root,root)
@@ -483,8 +523,12 @@ Group: System/Libraries
 %description -n %libkopetestatusmenu
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopetestatusmenu -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopetestatusmenu -p /sbin/ldconfig
+%endif
 
 %files -n %libkopetestatusmenu
 %defattr(-,root,root)
@@ -501,8 +545,12 @@ Group: System/Libraries
 %description -n %libkopete_oscar
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopete_oscar -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopete_oscar -p /sbin/ldconfig
+%endif
 
 %files -n %libkopete_oscar
 %defattr(-,root,root)
@@ -520,8 +568,12 @@ Obsoletes: %{_lib}kopete_msn_shared5 < 2:3.91-0.689748.1
 %description -n %libkopete_msn_shared
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopete_msn_shared -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopete_msn_shared -p /sbin/ldconfig
+%endif
 
 %files -n %libkopete_msn_shared
 %defattr(-,root,root)
@@ -538,8 +590,12 @@ Group: System/Libraries
 %description -n %liboscar
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %liboscar -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %liboscar -p /sbin/ldconfig
+%endif
 
 %files -n %liboscar
 %defattr(-,root,root)
@@ -556,8 +612,12 @@ Group: System/Libraries
 %description -n %libkopeteidentity
 KDE 4 library
 
+%if %mdkversion < 200900
 %post -n %libkopeteidentity -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkopeteidentity -p /sbin/ldconfig
+%endif
 
 %files -n %libkopeteidentity
 %defattr(-,root,root)
