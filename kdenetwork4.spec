@@ -137,7 +137,6 @@ Provides: kde4-kdnssd = %epoch:%version
 %_kde_libdir/kde4/kio_zeroconf.so
 %_kde_datadir/kde4/services/kded/dnssdwatcher.desktop
 %_kde_datadir/kde4/services/zeroconf.protocol
-%_datadir/dbus-1/interfaces/org.kde.kdnssd.xml
 
 #---------------------------------------------
 
@@ -303,9 +302,6 @@ plugin off of.
 %dir %_kde_appsdir/kopete_groupwise
 %_kde_appsdir/kopete_groupwise/*
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
-%_datadir/dbus-1/interfaces/org.kde.kopete.Client.xml
-%_datadir/dbus-1/interfaces/org.kde.Kopete.xml
-%_datadir/dbus-1/interfaces/org.kde.kopete.Statistics.xml
 %_kde_docdir/HTML/*/kopete
 
 #---------------------------------------------
@@ -643,7 +639,6 @@ Provides: kde4-kppp = %epoch:%version
 %_kde_bindir/kppplogview
 %_kde_datadir/applications/kde4/Kppp.desktop
 %_kde_datadir/applications/kde4/kppplogview.desktop
-%_datadir/dbus-1/interfaces/org.kde.kppp.xml
 %_kde_docdir/HTML/*/kppp
 
 #---------------------------------------------
@@ -723,6 +718,7 @@ based on %{name}.
 %_kde_libdir/*.so
 %exclude %_kde_libdir/libqgroupwise.so
 %_kde_includedir/*
+%_kde_datadir/dbus-1/interfaces/*
 
 #-------------------------------------------
 
