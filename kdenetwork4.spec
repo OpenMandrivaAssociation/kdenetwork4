@@ -2,7 +2,7 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.0.82
+Version: 4.0.83
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
