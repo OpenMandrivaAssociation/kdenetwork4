@@ -648,7 +648,7 @@ Provides: kde4-kppp = %epoch:%version
 %package -n kppp-provider
 Group: Graphical desktop/KDE
 Summary: List of providers for pppd
-Conflicts: kppp < 4.0.83-2
+Conflicts: kppp < 3:4.0.83-2
 
 %description -n kppp-provider
 List of providers for kppp
