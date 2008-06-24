@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.0.83
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -640,6 +640,23 @@ Provides: kde4-kppp = %epoch:%version
 %_kde_datadir/applications/kde4/Kppp.desktop
 %_kde_datadir/applications/kde4/kppplogview.desktop
 %_kde_docdir/HTML/*/kppp
+%exclude %_kde_appsdir/kppp/Rules
+%exclude %_kde_appsdir/kppp/Provider
+
+#-----------------------------------------------------------
+
+%package -n kppp-provider
+Group: Graphical desktop/KDE
+Summary: List of providers for pppd
+Conflicts: kppp < 4.0.83-2
+
+%description -n kppp-provider
+List of providers for kppp
+
+%files -n kppp-provider
+%defattr(-,root,root,-)
+%_kde_appsdir/kppp/Rules
+%_kde_appsdir/kppp/Provider
 
 #---------------------------------------------
 
