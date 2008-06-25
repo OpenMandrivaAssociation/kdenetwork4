@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.0.83
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -82,10 +82,11 @@ Summary: %name core files
 Group: Graphical desktop/KDE
 Requires: kdelibs4-core
 Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
-# (Anssi 05/2008): KDE3 before move to /opt/kde3:
+%if %mdkversion >= 200900
 Conflicts: kdenetwork-knewsticker < 2:3.5.9-2
 Conflicts: kdenetwork-kopete < 2:3.5.9-2
 Conflicts: lisa < 2:3.5.9-2
+%endif
 
 %description core
 Core files for %{name}.
