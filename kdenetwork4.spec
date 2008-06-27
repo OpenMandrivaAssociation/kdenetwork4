@@ -15,7 +15,9 @@ BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
 BuildRequires: gettext
-BuildRequires: kdelibs4-devel >= %{version}
+BuildRequires: kdelibs4-devel >= 4.0.83
+BuildRequires: kdepimlibs4-devel >= 4.0.83
+BuildRequires: kdebase4-workspace-devel >= 4.0.83
 BuildRequires: libaudiofile-devel
 BuildRequires: bzip2-devel
 BuildRequires: jpeg-devel
@@ -29,7 +31,6 @@ BuildRequires: libopenslp-devel
 BuildRequires: libiw-devel
 BuildRequires: wireless-tools
 BuildRequires: libopenssl-devel
-BuildRequires: kdepimlibs4-devel >= %{version}
 BuildRequires: libidn-devel
 BuildRequires: libgsmlib-devel
 BuildRequires: mesaglut-devel
@@ -40,7 +41,6 @@ BuildRequires: libotr-devel
 BuildRequires: mDNSResponder-devel
 BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
 BuildRequires: qca2-devel 
-BuildRequires: kdebase4-workspace-devel >= %{version}
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
 BuildRequires: sqlite3-devel
