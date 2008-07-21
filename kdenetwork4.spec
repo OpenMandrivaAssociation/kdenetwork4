@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.0.98
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -12,6 +12,7 @@ License: GPL
 URL:           http://www.kde.org
 Source:        ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0:        kdenetwork-4.0.84-fix-desktop-files.patch
+Patch1:        kdenetwork-4.0.98-rev836173.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -744,6 +745,7 @@ based on %{name}.
 %prep
 %setup -q -n kdenetwork-%version
 %patch0 -p0
+%patch1 -p0
 
 %build
 %cmake_kde4 
