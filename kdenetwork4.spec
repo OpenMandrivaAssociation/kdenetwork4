@@ -12,7 +12,6 @@ License: GPL
 URL:           http://www.kde.org
 Source:        ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0:        kdenetwork-4.0.84-fix-desktop-files.patch
-Patch1:        kdenetwork-4.0.98-rev836173.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
