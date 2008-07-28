@@ -744,7 +744,6 @@ based on %{name}.
 %prep
 %setup -q -n kdenetwork-%version
 %patch0 -p0
-%patch1 -p0
 
 %build
 %cmake_kde4 
