@@ -640,6 +640,7 @@ KDE 4 library
 Summary: %{name} kppp
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
+Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
