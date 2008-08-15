@@ -774,7 +774,7 @@ based on %{name}.
 %patch110 -p0 -b .post410
 
 %build
-%cmake_kde4 
+%cmake_kde4 -DWITH_qq=OFF 
 
 %make
 
