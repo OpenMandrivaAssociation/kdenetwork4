@@ -2,8 +2,8 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.1.0
-Release: %mkrel 4
+Version: 4.1.1
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -13,18 +13,6 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
-# Post 4.1 patches
-Patch100: kdenetwork-post-4.1.0-rev837118.patch
-Patch101: kdenetwork-post-4.1.0-rev838044.patch
-Patch102: kdenetwork-post-4.1.0-rev838590.patch
-Patch103: kdenetwork-post-4.1.0-rev838850.patch
-Patch104: kdenetwork-post-4.1.0-rev839325.patch
-Patch105: kdenetwork-post-4.1.0-rev839421.patch
-Patch106: kdenetwork-post-4.1.0-rev840296.patch
-Patch107: kdenetwork-post-4.1.0-rev840529.patch
-Patch108: kdenetwork-post-4.1.0-rev840688.patch
-Patch109: kdenetwork-post-4.1.0-rev840790.patch
-Patch110: kdenetwork-post-4.1.0-rev841061.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -759,19 +747,6 @@ based on %{name}.
 %setup -q -n kdenetwork-%version
 %patch0 -p0
 %patch1 -p1
-# Post 4.1 patches
-# Already applied - keep for reference
-#patch100 -p0 -b .post410
-%patch101 -p0 -b .post410
-%patch102 -p0 -b .post410
-%patch103 -p0 -b .post410
-%patch104 -p0 -b .post410
-%patch105 -p0 -b .post410
-%patch106 -p0 -b .post410
-%patch107 -p0 -b .post410
-%patch108 -p0 -b .post410
-%patch109 -p0 -b .post410
-%patch110 -p0 -b .post410
 
 %build
 %cmake_kde4 -DWITH_qq=OFF 
