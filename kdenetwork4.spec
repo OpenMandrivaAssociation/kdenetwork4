@@ -2,8 +2,8 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.1.1
-Release: %mkrel 3
+Version: 4.1.2
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
