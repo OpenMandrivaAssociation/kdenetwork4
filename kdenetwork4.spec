@@ -3,7 +3,7 @@
 
 Name: kdenetwork4
 Version: 4.1.2
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -128,6 +128,7 @@ Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 Obsoletes: kde4-lanbrowsing
 Obsoletes: kde4-kdnssd < 3:4.0.68
 Provides: kde4-kdnssd = %epoch:%version
+Conflicts: kdenetwork-common < 2:3.5.9-2mdv
 
 %description -n kdnssd
 %{name} kdnssd.
