@@ -2,8 +2,8 @@
 %{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
 
 Name: kdenetwork4
-Version: 4.1.2
-Release: %mkrel 2
+Version: 4.1.70
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -166,28 +166,6 @@ KDE 4 library
 
 #---------------------------------------------
 
-%if %{with_knewsticker}
-
-%package -n knewsticker
-Summary: %{name} knewsticker
-Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
-Obsoletes: %name-knewsticker < 2:3.93.0-0.714148.1
-Obsoletes: kde4-knewsticker < 3:4.0.68
-Provides: kde4-knewsticker = %epoch:%version
-
-%description -n knewsticker
-Knewsticker: RDF newsticker applet
-
-%files -n knewsticker
-%defattr(-,root,root)
-%_kde_libdir/kde4/plasma_applet_knewsticker.so
-%_kde_datadir/kde4/services/plasma-knewsticker-default.desktop
-%_kde_docdir/HTML/*/knewsticker
-%endif
-
-#---------------------------------------------
-
 %package -n kget
 Summary: %{name} kget
 Group: Graphical desktop/KDE
@@ -207,10 +185,8 @@ An advanced download manager for KDE.
 %_kde_appsdir/kget/*
 %_kde_libdir/kde4/kget_*
 %_kde_libdir/kde4/khtml_kget.so
-%_kde_libdir/kde4/plasma_applet_kget.so
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
-%_kde_datadir/kde4/services/plasma-kget-default.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
 %_kde_datadir/config.kcfg/kget*
@@ -219,6 +195,17 @@ An advanced download manager for KDE.
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/desktoptheme/default/widgets/kget.svg
+%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
+%_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
+%_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
+%_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
+%_kde_libdir/kde4/plasma_kget_barapplet.so
+%_kde_libdir/kde4/plasma_kget_panelbar.so
+%_kde_libdir/kde4/plasma_kget_piechart.so
+%_kde_datadir/kde4/services/kgetbarapplet-default.desktop
+%_kde_datadir/kde4/services/kgetpanelbarapplet-default.desktop
+%_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
+
 %_kde_docdir/HTML/*/kget
 
 #---------------------------------------------
