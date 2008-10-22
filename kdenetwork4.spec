@@ -1,6 +1,3 @@
-%define with_knewsticker 1
-%{?_with_knewsticker: %{expand: %%global with_knewsticker 1}}
-
 Name: kdenetwork4
 Version: 4.1.70
 Release: %mkrel 1
@@ -51,16 +48,13 @@ BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
-Requires: kdnssd
-Requires: kget
-%if %with_knewsticker
-Requires: knewsticker
-%endif
-Requires: kopete
-Requires: kppp
-Requires: krdc
-Requires: krfb
-Requires: kde4-filesharing
+Suggests: kdnssd
+Suggests: kget
+Suggests: kopete
+Suggests: kppp
+Suggests: krdc
+Suggests: krfb
+Suggests: kde4-filesharing
 Obsoletes: kde4-lanbrowsing
 
 %description
@@ -68,7 +62,6 @@ Networking applications for the K Desktop Environment.
 
 - kdict: graphical client for the DICT protocol.
 - kit: AOL instant messenger client, using the TOC protocol
-- knewsticker: RDF newsticker applet
 - kpf: public fileserver applet
 - krfb: Desktop Sharing server, allow others to access your desktop via VNC
 - krdc: a client for Desktop Sharing and other VNC servers
