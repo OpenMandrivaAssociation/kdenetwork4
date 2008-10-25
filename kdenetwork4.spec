@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.71
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -48,7 +48,7 @@ BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
-BuildRequires: ortp-devel
+BuildRequires: ortp-devel >= 0.13.1
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
