@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.71
-Release: %mkrel 3
+Release: %mkrel 4
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -10,7 +10,6 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
-Patch2: kdenetwork-4.1.71-add-wlm-skype-support.patch
 Patch3: kdenetwork-4.1.71-activate-irc.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
@@ -51,7 +50,7 @@ BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
-#BuildRequires: libmsn-devel
+BuildRequires: libmsn-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -768,8 +767,7 @@ based on %{name}.
 %setup -q -n kdenetwork-%version
 %patch0 -p0
 %patch1 -p1
-#%patch2 -p1
-%patch3 -p1
+%patch2 -p1
 
 %build
 %cmake_kde4 -DWITH_qq=OFF 
