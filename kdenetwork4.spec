@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.71
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -10,6 +10,8 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
+Patch2: kdenetwork-4.1.71-add-wlm-skype-support.patch
+Patch3: kdenetwork-4.1.71-activate-irc.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -49,6 +51,7 @@ BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
+#BuildRequires: libmsn-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -257,35 +260,25 @@ plugin off of.
 %_kde_datadir/kde4/services/kconfiguredialog/kopete_*
 %_kde_datadir/kde4/services/kopete_*
 %_kde_datadir/kde4/services/xmpp.protocol
+%_kde_datadir/kde4/services/irc.protocol
 %_kde_datadir/kde4/servicetypes/kopete*
 %_kde_datadir/sounds/Kopete_Event.ogg
 %_kde_datadir/sounds/Kopete_Received.ogg
 %_kde_datadir/sounds/Kopete_Sent.ogg
 %_kde_datadir/sounds/Kopete_User_is_Online.ogg
-%dir %_kde_appsdir/kopete
-%_kde_appsdir/kopete/*
-%dir %_kde_appsdir/kopete_contactnotes
-%_kde_appsdir/kopete_contactnotes/*
-%dir %_kde_appsdir/kopete_history
-%_kde_appsdir/kopete_history/*
-%dir %_kde_appsdir/kopete_jabber
-%_kde_appsdir/kopete_jabber/*
-%dir %_kde_appsdir/kopete_latex
-%_kde_appsdir/kopete_latex/*
-%dir %_kde_appsdir/kopete_msn
-%_kde_appsdir/kopete_msn/*
-%dir %_kde_appsdir/kopete_privacy
-%_kde_appsdir/kopete_privacy/*
-%dir %_kde_appsdir/kopete_statistics
-%_kde_appsdir/kopete_statistics/*
-%dir %_kde_appsdir/kopete_translator
-%_kde_appsdir/kopete_translator/*
-%dir %_kde_appsdir/kopete_yahoo
-%_kde_appsdir/kopete_yahoo/*
-%dir %_kde_appsdir/kopeterichtexteditpart
-%_kde_appsdir/kopeterichtexteditpart/*
-%dir %_kde_appsdir/kopete_groupwise
-%_kde_appsdir/kopete_groupwise/*
+%_kde_appsdir/kopete
+%_kde_appsdir/kopete_contactnotes
+%_kde_appsdir/kopete_history
+%_kde_appsdir/kopete_jabber
+%_kde_appsdir/kopete_latex
+%_kde_appsdir/kopete_msn
+%_kde_appsdir/kopete_privacy
+%_kde_appsdir/kopete_statistics
+%_kde_appsdir/kopete_translator
+%_kde_appsdir/kopete_yahoo
+%_kde_appsdir/kopete_irc
+%_kde_appsdir/kopete_groupwise
+%_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
 
@@ -584,6 +577,50 @@ KDE 4 library
 
 #---------------------------------------------
 
+%define libkirc %mklibname kirc 1
+
+%package -n %libkirc
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkirc
+KDE 4 library
+
+%if %mdkversion < 200900
+%post -n %libkirc -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
+%postun -n %libkirc -p /sbin/ldconfig
+%endif
+
+%files -n %libkirc
+%defattr(-,root,root)
+%_kde_libdir/libkirc.so.*
+
+#---------------------------------------------
+
+%define libkirc_client %mklibname kirc_client 1
+
+%package -n %libkirc_client
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkirc_client
+KDE 4 library
+
+%if %mdkversion < 200900
+%post -n %libkirc_client -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
+%postun -n %libkirc_client -p /sbin/ldconfig
+%endif
+
+%files -n %libkirc_client
+%defattr(-,root,root)
+%_kde_libdir/libkirc_client.so.*
+
+#---------------------------------------------
+
 %define libkopeteidentity %mklibname kopeteidentity 1
 
 %package -n %libkopeteidentity
@@ -711,6 +748,8 @@ Requires: %libiris_kopete >= %version
 Requires: %libkopete_oscar >= %version
 Requires: %libkopete_msn_shared >= %version
 Requires: %liboscar >= %version
+Requires: %libkirc_client >= %version
+Requires: %libkirc >= %version
 
 %description  devel
 This package contains header files needed if you wish to build applications
@@ -729,6 +768,8 @@ based on %{name}.
 %setup -q -n kdenetwork-%version
 %patch0 -p0
 %patch1 -p1
+#%patch2 -p1
+%patch3 -p1
 
 %build
 %cmake_kde4 -DWITH_qq=OFF 
