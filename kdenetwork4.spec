@@ -783,7 +783,7 @@ based on %{name}.
 %patch300 -p1
 
 %build
-%cmake_kde4 -DWITH_qq=OFF 
+%cmake_kde4 
 
 %make
 
