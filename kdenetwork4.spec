@@ -60,7 +60,8 @@ BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
-BuildRequires: libmsn-devel
+#add back when WML protocol will be in trunk
+#BuildRequires: libmsn-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
