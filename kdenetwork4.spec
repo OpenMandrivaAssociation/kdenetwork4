@@ -1,6 +1,6 @@
 Name: kdenetwork4
-Version: 4.1.71
-Release: %mkrel 9
+Version: 4.1.73
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -11,15 +11,13 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.1.71-activate-irc.patch
-Patch3: kdenetwork-4.1.71-install-headers.patch
 #Branch patches
-#Patch100:
+Patch100:kdenetwork-4.1.73-fix-link.patch
 
 # Backport patches
 #Patch200:
 
 #Testing Patches
-Patch300: kdenetwork-4.1.71-test-fixing-jabber-crash.patch
 
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
@@ -779,8 +777,7 @@ based on %{name}.
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
-%patch300 -p1
+%patch100 -p1
 
 %build
 %cmake_kde4 
