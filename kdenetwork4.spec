@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.73
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -13,7 +13,7 @@ Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.1.71-activate-irc.patch
 #Branch patches
 Patch100:kdenetwork-4.1.73-fix-link.patch
-
+Patch101:kdenetwork4.1.73-add-wlm.patch
 # Backport patches
 #Patch200:
 
@@ -58,8 +58,7 @@ BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
-#add back when WML protocol will be in trunk
-#BuildRequires: libmsn-devel
+BuildRequires: libmsn-devel >= 4.0-0.beta1.1
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -223,6 +222,7 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
 Obsoletes: kde4-kopete < 3:4.0.68
+Obsoletes: %{_lib}kopete_msn_shared4 <= 3:4.1.73-1
 Provides: kde4-kopete = %epoch:%version
 # Provides TLS access to gtalk
 Requires: qca2-plugin-openssl-%{_lib}
@@ -279,7 +279,7 @@ plugin off of.
 %_kde_appsdir/kopete_history
 %_kde_appsdir/kopete_jabber
 %_kde_appsdir/kopete_latex
-%_kde_appsdir/kopete_msn
+%_kde_appsdir/kopete_wlm
 %_kde_appsdir/kopete_privacy
 %_kde_appsdir/kopete_statistics
 %_kde_appsdir/kopete_translator
@@ -540,29 +540,6 @@ KDE 4 library
 
 #---------------------------------------------
 
-%define libkopete_msn_shared %mklibname kopete_msn_shared 4
-
-%package -n %libkopete_msn_shared
-Summary: KDE 4 library
-Group: System/Libraries
-Obsoletes: %{_lib}kopete_msn_shared5 < 2:3.91-0.689748.1
-
-%description -n %libkopete_msn_shared
-KDE 4 library
-
-%if %mdkversion < 200900
-%post -n %libkopete_msn_shared -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkopete_msn_shared -p /sbin/ldconfig
-%endif
-
-%files -n %libkopete_msn_shared
-%defattr(-,root,root)
-%_kde_libdir/libkopete_msn_shared.so.*
-
-#---------------------------------------------
-
 %define liboscar %mklibname oscar 1
 
 %package -n %liboscar
@@ -754,7 +731,6 @@ Requires: %libkopeteprivacy >= %version
 Requires: %libkopetechatwindow_shared >= %version
 Requires: %libiris_kopete >= %version
 Requires: %libkopete_oscar >= %version
-Requires: %libkopete_msn_shared >= %version
 Requires: %liboscar >= %version
 Requires: %libkirc_client >= %version
 Requires: %libkirc >= %version
@@ -778,6 +754,7 @@ based on %{name}.
 %patch1 -p1
 %patch2 -p1
 %patch100 -p1
+%patch101 -p0
 
 %build
 %cmake_kde4 
