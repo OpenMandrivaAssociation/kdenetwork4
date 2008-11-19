@@ -12,8 +12,6 @@ Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.1.71-activate-irc.patch
 #Branch patches
-Patch100:kdenetwork-4.1.73-fix-link.patch
-Patch101:kdenetwork4.1.73-add-wlm.patch
 # Backport patches
 #Patch200:
 
@@ -753,8 +751,6 @@ based on %{name}.
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
-%patch100 -p1
-%patch101 -p0
 
 %build
 %cmake_kde4 
