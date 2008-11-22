@@ -57,6 +57,7 @@ BuildRequires: qca2-devel
 BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
 BuildRequires: libmsn-devel >= 4.0-0.beta1.1
+BuildRequires: meanwhile-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
