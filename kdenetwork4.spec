@@ -23,7 +23,7 @@ BuildRequires: freetype2-devel
 BuildRequires: gettext
 BuildRequires: kdelibs4-devel >= 4.0.83
 BuildRequires: kdepimlibs4-devel >= 4.0.83
-BuildRequires: plasma-devel >= 4.0.83
+BuildRequires: kdebase4-workspace-devel >= 4.0.83
 BuildRequires: libaudiofile-devel
 BuildRequires: bzip2-devel
 BuildRequires: jpeg-devel
