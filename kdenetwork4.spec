@@ -325,14 +325,14 @@ plugin off of.
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
 
-%exclude %_kde_libdir/kde3/kcm_kopete_latex.*
-%exclude %_kde_libdir/kde3/kopete_latex.*
-%exclude %_kde_datadir/services/kopete_latex.desktop
+%exclude %_kde_appsdir/kopete_latex
+%exclude %_kde_libdir/kde4/kcm_kopete_latex.*
+%exclude %_kde_libdir/kde4/kopete_latex.*
+%exclude %_kde_datadir/kde4/services/kopete_latex.desktop
 %exclude %_kde_datadir/config.kcfg/latexconfig.kcfg
 %exclude %_kde_bindir/kopete_latexconvert.sh
-%exclude %_kde_datadir/services/kconfiguredialog/kopete_latex_config.desktop
-%exclude %_kde_appsdir/kopete/icons/crystalsvg/32x32/apps/latex.png
-
+%exclude %_kde_datadir/kde4/services/kconfiguredialog/kopete_latex_config.desktop
+%exclude %_kde_appsdir/kopete/icons/oxygen/32x32/apps/latex.png
 #---------------------------------------------
 
 %package  kopete-latex
@@ -346,13 +346,15 @@ Kopete latex plugin for write andd read mesages in latexinder
 
 %files kopete-latex
 %defattr(-,root,root,-)
-%_kde_libdir/kde3/kcm_kopete_latex.*
-%_kde_libdir/kde3/kopete_latex.*
-%_kde_datadir/services/kopete_latex.desktop
+
+%_kde_appsdir/kopete_latex
+%_kde_libdir/kde4/kcm_kopete_latex.*
+%_kde_libdir/kde4/kopete_latex.*
+%_kde_datadir/kde4/services/kopete_latex.desktop
 %_kde_datadir/config.kcfg/latexconfig.kcfg
 %_kde_bindir/kopete_latexconvert.sh
-%_kde_datadir/services/kconfiguredialog/kopete_latex_config.desktop
-%_kde_appsdir/kopete/icons/crystalsvg/32x32/apps/latex.png
+%_kde_datadir/kde4/services/kconfiguredialog/kopete_latex_config.desktop
+%_kde_appsdir/kopete/icons/oxygen/32x32/apps/latex.png
 
 #---------------------------------------------
 
