@@ -67,7 +67,6 @@ Suggests: krfb
 Suggests: kde4-filesharing
 Obsoletes: kde4-lanbrowsing
 Obsoletes: kdenetwork-kxmlrpcd
-Obsoletes: %lib_name-kxmlrpcd
 Obsoletes: kdenetwork_kroupware
 Obsoletes: kdenetwork_kroupware-kppp
 Obsoletes: libkdenetwork_kroupware2
