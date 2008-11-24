@@ -66,6 +66,16 @@ Suggests: krdc
 Suggests: krfb
 Suggests: kde4-filesharing
 Obsoletes: kde4-lanbrowsing
+Obsoletes: kdenetwork-kxmlrpcd
+Obsoletes: %lib_name-kxmlrpcd
+Obsoletes: kdenetwork_kroupware
+Obsoletes: kdenetwork_kroupware-kppp
+Obsoletes: libkdenetwork_kroupware2
+Obsoletes: libkdenetwork_kroupware2-devel
+Obsoletes: kit
+Obsoletes: kdenetwork-kmail < 3.1.6
+Obsoletes: kdenetwork-knode < 3.1.6
+Obsoletes: kdenetwork-korn < 3.1.6
 
 %description
 Networking applications for the K Desktop Environment.
@@ -92,6 +102,22 @@ Conflicts: kdenetwork-knewsticker < 2:3.5.9-2
 Conflicts: kdenetwork-kopete < 2:3.5.9-2
 Conflicts: lisa < 2:3.5.9-2
 %endif
+Obsoletes: kdenetwork-common < 2:3.5.10
+Obsoletes: kdenetwork3 < 2:3.5.9
+Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
+Obsoletes: %{_lib}kdenetwork2-kxmlrpcd < 2:3.5.9
+Conflicts: kdebase =< 2.2.2-93mdk
+Conflicts: kdenetwork <= 3.1-31mdk
+Conflicts: kdepim <= 3.1.92
+Conflicts: kdenetwork-krfb <= 3.1.3-37mdk
+Conflicts: kdenetwork-common <= 3.1.3-37mdk
+Conflicts: kdenetwork <= 3.1-31mdk
+Conflicts: kdepim <= 3.1.92
+Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
+Obsoletes: %{_lib}kdenetwork2-common 
+Obsoletes: lisa
+Obsoletes: ksambaplugin <= 0.5
+Obsoletes: ktalk
 
 %description core
 Core files for %{name}.
@@ -214,17 +240,24 @@ An advanced download manager for KDE.
 #---------------------------------------------
 
 %package -n kopete
-Summary: %{name} kopete
-Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Summary:   %{name} kopete
+Group:     Graphical desktop/KDE
+Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
 Obsoletes: kde4-kopete < 3:4.0.68
 Obsoletes: %{_lib}kopete_msn_shared4 <= 3:4.1.73-1
-Provides: kde4-kopete = %epoch:%version
+Obsoletes: kdenetwork-kopete
+Obsoletes: %{_lib}kdenetwork2-kopete
+Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
+Conflicts: kdenetwork-common <= 3.1.3-37mdk
+Conflicts: lisa < 1:3.4.2-11mdk
+Provides:  kde4-kopete = %epoch:%version
 # Provides TLS access to gtalk
-Requires: qca2-plugin-openssl-%{_lib}
+Requires:  qca2-plugin-openssl-%{_lib}
+#Need for yahoo webcam
+Requires:  jasper
 
 %description -n kopete
 Kopete is a flexible and extendable multiple protocol instant messaging
@@ -288,6 +321,35 @@ plugin off of.
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
+
+%exclude %_kde_libdir/kde3/kcm_kopete_latex.*
+%exclude %_kde_libdir/kde3/kopete_latex.*
+%exclude %_kde_datadir/services/kopete_latex.desktop
+%exclude %_kde_datadir/config.kcfg/latexconfig.kcfg
+%exclude %_kde_bindir/kopete_latexconvert.sh
+%exclude %_kde_datadir/services/kconfiguredialog/kopete_latex_config.desktop
+%exclude %_kde_appsdir/kopete/icons/crystalsvg/32x32/apps/latex.png
+
+#---------------------------------------------
+
+%package  kopete-latex
+Group: Graphical desktop/KDE
+Summary: Kopete latex plugin for write andd read mesages in latex
+Requires: kopete
+Requires: ImageMagick
+
+%description kopete-latex
+Kopete latex plugin for write andd read mesages in latexinder
+
+%files kopete-latex
+%defattr(-,root,root,-)
+%_kde_libdir/kde3/kcm_kopete_latex.*
+%_kde_libdir/kde3/kopete_latex.*
+%_kde_datadir/services/kopete_latex.desktop
+%_kde_datadir/config.kcfg/latexconfig.kcfg
+%_kde_bindir/kopete_latexconvert.sh
+%_kde_datadir/services/kconfiguredialog/kopete_latex_config.desktop
+%_kde_appsdir/kopete/icons/crystalsvg/32x32/apps/latex.png
 
 #---------------------------------------------
 
@@ -635,6 +697,7 @@ Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
+Obsoletes: kdenetwork-kppp
 
 %description -n kppp
 %{name} kppp.
@@ -656,6 +719,7 @@ Provides: kde4-kppp = %epoch:%version
 Group: Graphical desktop/KDE
 Summary: List of providers for pppd
 Conflicts: kppp < 3:4.0.83-2
+Obsoletes: kdenetwork-kppp-provider
 
 %description -n kppp-provider
 List of providers for kppp
@@ -718,21 +782,27 @@ location to watch and possibly control your desktop.
 %package devel
 Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
-Requires: kde4-macros
-Requires: kdelibs4-devel
-Requires: %libkgetcore >= %version
-Requires: %libgadu_kopete >= %version
-Requires: %libkyahoo >= %version
-Requires: %libkopete_videodevice >= %version
-Requires: %libkopeteaddaccountwizard >= %version
-Requires: %libkopete >= %version
-Requires: %libkopeteprivacy >= %version
-Requires: %libkopetechatwindow_shared >= %version
-Requires: %libiris_kopete >= %version
-Requires: %libkopete_oscar >= %version
-Requires: %liboscar >= %version
-Requires: %libkirc_client >= %version
-Requires: %libkirc >= %version
+Obsoletes: %{_lib}kdenetwork2-kopete-devel < 2:3.5.7-%mkrel 4
+Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.7-%mkrel 4
+Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.7-%mkrel 4
+Conflicts: kdenetwork <= 3.1-31mdk
+Conflicts: kdepim <= 3.1.92
+Conflicts: kdenetwork-common <= 3.1.3-37mdk
+Requires:  kde4-macros
+Requires:  kdelibs4-devel
+Requires:  %libkgetcore >= %version
+Requires:  %libgadu_kopete >= %version
+Requires:  %libkyahoo >= %version
+Requires:  %libkopete_videodevice >= %version
+Requires:  %libkopeteaddaccountwizard >= %version
+Requires:  %libkopete >= %version
+Requires:  %libkopeteprivacy >= %version
+Requires:  %libkopetechatwindow_shared >= %version
+Requires:  %libiris_kopete >= %version
+Requires:  %libkopete_oscar >= %version
+Requires:  %liboscar >= %version
+Requires:  %libkirc_client >= %version
+Requires:  %libkirc >= %version
 
 %description  devel
 This package contains header files needed if you wish to build applications
