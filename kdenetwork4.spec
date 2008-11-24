@@ -118,6 +118,9 @@ Obsoletes: %{_lib}kdenetwork2-common
 Obsoletes: lisa
 Obsoletes: ksambaplugin <= 0.5
 Obsoletes: ktalk
+Obsoletes: ksirc
+Obsoletes: kwifimanager
+Obsoletes: kdict
 
 %description core
 Core files for %{name}.
@@ -202,7 +205,8 @@ Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 Obsoletes: kde4-kget < 3:4.0.68
-Provides: kde4-kget = %epoch:%version
+Provides:  kde4-kget = %epoch:%version
+Obsoletes: kdenetwork-kget
 
 %description -n kget
 An advanced download manager for KDE.
@@ -758,12 +762,13 @@ location to watch and possibly control your desktop.
 #---------------------------------------------
 
 %package -n krfb
-Summary: %{name} krfb
-Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Summary:   %{name} krfb
+Group:     Graphical desktop/KDE
+Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krfb < 3:4.0.68
-Provides: kde4-krfb = %epoch:%version
+Provides:  kde4-krfb = %epoch:%version
+Obsoletes: kdenetwork-krfb
 
 %description -n krfb
 KDE Desktop Sharing allows you to invite somebody at a remote
