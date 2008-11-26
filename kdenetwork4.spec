@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.80
-Release: %mkrel 3
+Release: %mkrel 4
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -95,31 +95,26 @@ Networking applications for the K Desktop Environment.
 Summary: %name core files
 Group: Graphical desktop/KDE
 Requires: kdelibs4-core
+
+Conflicts: kdebase =< 2.2.2-93mdk
+Conflicts: kdepim <= 3.1.92
+
 Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
-%if %mdkversion >= 200900
-Conflicts: kdenetwork-knewsticker < 2:3.5.9-2
-Conflicts: kdenetwork-kopete < 2:3.5.9-2
-Conflicts: lisa < 2:3.5.9-2
-%endif
 Obsoletes: kdenetwork-common < 2:3.5.10
 Obsoletes: kdenetwork3 < 2:3.5.9
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
 Obsoletes: %{_lib}kdenetwork2-kxmlrpcd < 2:3.5.9
-Conflicts: kdebase =< 2.2.2-93mdk
-Conflicts: kdenetwork <= 3.1-31mdk
-Conflicts: kdepim <= 3.1.92
-Conflicts: kdenetwork-krfb <= 3.1.3-37mdk
-Conflicts: kdenetwork-common <= 3.1.3-37mdk
-Conflicts: kdenetwork <= 3.1-31mdk
-Conflicts: kdepim <= 3.1.92
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: %{_lib}kdenetwork2-common 
-Obsoletes: lisa
+Obsoletes: %{_lib}kdenetwork2-common < 2:3.5.10-2
+Obsoletes: lisa< 2:3.5.10-2
 Obsoletes: ksambaplugin <= 0.5
-Obsoletes: ktalk
-Obsoletes: ksirc
-Obsoletes: kwifimanager
-Obsoletes: kdict
+Obsoletes: kdenetwork-ktalk < 2:3.5.10-2
+Obsoletes: kdenetwork-ksirc < 2:3.5.10-2
+Obsoletes: kdenetwork-kwifimanager < 2:3.5.10-2
+Obsoletes: kdenetwork-kdict < 2:3.5.10-2
+Obsoletes: kdenetwork-knewsticker < 2:3.5.10-2
+Obsoletes: kdenetwork < 2:3.5.10-2
+Obsoletes: kdenetwork-common < 2:3.5.10-2
 
 %description core
 Core files for %{name}.
@@ -158,8 +153,7 @@ Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 Obsoletes: kde4-lanbrowsing
 Obsoletes: kde4-kdnssd < 3:4.0.68
-Provides: kde4-kdnssd = %epoch:%version
-Conflicts: kdenetwork-common < 2:3.5.9-2mdv
+Provides:  kde4-kdnssd = %epoch:%version
 
 %description -n kdnssd
 %{name} kdnssd.
@@ -201,11 +195,14 @@ KDE 4 library
 Summary: %{name} kget
 Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
+
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 Obsoletes: kde4-kget < 3:4.0.68
+Obsoletes: kdenetwork-kget < 2:3.5.10-2
+
 Provides:  kde4-kget = %epoch:%version
-Obsoletes: kdenetwork-kget
+
 
 %description -n kget
 An advanced download manager for KDE.
@@ -246,16 +243,17 @@ An advanced download manager for KDE.
 Summary:   %{name} kopete
 Group:     Graphical desktop/KDE
 Requires:  %name-core >= %epoch:%version
+
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
-Conflicts: %name-devel < 3:3.96.1-0.740247.1
 Obsoletes: kde4-kopete < 3:4.0.68
 Obsoletes: %{_lib}kopete_msn_shared4 <= 3:4.1.73-1
-Obsoletes: kdenetwork-kopete
-Obsoletes: %{_lib}kdenetwork2-kopete
+Obsoletes: kdenetwork-kopete < 2:3.5.10-2
+Obsoletes: %{_lib}kdenetwork2-kopete < 2:3.5.10-2
 Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
-Conflicts: kdenetwork-common <= 3.1.3-37mdk
-Conflicts: lisa < 1:3.4.2-11mdk
+
+Conflicts: %name-devel < 3:3.96.1-0.740247.1
+
 Provides:  kde4-kopete = %epoch:%version
 # Provides TLS access to gtalk
 Requires:  qca2-plugin-openssl-%{_lib}
@@ -702,7 +700,7 @@ Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
-Obsoletes: kdenetwork-kppp
+Obsoletes: kdenetwork-kppp < 2:3.5.10-2
 
 %description -n kppp
 %{name} kppp.
@@ -724,7 +722,7 @@ Obsoletes: kdenetwork-kppp
 Group: Graphical desktop/KDE
 Summary: List of providers for pppd
 Conflicts: kppp < 3:4.0.83-2
-Obsoletes: kdenetwork-kppp-provider
+Obsoletes: kdenetwork-kppp-provider < 2:3.5.10-2
 
 %description -n kppp-provider
 List of providers for kppp
@@ -769,7 +767,7 @@ Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krfb < 3:4.0.68
 Provides:  kde4-krfb = %epoch:%version
-Obsoletes: kdenetwork-krfb
+Obsoletes: kdenetwork-krfb < 2:3.5.10-2
 
 %description -n krfb
 KDE Desktop Sharing allows you to invite somebody at a remote
@@ -788,13 +786,13 @@ location to watch and possibly control your desktop.
 %package devel
 Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
-Obsoletes: %{_lib}kdenetwork2-kopete-devel < 2:3.5.7-%mkrel 4
-Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.7-%mkrel 4
-Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.7-%mkrel 4
-Conflicts: kdenetwork <= 3.1-31mdk
+
+Obsoletes: %{_lib}kdenetwork2-kopete-devel < 2:3.5.10-2
+Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.10-2
+Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.10-2
+
 Conflicts: kdepim <= 3.1.92
-Conflicts: kdenetwork-common <= 3.1.3-37mdk
-Requires:  kde4-macros
+
 Requires:  kdelibs4-devel
 Requires:  %libkgetcore >= %version
 Requires:  %libgadu_kopete >= %version
