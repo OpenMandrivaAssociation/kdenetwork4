@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.82
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -8,7 +8,7 @@ Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-Patch0: kdenetwork-4.0.84-fix-desktop-files.patch
+Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.1.71-activate-irc.patch
 #Branch patches
@@ -823,7 +823,7 @@ based on %{name}.
 
 %prep
 %setup -q -n kdenetwork-%version
-#%patch0 -p0
+%patch0 -p0
 %patch1 -p1
 %patch2 -p1
 
