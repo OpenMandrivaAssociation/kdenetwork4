@@ -1,5 +1,5 @@
 Name: kdenetwork4
-Version: 4.1.81
+Version: 4.1.82
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -823,7 +823,7 @@ based on %{name}.
 
 %prep
 %setup -q -n kdenetwork-%version
-%patch0 -p0
+#%patch0 -p0
 %patch1 -p1
 %patch2 -p1
 
