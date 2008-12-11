@@ -337,7 +337,7 @@ plugin off of.
 Group: Graphical desktop/KDE
 Summary: Kopete latex plugin for write andd read mesages in latex
 Requires: kopete
-Requires: ImageMagick
+Requires: imagemagick
 
 %description kopete-latex
 Kopete latex plugin for write andd read mesages in latexinder
