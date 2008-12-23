@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.85
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -15,7 +15,7 @@ Patch3: kdenetwork-4.1.85-fix-build.patch
   
 #Branch patches
 # Backport patches
-#Patch200:
+Patch200: kdenetwork-4.1.85-rev900642.patch
 
 #Testing Patches
 
@@ -829,7 +829,7 @@ based on %{name}.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
-
+%patch200 -p1
 %build
 %cmake_kde4 
 
