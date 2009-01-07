@@ -1,6 +1,6 @@
 Name: kdenetwork4
-Version: 4.1.85
-Release: %mkrel 2
+Version: 4.1.96
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
