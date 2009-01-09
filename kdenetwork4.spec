@@ -11,11 +11,9 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.1.71-activate-irc.patch
-Patch3: kdenetwork-4.1.85-fix-build.patch
   
 #Branch patches
 # Backport patches
-Patch200: kdenetwork-4.1.85-rev900642.patch
 
 #Testing Patches
 
@@ -828,8 +826,6 @@ based on %{name}.
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
-%patch200 -p0
 %build
 %cmake_kde4 
 
