@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.1.96
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -10,7 +10,6 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
-Patch2: kdenetwork-4.1.71-activate-irc.patch
   
 #Branch patches
 # Backport patches
@@ -302,7 +301,6 @@ plugin off of.
 %_kde_datadir/kde4/services/kconfiguredialog/kopete_*
 %_kde_datadir/kde4/services/kopete_*
 %_kde_datadir/kde4/services/xmpp.protocol
-%_kde_datadir/kde4/services/irc.protocol
 %_kde_datadir/kde4/servicetypes/kopete*
 %_kde_datadir/sounds/Kopete_Event.ogg
 %_kde_datadir/sounds/Kopete_Received.ogg
@@ -318,7 +316,6 @@ plugin off of.
 %_kde_appsdir/kopete_statistics
 %_kde_appsdir/kopete_translator
 %_kde_appsdir/kopete_yahoo
-%_kde_appsdir/kopete_irc
 %_kde_appsdir/kopete_groupwise
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
@@ -627,50 +624,6 @@ KDE 4 library
 
 #---------------------------------------------
 
-%define libkirc %mklibname kirc 1
-
-%package -n %libkirc
-Summary: KDE 4 library
-Group: System/Libraries
-
-%description -n %libkirc
-KDE 4 library
-
-%if %mdkversion < 200900
-%post -n %libkirc -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkirc -p /sbin/ldconfig
-%endif
-
-%files -n %libkirc
-%defattr(-,root,root)
-%_kde_libdir/libkirc.so.*
-
-#---------------------------------------------
-
-%define libkirc_client %mklibname kirc_client 1
-
-%package -n %libkirc_client
-Summary: KDE 4 library
-Group: System/Libraries
-
-%description -n %libkirc_client
-KDE 4 library
-
-%if %mdkversion < 200900
-%post -n %libkirc_client -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkirc_client -p /sbin/ldconfig
-%endif
-
-%files -n %libkirc_client
-%defattr(-,root,root)
-%_kde_libdir/libkirc_client.so.*
-
-#---------------------------------------------
-
 %define libkopeteidentity %mklibname kopeteidentity 1
 
 %package -n %libkopeteidentity
@@ -806,8 +759,6 @@ Requires:  %libkopetechatwindow_shared >= %version
 Requires:  %libiris_kopete >= %version
 Requires:  %libkopete_oscar >= %version
 Requires:  %liboscar >= %version
-Requires:  %libkirc_client >= %version
-Requires:  %libkirc >= %version
 
 %description  devel
 This package contains header files needed if you wish to build applications
@@ -826,7 +777,7 @@ based on %{name}.
 %setup -q -n kdenetwork-%version
 %patch0 -p0
 %patch1 -p1
-%patch2 -p1
+
 %build
 %cmake_kde4 
 
