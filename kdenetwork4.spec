@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.2.0
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -241,8 +241,11 @@ An advanced download manager for KDE.
 %package -n kopete
 Summary:   %{name} kopete
 Group:     Graphical desktop/KDE
-Requires:  %name-core >= %epoch:%version
-
+Requires: %name-core >= %epoch:%version
+Requires: akonadi-common
+Requires: qca2-plugin-openssl-%{_lib}
+Requires: kdepimlibs4-core
+Requires: jasper
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 Obsoletes: kde4-kopete < 3:4.0.68
@@ -254,10 +257,6 @@ Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
 
 Provides:  kde4-kopete = %epoch:%version
-# Provides TLS access to gtalk
-Requires:  qca2-plugin-openssl-%{_lib}
-#Need for yahoo webcam
-Requires:  jasper
 
 %description -n kopete
 Kopete is a flexible and extendable multiple protocol instant messaging
