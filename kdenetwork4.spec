@@ -1,6 +1,6 @@
 Name: kdenetwork4
-Version: 4.2.0
-Release: %mkrel 3
+Version: 4.2.1
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -10,12 +10,6 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
-  
-#Branch patches
-# Backport patches
-
-#Testing Patches
-
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
