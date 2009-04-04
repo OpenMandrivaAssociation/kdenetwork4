@@ -93,7 +93,6 @@ Conflicts: kdebase =< 2.2.2-93mdk
 Conflicts: kdepim <= 3.1.92
 
 Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
-Obsoletes: kdenetwork-common < 2:3.5.10
 Obsoletes: kdenetwork3 < 2:3.5.9
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
 Obsoletes: %{_lib}kdenetwork2-kxmlrpcd < 2:3.5.9
