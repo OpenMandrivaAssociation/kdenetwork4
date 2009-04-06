@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.2.2
-Release: %mkrel 3
+Release: %mkrel 4
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -15,6 +15,7 @@ Patch101: kdenetwork-backport-4.2.3-rev949078.patch
 Patch102: kdenetwork-backport-4.2.3-rev949088.patch
 Patch103: kdenetwork-backport-4.2.3-rev948021.patch
 Patch104: kdenetwork-backport-4.2.3-rev947653.patch
+Patch105: kdenetwork-backport-4.2.3-rev950256.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -681,6 +682,7 @@ based on %{name}.
 %patch102 -p0
 %patch103 -p0
 %patch104 -p0
+%patch105 -p0
 
 %build
 %cmake_kde4 
