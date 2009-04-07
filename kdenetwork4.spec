@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.2.2
-Release: %mkrel 4
+Release: %mkrel 5
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -10,6 +10,7 @@ URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
+Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch100: kdenetwork-4.2.3-rev949233.patch
 Patch101: kdenetwork-backport-4.2.3-rev949078.patch
 Patch102: kdenetwork-backport-4.2.3-rev949088.patch
@@ -677,6 +678,7 @@ based on %{name}.
 %setup -q -n kdenetwork-%version
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1 -b .searchbar
 %patch100 -p0
 %patch101 -p0
 %patch102 -p0
