@@ -1,22 +1,18 @@
+%define kderevision svn954171
+
 Name: kdenetwork4
-Version: 4.2.2
-Release: %mkrel 5
+Version: 4.2.70
+Release: %mkrel 0.%kderevision.1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%kderevision.tar.bz2
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
-Patch100: kdenetwork-4.2.3-rev949233.patch
-Patch101: kdenetwork-backport-4.2.3-rev949078.patch
-Patch102: kdenetwork-backport-4.2.3-rev949088.patch
-Patch103: kdenetwork-backport-4.2.3-rev948021.patch
-Patch104: kdenetwork-backport-4.2.3-rev947653.patch
-Patch105: kdenetwork-backport-4.2.3-rev950256.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -216,7 +212,6 @@ An advanced download manager for KDE.
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/desktoptheme/default/widgets/kget.svg
-%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
@@ -278,7 +273,7 @@ plugin off of.
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
-%_kde_libdir/kde4/libkrichtexteditpart.so
+%_kde_libdir/kde4/libchattexteditpart.so
 %_kde_datadir/applications/kde4/kopete.desktop
 %_kde_datadir/config/kopeterc
 %_kde_datadir/config.kcfg/historyconfig.kcfg
@@ -309,6 +304,7 @@ plugin off of.
 %_kde_appsdir/kopete_translator
 %_kde_appsdir/kopete_yahoo
 %_kde_appsdir/kopete_groupwise
+%_kde_appsdir/kopete_skype
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
@@ -346,18 +342,18 @@ Kopete latex plugin for write andd read mesages in latexinder
 
 #---------------------------------------------
 
-%define libgadu_kopete %mklibname gadu_kopete 1
+%define libkopetecontactlist %mklibname kopetecontactlist 1
 
-%package -n %libgadu_kopete
+%package -n %libkopetecontactlist
 Summary: KDE 4 library
 Group: System/Libraries
 
-%description -n %libgadu_kopete
+%description -n %libkopetecontactlist
 KDE 4 library
 
-%files -n %libgadu_kopete
+%files -n %libkopetecontactlist
 %defattr(-,root,root)
-%_kde_libdir/libgadu_kopete.so.*
+%_kde_libdir/libkopetecontactlist.so.*
 
 #---------------------------------------------
 
@@ -453,18 +449,18 @@ KDE 4 library
 
 #---------------------------------------------
 
-%define libiris_kopete %mklibname iris_kopete 1
+%define libkrdccore %mklibname krdccore 1
 
-%package -n %libiris_kopete
+%package -n %libkrdccore
 Summary: KDE 4 library
 Group: System/Libraries
 
-%description -n %libiris_kopete
+%description -n %libkrdccore
 KDE 4 library
 
-%files -n %libiris_kopete
+%files -n %libkrdccore
 %defattr(-,root,root)
-%_kde_libdir/libiris_kopete.so.*
+%_kde_libdir/libkrdccore.so.*
 
 #---------------------------------------------
 
@@ -611,6 +607,17 @@ location to watch and possibly control your desktop.
 %_kde_datadir/config.kcfg/krdc.kcfg
 %_kde_datadir/kde4/services/rdp.protocol
 %_kde_datadir/kde4/services/vnc.protocol
+%_kde_libdir/kde4/kcm_krdc_rdpplugin.so
+%_kde_libdir/kde4/kcm_krdc_vncplugin.so
+%_kde_libdir/kde4/krdc_rdpplugin.so
+%_kde_libdir/kde4/krdc_testplugin.so
+%_kde_libdir/kde4/krdc_vncplugin.so
+%_kde_datadir/kde4/services/krdc_rdp.desktop
+%_kde_datadir/kde4/services/krdc_rdp_config.desktop
+%_kde_datadir/kde4/services/krdc_test.desktop
+%_kde_datadir/kde4/services/krdc_vnc.desktop
+%_kde_datadir/kde4/services/krdc_vnc_config.desktop
+%_kde_datadir/kde4/servicetypes/krdc_plugin.desktop
 %_kde_docdir/HTML/*/krdc
 
 #---------------------------------------------
@@ -650,14 +657,14 @@ Conflicts: kdepim <= 3.1.92
 
 Requires:  kdelibs4-devel
 Requires:  %libkgetcore >= %version
-Requires:  %libgadu_kopete >= %version
+Requires:  %libkopetecontactlist >= %version
 Requires:  %libkyahoo >= %version
 Requires:  %libkopete_videodevice >= %version
 Requires:  %libkopeteaddaccountwizard >= %version
 Requires:  %libkopete >= %version
 Requires:  %libkopeteprivacy >= %version
 Requires:  %libkopetechatwindow_shared >= %version
-Requires:  %libiris_kopete >= %version
+Requires:  %libkrdccore >= %version
 Requires:  %libkopete_oscar >= %version
 Requires:  %liboscar >= %version
 
@@ -675,16 +682,10 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
-%setup -q -n kdenetwork-%version
-%patch0 -p0
+%setup -q -n kdenetwork-%version.%kderevision
+#%patch0 -p0
 %patch1 -p1
 %patch2 -p1 -b .searchbar
-%patch100 -p0
-%patch101 -p0
-%patch102 -p0
-%patch103 -p0
-%patch104 -p0
-%patch105 -p0
 
 %build
 %cmake_kde4 
