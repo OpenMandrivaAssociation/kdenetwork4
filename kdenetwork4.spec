@@ -1,15 +1,15 @@
 %define kderevision svn961800
 
 Name: kdenetwork4
-Version: 4.2.71
-Release: %mkrel 0.%kderevision.1
+Version: 4.2.85
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.%kderevision.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
@@ -271,6 +271,7 @@ plugin off of.
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install.sh
 %_kde_bindir/winpopup-send.sh
+%_kde_bindir/skype-action-handler
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
@@ -289,6 +290,9 @@ plugin off of.
 %_kde_datadir/kde4/services/kconfiguredialog/kopete_*
 %_kde_datadir/kde4/services/kopete_*
 %_kde_datadir/kde4/services/xmpp.protocol
+%_kde_datadir/kde4/services/callto.protocol
+%_kde_datadir/kde4/services/skype.protocol
+%_kde_datadir/kde4/services/tel.protocol
 %_kde_datadir/kde4/servicetypes/kopete*
 %_kde_datadir/sounds/Kopete_Event.ogg
 %_kde_datadir/sounds/Kopete_Received.ogg
@@ -309,6 +313,7 @@ plugin off of.
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
+%_kde_libdir/firefox/plugins/libskypebuttons.so
 
 %exclude %_kde_appsdir/kopete_latex
 %exclude %_kde_libdir/kde4/kcm_kopete_latex.*
@@ -683,7 +688,7 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
-%setup -q -n kdenetwork-%version.%kderevision
+%setup -q -n kdenetwork-%version
 #%patch0 -p0
 %patch1 -p1
 %patch2 -p1 -b .searchbar
