@@ -1,7 +1,12 @@
-%define kderevision svn961800
+%define branch 1
+%{?_branch: %{expand: %%global branch 1}}
+
+%if %branch
+%define kderevision svn969966
+%endif
 
 Name: kdenetwork4
-Version: 4.2.85
+Version: 4.2.87
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -9,10 +14,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
+%if %branch
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version%kderevision.tar.bz2
+%else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+%endif
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
+Patch3: kdenetwork-4.2.87-fix-build.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -313,7 +323,7 @@ plugin off of.
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
-%_prefix/lib/firefox/plugins/libskypebuttons.so
+%_prefix/lib/mozilla/plugins/libskypebuttons.so
 %exclude %_kde_appsdir/kopete_latex
 %exclude %_kde_libdir/kde4/kcm_kopete_latex.*
 %exclude %_kde_libdir/kde4/kopete_latex.*
@@ -687,11 +697,15 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
+%if %branch
+%setup -q -n kdenetwork-%version%kderevision
+%else
 %setup -q -n kdenetwork-%version
+%endif
 #%patch0 -p0
 %patch1 -p1
 %patch2 -p1 -b .searchbar
-
+%patch3 -p1
 %build
 %cmake_kde4 
 
