@@ -2,11 +2,11 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define kderevision svn969966
+%define kderevision svn973768
 %endif
 
 Name: kdenetwork4
-Version: 4.2.87
+Version: 4.2.88
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -22,7 +22,6 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
 Patch1: kdenetwork-4.0.85-kopete.patch
 Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
-Patch3: kdenetwork-4.2.87-fix-build.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -705,7 +704,6 @@ based on %{name}.
 #%patch0 -p0
 %patch1 -p1
 %patch2 -p1 -b .searchbar
-%patch3 -p1
 %build
 %cmake_kde4 
 
