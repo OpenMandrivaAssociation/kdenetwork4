@@ -6,7 +6,7 @@
 %endif
 
 Name: kdenetwork4
-Version: 4.2.90
+Version: 4.2.95
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -228,6 +228,7 @@ An advanced download manager for KDE.
 %_kde_libdir/kde4/plasma_kget_barapplet.so
 %_kde_libdir/kde4/plasma_kget_panelbar.so
 %_kde_libdir/kde4/plasma_kget_piechart.so
+%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpanelbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
