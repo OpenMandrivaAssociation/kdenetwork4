@@ -106,6 +106,7 @@ Conflicts: kdebase =< 2.2.2-93mdk
 Conflicts: kdepim <= 3.1.92
 
 Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork3 < 2:3.5.9
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
 Obsoletes: %{_lib}kdenetwork2-kxmlrpcd < 2:3.5.9
@@ -120,6 +121,7 @@ Obsoletes: kdenetwork-kdict < 2:3.5.10-2
 Obsoletes: kdenetwork-knewsticker < 2:3.5.10-2
 Obsoletes: kdenetwork < 2:3.5.10-2
 Obsoletes: kdenetwork-common < 2:3.5.10-2
+%endif
 
 %description core
 Core files for %{name}.
@@ -197,8 +199,9 @@ Requires: %name-core >= %epoch:%version
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 Obsoletes: kde4-kget < 3:4.0.68
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork-kget < 2:3.5.10-2
-
+%endif
 Provides:  kde4-kget = %epoch:%version
 
 
@@ -246,12 +249,12 @@ Requires: qca2-plugin-openssl-%{_lib}
 Requires: kdepimlibs4-core
 Requires: jasper
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
-Obsoletes: %{_lib}papillon_kopete < 2:3.96.0-0.737162.1
 Obsoletes: kde4-kopete < 3:4.0.68
-Obsoletes: %{_lib}kopete_msn_shared4 <= 3:4.1.73-1
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork-kopete < 2:3.5.10-2
 Obsoletes: %{_lib}kdenetwork2-kopete < 2:3.5.10-2
 Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
+%endif
 
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
 
@@ -566,7 +569,9 @@ Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork-kppp < 2:3.5.10-2
+%endif
 
 %description -n kppp
 %{name} kppp.
@@ -588,7 +593,9 @@ Obsoletes: kdenetwork-kppp < 2:3.5.10-2
 Group: Graphical desktop/KDE
 Summary: List of providers for pppd
 Conflicts: kppp < 3:4.0.83-2
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork-kppp-provider < 2:3.5.10-2
+%endif
 
 %description -n kppp-provider
 List of providers for kppp
@@ -644,7 +651,9 @@ Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krfb < 3:4.0.68
 Provides:  kde4-krfb = %epoch:%version
+%if %mdkversion >= 200910
 Obsoletes: kdenetwork-krfb < 2:3.5.10-2
+%endif
 
 %description -n krfb
 KDE Desktop Sharing allows you to invite somebody at a remote
@@ -663,13 +672,12 @@ location to watch and possibly control your desktop.
 %package devel
 Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
-
+%if %mdkversion >= 200910
 Obsoletes: %{_lib}kdenetwork2-kopete-devel < 2:3.5.10-2
 Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.10-2
 Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.10-2
-
+%endif
 Conflicts: kdepim <= 3.1.92
-
 Requires:  kdelibs4-devel
 Requires:  %libkgetcore >= %version
 Requires:  %libkopetecontactlist >= %version
