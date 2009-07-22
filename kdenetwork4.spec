@@ -19,6 +19,7 @@ BuildRequires: kdelibs4-experimental-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel >= 2:4.2.98
 BuildRequires: kdebase4-workspace-devel >= 4.2.98
 BuildRequires: libaudiofile-devel
+BuildRequires: libv4l-devel
 BuildRequires: bzip2-devel
 BuildRequires: jpeg-devel
 BuildRequires: lcms-devel
