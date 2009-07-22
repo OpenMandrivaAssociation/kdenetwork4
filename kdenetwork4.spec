@@ -1,12 +1,5 @@
-%define branch 0
-%{?_branch: %{expand: %%global branch 1}}
-
-%if %branch
-%define kderevision svn973768
-%endif
-
 Name: kdenetwork4
-Version: 4.2.96
+Version: 4.2.98
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -14,21 +7,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-%if %branch
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version%kderevision.tar.bz2
-%else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-%endif
-Patch0: kdenetwork-4.1.82-fix-desktop-files.patch
-Patch1: kdenetwork-4.0.85-kopete.patch
-Patch2: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
+Patch0: kdenetwork-4.0.85-kopete.patch
+Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
 BuildRequires: gettext
-BuildRequires: kdelibs4-devel >= 4.0.83
-BuildRequires: kdepimlibs4-devel >= 4.0.83
-BuildRequires: kdebase4-workspace-devel >= 4.0.83
+BuildRequires: kdelibs4-devel >= 2:4.2.98
+BuildRequires: kdelibs4-experimental-devel >= 2:4.2.98
+BuildRequires: kdepimlibs4-devel >= 2:4.2.98
+BuildRequires: kdebase4-workspace-devel >= 4.2.98
 BuildRequires: libaudiofile-devel
 BuildRequires: bzip2-devel
 BuildRequires: jpeg-devel
@@ -678,18 +667,20 @@ Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.10-2
 Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.10-2
 %endif
 Conflicts: kdepim <= 3.1.92
-Requires:  kdelibs4-devel
-Requires:  %libkgetcore >= %version
-Requires:  %libkopetecontactlist >= %version
-Requires:  %libkyahoo >= %version
-Requires:  %libkopete_videodevice >= %version
-Requires:  %libkopeteaddaccountwizard >= %version
-Requires:  %libkopete >= %version
-Requires:  %libkopeteprivacy >= %version
-Requires:  %libkopetechatwindow_shared >= %version
-Requires:  %libkrdccore >= %version
-Requires:  %libkopete_oscar >= %version
-Requires:  %liboscar >= %version
+Requires: kdelibs4-devel >= 2:4.2.98
+Requires: kdelibs4-experimental-devel >= 2:4.2.98
+Requires: kdepimlibs4-devel >= 2:4.2.98
+Requires: %libkgetcore >= %version
+Requires: %libkopetecontactlist >= %version
+Requires: %libkyahoo >= %version
+Requires: %libkopete_videodevice >= %version
+Requires: %libkopeteaddaccountwizard >= %version
+Requires: %libkopete >= %version
+Requires: %libkopeteprivacy >= %version
+Requires: %libkopetechatwindow_shared >= %version
+Requires: %libkrdccore >= %version
+Requires: %libkopete_oscar >= %version
+Requires: %liboscar >= %version
 
 %description  devel
 This package contains header files needed if you wish to build applications
@@ -705,14 +696,10 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
-%if %branch
-%setup -q -n kdenetwork-%version%kderevision
-%else
 %setup -q -n kdenetwork-%version
-%endif
-#%patch0 -p0
-%patch1 -p1
-%patch2 -p1 -b .searchbar
+%patch0 -p1
+%patch1 -p1 -b .searchbar
+
 %build
 %cmake_kde4 
 
