@@ -1,5 +1,5 @@
 Name: kdenetwork4
-Version: 4.2.98
+Version: 4.3.0
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
