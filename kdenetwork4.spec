@@ -1,5 +1,5 @@
 Name: kdenetwork4
-Version: 4.3.0
+Version: 4.3.1
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -54,6 +54,7 @@ BuildRequires: ortp-devel >= 0.13.1
 BuildRequires: libmsn-devel >= 4.0-0.beta1.1
 BuildRequires: gadu-devel >= 1.8.0
 BuildRequires: meanwhile-devel
+BuildRequires: linphone-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -234,7 +235,7 @@ An advanced download manager for KDE.
 Summary:   %{name} kopete
 Group:     Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
-Requires: akonadi-common
+Requires: akonadi >= 1:1.1.95
 Requires: qca2-plugin-openssl-%{_lib}
 Requires: kdepimlibs4-core
 Requires: jasper
