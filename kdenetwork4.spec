@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.3.1
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -73,6 +73,7 @@ Obsoletes: kit
 Obsoletes: kdenetwork-kmail < 3.1.6
 Obsoletes: kdenetwork-knode < 3.1.6
 Obsoletes: kdenetwork-korn < 3.1.6
+Obsoletes: lisa < 2:3.5.10-7
 
 %description
 Networking applications for the K Desktop Environment.
@@ -705,7 +706,7 @@ based on %{name}.
 %patch2 -p0 -b .kppp-use_default_password
 
 %build
-%cmake_kde4 
+%cmake_kde4 -DWITH_JINGLE=true
 
 %make
 
