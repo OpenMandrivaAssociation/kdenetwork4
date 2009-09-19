@@ -102,9 +102,7 @@ Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
 %if %mdkversion >= 200910
 Obsoletes: kdenetwork3 < 2:3.5.9
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: %{_lib}kdenetwork2-kxmlrpcd < 2:3.5.9
 Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: %{_lib}kdenetwork2-common < 2:3.5.10-2
 Obsoletes: lisa< 2:3.5.10-2
 Obsoletes: ksambaplugin <= 0.5
 Obsoletes: kdenetwork-ktalk < 2:3.5.10-2
@@ -190,7 +188,6 @@ Group: Graphical desktop/KDE
 Requires: %name-core >= %epoch:%version
 
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
-Obsoletes: %{_lib}kdenetwork42-kget <=  2:3.91-0.683133.1
 Obsoletes: kde4-kget < 3:4.0.68
 %if %mdkversion >= 200910
 Obsoletes: kdenetwork-kget < 2:3.5.10-2
@@ -245,7 +242,6 @@ Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kopete < 3:4.0.68
 %if %mdkversion >= 200910
 Obsoletes: kdenetwork-kopete < 2:3.5.10-2
-Obsoletes: %{_lib}kdenetwork2-kopete < 2:3.5.10-2
 Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
 %endif
 
@@ -665,11 +661,6 @@ location to watch and possibly control your desktop.
 %package devel
 Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
-%if %mdkversion >= 200910
-Obsoletes: %{_lib}kdenetwork2-kopete-devel < 2:3.5.10-2
-Obsoletes: %{_lib}kdenetwork2-common-devel < 2:3.5.10-2
-Obsoletes: %{_lib}kdenetwork2-devel < 2:3.5.10-2
-%endif
 Conflicts: kdepim <= 3.1.92
 Requires: kdelibs4-devel >= 2:4.2.98
 Requires: kdelibs4-experimental-devel >= 2:4.2.98
