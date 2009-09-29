@@ -1,6 +1,6 @@
 Name: kdenetwork4
 Version: 4.3.1
-Release: %mkrel 3
+Release: %mkrel 4
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -148,6 +148,7 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 Summary:   %{name} kdnssd
 Group:     Graphical desktop/KDE
 Requires:  %name-core >= %epoch:%version
+Requires:  nss_mdns
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 Obsoletes: kde4-lanbrowsing
 Obsoletes: kde4-kdnssd < 3:4.0.68
