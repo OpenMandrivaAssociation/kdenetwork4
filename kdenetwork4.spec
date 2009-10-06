@@ -1,6 +1,6 @@
 Name: kdenetwork4
-Version: 4.3.1
-Release: %mkrel 4
+Version: 4.3.2
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -272,8 +272,8 @@ plugin off of.
 %_kde_appsdir/kconf_update/kopete-*
 %_kde_bindir/kopete
 %_kde_bindir/kopete_latexconvert.sh
-%_kde_bindir/winpopup-install.sh
-%_kde_bindir/winpopup-send.sh
+%_kde_bindir/winpopup-install
+%_kde_bindir/winpopup-send
 %_kde_bindir/skype-action-handler
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
