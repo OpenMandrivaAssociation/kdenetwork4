@@ -1,5 +1,7 @@
+%define kde_snapshot svn1040395
+
 Name: kdenetwork4
-Version: 4.3.2
+Version: 4.3.73
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -7,7 +9,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version%kde_snapshot.tar.bz2
+# Is still needed ?
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch2: kdenetwork-4.3.1-kppp-use_default_password_on_wizard.patch
@@ -16,7 +19,6 @@ BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
 BuildRequires: gettext
 BuildRequires: kdelibs4-devel >= 2:4.2.98
-BuildRequires: kdelibs4-experimental-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel >= 2:4.2.98
 BuildRequires: kdebase4-workspace-devel >= 4.2.98
 BuildRequires: libaudiofile-devel
@@ -204,9 +206,13 @@ An advanced download manager for KDE.
 %_kde_bindir/kget
 %dir %_kde_appsdir/kget
 %_kde_appsdir/kget/*
+%_kde_libdir/kde4/krunner_kget.so
 %_kde_libdir/kde4/kget_*
 %_kde_libdir/kde4/khtml_kget.so
 %_kde_libdir/kde4/plasma_engine_kget.so
+%_kde_libdir/kde4/kcm_kget_checksumsearchfactory.so
+%_kde_libdir/kde4/kcm_kget_metalinkfactory.so
+%_kde_libdir/kde4/kcm_krunner_kget.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
@@ -215,17 +221,20 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
 %_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
-%_kde_appsdir/desktoptheme/default/widgets/kget.svg
+#%_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
 %_kde_libdir/kde4/plasma_kget_barapplet.so
-%_kde_libdir/kde4/plasma_kget_panelbar.so
+#%_kde_libdir/kde4/plasma_kget_panelbar.so
 %_kde_libdir/kde4/plasma_kget_piechart.so
 %_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
-%_kde_datadir/kde4/services/kgetpanelbarapplet-default.desktop
+#%_kde_datadir/kde4/services/kgetpanelbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
+%_kde_datadir/kde4/services/plasma-runner-kget.desktop
+%_kde_datadir/kde4/services/plasma-runner-kget_config.desktop
+%_kde_datadir/dbus-1/services/org.kde.kget.service
 
 %_kde_docdir/HTML/*/kget
 
@@ -274,7 +283,7 @@ plugin off of.
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install
 %_kde_bindir/winpopup-send
-%_kde_bindir/skype-action-handler
+#%_kde_bindir/skype-action-handler
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
@@ -316,7 +325,7 @@ plugin off of.
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
-%_prefix/lib/mozilla/plugins/libskypebuttons.so
+%_prefix/lib/mozilla/plugins/skypebuttons.so
 %exclude %_kde_appsdir/kopete_latex
 %exclude %_kde_libdir/kde4/kcm_kopete_latex.*
 %exclude %_kde_libdir/kde4/kopete_latex.*
@@ -549,6 +558,22 @@ KDE 4 library
 %defattr(-,root,root)
 %_kde_libdir/libkopeteidentity.so.*
 
+
+#---------------------------------------------
+
+%define libkrfb %mklibname krfb 4
+
+%package -n %libkrfb
+Summary: KDE 4 library
+Group: System/Libraries
+
+%description -n %libkrfb
+KDE 4 library
+
+%files -n %libkrfb
+%defattr(-,root,root)
+%_kde_libdir/libkrfb.so.*
+
 #---------------------------------------------
 
 %package -n kppp
@@ -652,9 +677,10 @@ location to watch and possibly control your desktop.
 %files -n krfb
 %defattr(-,root,root)
 %_kde_bindir/krfb
-%dir %_kde_appsdir/krfb
-%_kde_appsdir/krfb/krfb.notifyrc
+%_kde_appsdir/krfb
 %_kde_datadir/applications/kde4/krfb.desktop
+%_kde_libdir/kde4/krfb_*.so
+%_kde_datadir/kde4/service*/krfb*.desktop
 %_kde_docdir/HTML/*/krfb
 
 #---------------------------------------------
@@ -664,7 +690,6 @@ Summary: Devel stuff for %{name}
 Group: Development/KDE and Qt
 Conflicts: kdepim <= 3.1.92
 Requires: kdelibs4-devel >= 2:4.2.98
-Requires: kdelibs4-experimental-devel >= 2:4.2.98
 Requires: kdepimlibs4-devel >= 2:4.2.98
 Requires: %libkgetcore >= %version
 Requires: %libkopetecontactlist >= %version
@@ -692,8 +717,8 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
-%setup -q -n kdenetwork-%version
-%patch0 -p1
+%setup -q -n kdenetwork-%version%kde_snapshot
+#%patch0 -p1
 %patch1 -p1 -b .searchbar
 %patch2 -p0 -b .kppp-use_default_password
 
