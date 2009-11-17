@@ -1,8 +1,8 @@
-%define kde_snapshot svn1040395
+%define kde_snapshot svn1048496
 
 Name: kdenetwork4
-Version: 4.3.73
-Release: %mkrel 2
+Version: 4.3.75
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -52,7 +52,7 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
-BuildRequires: webkitkde-devel
+#BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
 BuildRequires: libmsn-devel >= 4.0-0.beta1.1
 BuildRequires: gadu-devel >= 1.8.0
@@ -220,7 +220,7 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
-%_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
+#%_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
 #%_kde_appsdir/desktoptheme/default/widgets/kget.svg
 %_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
