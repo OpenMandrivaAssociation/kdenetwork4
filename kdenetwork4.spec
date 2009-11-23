@@ -325,7 +325,7 @@ plugin off of.
 %_kde_appsdir/kopeterichtexteditpart
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
-%_prefix/lib/mozilla/plugins/skypebuttons.so
+#%_prefix/lib/mozilla/plugins/skypebuttons.so
 %exclude %_kde_appsdir/kopete_latex
 %exclude %_kde_libdir/kde4/kcm_kopete_latex.*
 %exclude %_kde_libdir/kde4/kopete_latex.*
