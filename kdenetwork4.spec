@@ -1,7 +1,13 @@
-%define kde_snapshot svn1048496
+%define branch 1
+%{?_branch: %{expand: %%global branch 1}}
+
+
+%if %branch
+%define kde_snapshot svn1053190
+%endif
 
 Name: kdenetwork4
-Version: 4.3.75
+Version: 4.3.77
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -9,7 +15,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
+%if %branch
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version%kde_snapshot.tar.bz2
+%else
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+%endif
 # Is still needed ?
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
@@ -717,7 +727,12 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
+%if %branch
 %setup -q -n kdenetwork-%version%kde_snapshot
+%else
+%setup -q -n kdenetwork-%version
+%endif
+
 #%patch0 -p1
 %patch1 -p1 -b .searchbar
 %patch2 -p0 -b .kppp-use_default_password
