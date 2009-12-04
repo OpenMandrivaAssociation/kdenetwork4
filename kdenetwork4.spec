@@ -230,17 +230,13 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
-#%_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
-#%_kde_appsdir/desktoptheme/default/widgets/kget.svg
+%_kde_appsdir/webkitpart/kpartplugins/kget_plug_in.rc
 %_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
 %_kde_libdir/kde4/plasma_kget_barapplet.so
-#%_kde_libdir/kde4/plasma_kget_panelbar.so
 %_kde_libdir/kde4/plasma_kget_piechart.so
-%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
-#%_kde_datadir/kde4/services/kgetpanelbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget_config.desktop
@@ -293,7 +289,7 @@ plugin off of.
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install
 %_kde_bindir/winpopup-send
-#%_kde_bindir/skype-action-handler
+%_kde_bindir/googletalk-call
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
@@ -571,18 +567,18 @@ KDE 4 library
 
 #---------------------------------------------
 
-%define libkrfb %mklibname krfb 4
+%define libkrfbprivate %mklibname krfbprivate 4
 
-%package -n %libkrfb
+%package -n %libkrfbprivate
 Summary: KDE 4 library
 Group: System/Libraries
 
-%description -n %libkrfb
+%description -n %libkrfbprivate
 KDE 4 library
 
-%files -n %libkrfb
+%files -n %libkrfbprivate
 %defattr(-,root,root)
-%_kde_libdir/libkrfb.so.*
+%_kde_libdir/libkrfbprivate.so.*
 
 #---------------------------------------------
 
@@ -701,17 +697,18 @@ Group: Development/KDE and Qt
 Conflicts: kdepim <= 3.1.92
 Requires: kdelibs4-devel >= 2:4.2.98
 Requires: kdepimlibs4-devel >= 2:4.2.98
-Requires: %libkgetcore >= %version
-Requires: %libkopetecontactlist >= %version
-Requires: %libkyahoo >= %version
-Requires: %libkopete_videodevice >= %version
-Requires: %libkopeteaddaccountwizard >= %version
-Requires: %libkopete >= %version
-Requires: %libkopeteprivacy >= %version
-Requires: %libkopetechatwindow_shared >= %version
-Requires: %libkrdccore >= %version
-Requires: %libkopete_oscar >= %version
-Requires: %liboscar >= %version
+Requires: %libkgetcore = %version-%release
+Requires: %libkopetecontactlist = %version-%release
+Requires: %libkyahoo = %version-%release
+Requires: %libkopete_videodevice = %version-%release
+Requires: %libkopeteaddaccountwizard = %version-%release
+Requires: %libkopete = %version-%release
+Requires: %libkopeteprivacy = %version-%release
+Requires: %libkopetechatwindow_shared = %version-%release
+Requires: %libkrdccore = %version-%release
+Requires: %libkopete_oscar = %version-%release
+Requires: %liboscar = %version-%release
+Requires: %libkrfbprivate = %version-%release
 
 %description  devel
 This package contains header files needed if you wish to build applications
