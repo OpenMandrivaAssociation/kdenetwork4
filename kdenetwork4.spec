@@ -1,4 +1,4 @@
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
 
 
@@ -7,7 +7,7 @@
 %endif
 
 Name: kdenetwork4
-Version: 4.3.77
+Version: 4.3.80
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
