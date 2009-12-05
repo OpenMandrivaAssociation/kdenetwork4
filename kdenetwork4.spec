@@ -62,7 +62,7 @@ BuildRequires: decibel-devel
 BuildRequires: telepathy-qt-devel
 BuildRequires: tapioca-qt-devel
 BuildRequires: qca2-devel
-#BuildRequires: webkitkde-devel
+BuildRequires: webkitkde-devel
 BuildRequires: ortp-devel >= 0.13.1
 BuildRequires: libmsn-devel >= 4.0-0.beta1.1
 BuildRequires: gadu-devel >= 1.8.0
