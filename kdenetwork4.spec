@@ -8,7 +8,7 @@
 
 Name: kdenetwork4
 Version: 4.3.80
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -697,18 +697,18 @@ Group: Development/KDE and Qt
 Conflicts: kdepim <= 3.1.92
 Requires: kdelibs4-devel >= 2:4.2.98
 Requires: kdepimlibs4-devel >= 2:4.2.98
-Requires: %libkgetcore = %version-%release
-Requires: %libkopetecontactlist = %version-%release
-Requires: %libkyahoo = %version-%release
-Requires: %libkopete_videodevice = %version-%release
-Requires: %libkopeteaddaccountwizard = %version-%release
-Requires: %libkopete = %version-%release
-Requires: %libkopeteprivacy = %version-%release
-Requires: %libkopetechatwindow_shared = %version-%release
-Requires: %libkrdccore = %version-%release
-Requires: %libkopete_oscar = %version-%release
-Requires: %liboscar = %version-%release
-Requires: %libkrfbprivate = %version-%release
+Requires: %libkgetcore = %epoch:%version-%release
+Requires: %libkopetecontactlist = %epoch:%version-%release
+Requires: %libkyahoo = %epoch:%version-%release
+Requires: %libkopete_videodevice = %epoch:%version-%release
+Requires: %libkopeteaddaccountwizard = %epoch:%version-%release
+Requires: %libkopete = %epoch:%version-%release
+Requires: %libkopeteprivacy = %epoch:%version-%release
+Requires: %libkopetechatwindow_shared = %epoch:%version-%release
+Requires: %libkrdccore = %epoch:%version-%release
+Requires: %libkopete_oscar = %epoch:%version-%release
+Requires: %liboscar = %epoch:%version-%release
+Requires: %libkrfbprivate = %epoch:%version-%release
 
 %description  devel
 This package contains header files needed if you wish to build applications
