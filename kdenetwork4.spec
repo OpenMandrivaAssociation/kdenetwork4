@@ -222,7 +222,6 @@ An advanced download manager for KDE.
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_libdir/kde4/kcm_kget_checksumsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_metalinkfactory.so
-%_kde_libdir/kde4/kcm_krunner_kget.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
@@ -239,7 +238,6 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget.desktop
-%_kde_datadir/kde4/services/plasma-runner-kget_config.desktop
 %_kde_datadir/dbus-1/services/org.kde.kget.service
 
 %_kde_docdir/HTML/*/kget
