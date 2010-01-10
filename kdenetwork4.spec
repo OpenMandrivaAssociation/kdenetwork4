@@ -235,6 +235,7 @@ An advanced download manager for KDE.
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
 %_kde_libdir/kde4/plasma_kget_barapplet.so
 %_kde_libdir/kde4/plasma_kget_piechart.so
+%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget.desktop
