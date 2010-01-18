@@ -744,8 +744,6 @@ for size in 16 32 48 64 128; do
     %cp %buildroot%_kde_iconsdir/oxygen/${size}x${size}/apps/krdc.png %buildroot/%_datadir/icons/hicolor/${size}x${size}/apps
 done
 
-
-%cp %buildroot%_kde_iconsdir/oxygen/*/apps/krdc.png
 %install
 rm -fr %buildroot
 
