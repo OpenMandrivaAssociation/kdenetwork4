@@ -8,7 +8,7 @@
 
 Name: kdenetwork4
 Version: 4.3.90
-Release: %mkrel 1
+Release: %mkrel 2
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -738,7 +738,14 @@ based on %{name}.
 
 %make
 
+# We copy some missing icons from oxygen to hicolor
+for size in 16 32 48 64 128; do
+    mkdir -p %buildroot/%_datadir/icons/hicolor/${size}x${size}/apps
+    %cp %buildroot%_kde_iconsdir/oxygen/${size}x${size}/apps/krdc.png %buildroot/%_datadir/icons/hicolor/${size}x${size}/apps
+done
 
+
+%cp %buildroot%_kde_iconsdir/oxygen/*/apps/krdc.png
 %install
 rm -fr %buildroot
 
