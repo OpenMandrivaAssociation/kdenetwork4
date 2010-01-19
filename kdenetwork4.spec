@@ -8,7 +8,7 @@
 
 Name: kdenetwork4
 Version: 4.3.90
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -46,7 +46,8 @@ BuildRequires: libiw-devel
 BuildRequires: wireless-tools
 BuildRequires: libopenssl-devel
 BuildRequires: libidn-devel
-BuildRequires: libgsmlib-devel
+# Do not enable for now
+#BuildRequires: libgsmlib-devel
 BuildRequires: mesaglut-devel
 BuildRequires: X11-devel
 BuildRequires: libxtst-devel
