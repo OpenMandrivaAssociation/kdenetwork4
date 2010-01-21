@@ -24,6 +24,7 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch2: kdenetwork-4.3.1-kppp-use_default_password_on_wizard.patch
+Patch3: kdenetwork-4.3.90-fix-desktop-files.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -733,6 +734,7 @@ based on %{name}.
 #%patch0 -p1
 %patch1 -p1 -b .searchbar
 %patch2 -p0 -b .kppp-use_default_password
+%patch3 -p0
 
 %build
 %cmake_kde4 -DWITH_JINGLE=true
