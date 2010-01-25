@@ -7,8 +7,8 @@
 %endif
 
 Name: kdenetwork4
-Version: 4.3.90
-Release: %mkrel 3
+Version: 4.3.95
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -24,7 +24,7 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch2: kdenetwork-4.3.1-kppp-use_default_password_on_wizard.patch
-Patch3: kdenetwork-4.3.90-fix-desktop-files.patch
+Patch3: kdenetwork-4.3.95-fix-desktop-files.patch
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -55,7 +55,7 @@ BuildRequires: libxtst-devel
 BuildRequires: gmp-devel
 BuildRequires: libotr-devel
 BuildRequires: mDNSResponder-devel
-BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
+BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 1
 BuildRequires: qca2-devel 
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
