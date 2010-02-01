@@ -7,7 +7,7 @@
 %endif
 
 Name: kdenetwork4
-Version: 4.3.95
+Version: 4.3.98
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
