@@ -8,7 +8,7 @@
 
 Name: kdenetwork4
 Version: 4.4.3
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -710,6 +710,9 @@ Requires: %libkrdccore = %epoch:%version-%release
 Requires: %libkopete_oscar = %epoch:%version-%release
 Requires: %liboscar = %epoch:%version-%release
 Requires: %libkrfbprivate = %epoch:%version-%release
+Requires: %libkopete_otr_shared = %epoch:%version-%release
+Requires: %libkopeteidentity = %epoch:%version-%release
+Requires: %libkopetestatusmenu = %epoch:%version-%release
 
 %description  devel
 This package contains header files needed if you wish to build applications
