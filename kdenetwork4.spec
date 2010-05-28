@@ -8,7 +8,7 @@
 
 Name: kdenetwork4
 Version: 4.4.3
-Release: %mkrel 5
+Release: %mkrel 6
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -24,7 +24,6 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch2: kdenetwork-4.3.1-kppp-use_default_password_on_wizard.patch
-Patch3: kdenetwork-4.3.90-fix-desktop-files.patch
 Patch4: kdenetwork-4.4.2-fix-libjingle-openssl.patch
 Patch5: kdenetwork-4.4.x-CVE-2010-1000,1511.diff
 BuildRequires: kde4-macros
@@ -738,7 +737,6 @@ based on %{name}.
 #%patch0 -p1
 %patch1 -p1 -b .searchbar
 %patch2 -p0 -b .kppp-use_default_password
-%patch3 -p0
 %patch4 -p0
 %patch5 -p0 -b .CVE-2010-1000,1511
 
