@@ -3,12 +3,12 @@
 
 
 %if %branch
-%define kde_snapshot svn1053190
+%define kde_snapshot svn1138650
 %endif
 
 Name: kdenetwork4
-Version: 4.4.3
-Release: %mkrel 6
+Version: 4.4.95
+Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -24,8 +24,6 @@ Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz
 Patch0: kdenetwork-4.0.85-kopete.patch
 Patch1: kdenetwork-4.2.2-kopete-searchbar_new_line.patch
 Patch2: kdenetwork-4.3.1-kppp-use_default_password_on_wizard.patch
-Patch4: kdenetwork-4.4.2-fix-libjingle-openssl.patch
-Patch5: kdenetwork-4.4.x-CVE-2010-1000,1511.diff
 BuildRequires: kde4-macros
 BuildRequires: qt4-devel
 BuildRequires: freetype2-devel
@@ -221,7 +219,6 @@ An advanced download manager for KDE.
 %_kde_appsdir/kget/*
 %_kde_libdir/kde4/krunner_kget.so
 %_kde_libdir/kde4/kget_*
-%_kde_libdir/kde4/khtml_kget.so
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_libdir/kde4/kcm_kget_checksumsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_metalinkfactory.so
@@ -232,12 +229,12 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/services/kget_*
 %_kde_datadir/kde4/servicetypes/kget_*
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.rc
+%_kde_appsdir/dolphinpart/kpartplugins/kget_plug_in.rc
 %_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
 %_kde_libdir/kde4/plasma_kget_barapplet.so
 %_kde_libdir/kde4/plasma_kget_piechart.so
-%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/kgetbarapplet-default.desktop
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget.desktop
@@ -737,8 +734,6 @@ based on %{name}.
 #%patch0 -p1
 %patch1 -p1 -b .searchbar
 %patch2 -p0 -b .kppp-use_default_password
-%patch4 -p0
-%patch5 -p0 -b .CVE-2010-1000,1511
 
 %build
 %cmake_kde4 -DWITH_JINGLE=true
