@@ -296,6 +296,7 @@ plugin off of.
 %_kde_datadir/config.kcfg/latexconfig.kcfg
 %_kde_datadir/config.kcfg/nowlisteningconfig.kcfg
 %_kde_datadir/config.kcfg/webpresenceconfig.kcfg
+%_kde_datadir/config.kcfg/translatorconfig.kcfg
 %_kde_datadir/kde4/services/aim.protocol
 %_kde_datadir/kde4/services/chatwindow.desktop
 %_kde_datadir/kde4/services/emailwindow.desktop
