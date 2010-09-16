@@ -3,11 +3,11 @@
 
 
 %if %branch
-%define kde_snapshot svn1170578
+%define kde_snapshot svn1174542
 %endif
 
 Name: kdenetwork4
-Version: 4.5.67
+Version: 4.5.68
 Release: %mkrel 1
 Epoch: 3
 Group: Development/KDE and Qt
@@ -16,55 +16,38 @@ Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
 %if %branch
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version%kde_snapshot.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_snapshot.tar.bz2
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
-BuildRequires: kde4-macros
-BuildRequires: qt4-devel
-BuildRequires: freetype2-devel
-BuildRequires: gettext
 BuildRequires: kdelibs4-devel >= 2:4.2.98
-BuildRequires: kdepimlibs4-devel >= 2:4.2.98
-BuildRequires: kdebase4-workspace-devel >= 4.2.98
-BuildRequires: libaudiofile-devel
-BuildRequires: v4l-utils-devel
-BuildRequires: bzip2-devel
+BuildRequires: kdepimlibs4-devel
+BuildRequires: kdebase4-workspace-devel
+BuildRequires: kdebase4-devel
+BuildRequires: libvncserver-devel >= 0.8.2-3
 BuildRequires: jpeg-devel
-BuildRequires: lcms-devel
-BuildRequires: mng-devel
-BuildRequires: png-devel
-BuildRequires: libz-devel
+BuildRequires: soprano-devel
+BuildRequires: shared-desktop-ontologies-devel
+BuildRequires: sqlite3-devel
+BuildRequires: strigi-devel
+BuildRequires: qca2-devel
+BuildRequires: telepathy-qt4-devel
+BuildRequires: libortp-devel
+BuildRequires: speex-devel
+BuildRequires: idn-devel
+BuildRequires: libalsa-devel
 BuildRequires: libxml2-devel
 BuildRequires: libxslt-devel
-BuildRequires: libopenslp-devel
-BuildRequires: libiw-devel
-BuildRequires: wireless-tools
-BuildRequires: libopenssl-devel
-BuildRequires: libidn-devel
-# Do not enable for now
-#BuildRequires: libgsmlib-devel
-BuildRequires: mesaglut-devel
-BuildRequires: X11-devel
-BuildRequires: libxtst-devel
-BuildRequires: gmp-devel
 BuildRequires: libotr-devel
-BuildRequires: mDNSResponder-devel
-BuildRequires: libvncserver-devel >= 0.8.2-%mkrel 3
-BuildRequires: qca2-devel 
+BuildRequires: libmsn-devel
+BuildRequires: linphone-devel
+BuildRequires: meanwhile-devel
+BuildRequires: gadu-devel
+BuildRequires: v4l-utils-devel
+BuildRequires: expat-devel
+BuildRequires: openssl-devel
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
-BuildRequires: sqlite3-devel
-BuildRequires: decibel-devel
-BuildRequires: telepathy-qt-devel
-BuildRequires: tapioca-qt-devel
-BuildRequires: qca2-devel
-BuildRequires: webkitkde-devel
-BuildRequires: ortp-devel >= 0.13.1
-BuildRequires: libmsn-devel >= 4.0-0.beta1.1
-BuildRequires: gadu-devel >= 1.8.0
-BuildRequires: meanwhile-devel
-BuildRequires: linphone-devel
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -638,6 +621,10 @@ location to watch and possibly control your desktop.
 %files -n krdc
 %defattr(-,root,root)
 %_kde_bindir/krdc
+%_kde_bindir/krdc_rfb_approver
+%_kde_appsdir/krdc_rfb_approver/krdc_rfb_approver.notifyrc
+%_datadir/telepathy/clients/*.client
+%_datadir/dbus-1/services/*.service
 %dir %_kde_appsdir/krdc
 %_kde_appsdir/krdc/krdcui.rc
 %_kde_appsdir/krdc/pics/*.png
@@ -730,13 +717,11 @@ based on %{name}.
 
 %build
 %cmake_kde4 -DWITH_JINGLE=true
-
 %make
 
 %install
 rm -fr %buildroot
-
-make -C build DESTDIR=%buildroot install
+%makeinstall_std -C build
 
 %clean
 rm -fr %buildroot
