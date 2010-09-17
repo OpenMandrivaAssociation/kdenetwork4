@@ -10,7 +10,7 @@ Name: kdenetwork4
 Version: 4.5.68
 Release: %mkrel 1
 Epoch: 3
-Group: Development/KDE and Qt
+Group: Graphical desktop/KDE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
