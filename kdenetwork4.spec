@@ -58,6 +58,7 @@ Suggests: kppp
 Suggests: krdc
 Suggests: krfb
 Suggests: kde4-filesharing
+Obsoletes: kdenetwork4-core < 3:4.5.72
 Obsoletes: kde4-lanbrowsing
 Obsoletes: kdenetwork-kxmlrpcd
 Obsoletes: kdenetwork_kroupware
