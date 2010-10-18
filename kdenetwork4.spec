@@ -69,6 +69,20 @@ Obsoletes: kdenetwork-kmail < 3.1.6
 Obsoletes: kdenetwork-knode < 3.1.6
 Obsoletes: kdenetwork-korn < 3.1.6
 Obsoletes: lisa < 2:3.5.10-7
+%if %mdkversion >= 200910
+Obsoletes: kdenetwork3 < 2:3.5.9
+Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
+Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
+Obsoletes: lisa< 2:3.5.10-2
+Obsoletes: ksambaplugin <= 0.5
+Obsoletes: kdenetwork-ktalk < 2:3.5.10-2
+Obsoletes: kdenetwork-ksirc < 2:3.5.10-2
+Obsoletes: kdenetwork-kwifimanager < 2:3.5.10-2
+Obsoletes: kdenetwork-kdict < 2:3.5.10-2
+Obsoletes: kdenetwork-knewsticker < 2:3.5.10-2
+Obsoletes: kdenetwork < 2:3.5.10-2
+Obsoletes: kdenetwork-common < 2:3.5.10-2
+%endif
 
 %description
 Networking applications for the K Desktop Environment.
@@ -85,43 +99,10 @@ Networking applications for the K Desktop Environment.
 
 #----------------------------------------------------------------------
 
-%package core
-Summary: %name core files
-Group: Graphical desktop/KDE
-Requires: kdelibs4-core
-
-Conflicts: kdebase =< 2.2.2-93mdk
-Conflicts: kdepim <= 3.1.92
-
-Obsoletes: %{_lib}kdenetwork42 <=  2:3.91-0.683133.1
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork3 < 2:3.5.9
-Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: lisa< 2:3.5.10-2
-Obsoletes: ksambaplugin <= 0.5
-Obsoletes: kdenetwork-ktalk < 2:3.5.10-2
-Obsoletes: kdenetwork-ksirc < 2:3.5.10-2
-Obsoletes: kdenetwork-kwifimanager < 2:3.5.10-2
-Obsoletes: kdenetwork-kdict < 2:3.5.10-2
-Obsoletes: kdenetwork-knewsticker < 2:3.5.10-2
-Obsoletes: kdenetwork < 2:3.5.10-2
-Obsoletes: kdenetwork-common < 2:3.5.10-2
-%endif
-
-%description core
-Core files for %{name}.
-
-%files core
-%defattr(-,root,root)
-%_kde_iconsdir/*/*/*/*
-
-#----------------------------------------------------------------------
-
 %package -n kde4-filesharing
 Summary: %{name} filesharing
 Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Conflicts: %name-core < 3:4.5.72
 Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 
 %description -n kde4-filesharing
@@ -136,13 +117,13 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 %_kde_datadir/kde4/services/fileshare_propsdlgplugin.desktop
 %_kde_datadir/kde4/services/kcmsambaconf.desktop
 %_kde_datadir/kde4/services/ServiceMenus/smb2rdc.desktop
+%_kde_iconsdir/*/*/apps/kcmsambaconf.*
 
 #---------------------------------------------
 
 %package -n kdnssd
 Summary:   %{name} kdnssd
 Group:     Graphical desktop/KDE
-Requires:  %name-core >= %epoch:%version
 Requires:  nss_mdns
 Obsoletes: %name-kdnssd < 2:3.93.0-0.714148.1
 Obsoletes: kde4-lanbrowsing
@@ -181,7 +162,7 @@ KDE 4 library
 %package -n kget
 Summary: %{name} kget
 Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Conflicts: %name-core < 3:4.5.72
 
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kget < 3:4.0.68
@@ -221,7 +202,7 @@ An advanced download manager for KDE.
 %_kde_datadir/kde4/services/kgetpiechartapplet-default.desktop
 %_kde_datadir/kde4/services/plasma-runner-kget.desktop
 %_kde_datadir/dbus-1/services/org.kde.kget.service
-
+%_kde_iconsdir/*/*/apps/kget.*
 %_kde_docdir/HTML/*/kget
 
 #---------------------------------------------
@@ -229,7 +210,7 @@ An advanced download manager for KDE.
 %package -n kopete
 Summary:   %{name} kopete
 Group:     Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Conflicts: %name-core < 3:4.5.72
 Requires: akonadi >= 1:1.1.95
 Requires: qca2-plugin-openssl-%{_lib}
 Requires: kdepimlibs4-core
@@ -310,6 +291,29 @@ plugin off of.
 %_kde_appsdir/kopete_groupwise
 %_kde_appsdir/kopete_skype
 %_kde_appsdir/kopeterichtexteditpart
+%_kde_iconsdir/*/*/actions/account_offline_overlay.*
+%_kde_iconsdir/*/*/actions/contact_away_overlay.*
+%_kde_iconsdir/*/*/actions/contact_busy_overlay.*
+%_kde_iconsdir/*/*/actions/contact_food_overlay.*
+%_kde_iconsdir/*/*/actions/contact_invisible_overlay.*
+%_kde_iconsdir/*/*/actions/contact_phone_overlay.*
+%_kde_iconsdir/*/*/actions/contact_xa_overlay.*
+%_kde_iconsdir/*/*/actions/emoticon.*
+%_kde_iconsdir/*/*/actions/im-status-message-edit.*
+%_kde_iconsdir/*/*/actions/mail-encrypt.*
+%_kde_iconsdir/*/*/actions/metacontact_unknown.*
+%_kde_iconsdir/*/*/actions/newmessage.*
+%_kde_iconsdir/*/*/actions/status_unknown_overlay.*
+%_kde_iconsdir/*/*/actions/status_unknown.*
+%_kde_iconsdir/*/*/actions/view-user-offline-kopete.*
+%_kde_iconsdir/*/*/actions/voicecall.*
+%_kde_iconsdir/*/*/actions/webcamreceive.*
+%_kde_iconsdir/*/*/actions/webcamsend.*
+%_kde_iconsdir/*/*/apps/kopete-offline.*
+%_kde_iconsdir/*/*/apps/kopete.*
+%_kde_iconsdir/*/*/status/object-locked-finished.*
+%_kde_iconsdir/*/*/status/object-locked-unverified.*
+%_kde_iconsdir/*/*/status/object-locked-verified.*
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
 %_kde_libdir/mozilla/plugins/skypebuttons.so
@@ -566,7 +570,7 @@ KDE 4 library
 %package -n kppp
 Summary: %{name} kppp
 Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
+Conflicts: %name-core < 3:4.5.72
 Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
@@ -586,6 +590,7 @@ Obsoletes: kdenetwork-kppp < 2:3.5.10-2
 %_kde_datadir/applications/kde4/Kppp.desktop
 %_kde_datadir/applications/kde4/kppplogview.desktop
 %_kde_docdir/HTML/*/kppp
+%_kde_iconsdir/*/*/apps/kppp.*
 %exclude %_kde_appsdir/kppp/Rules
 %exclude %_kde_appsdir/kppp/Provider
 
@@ -612,7 +617,6 @@ List of providers for kppp
 %package -n krdc
 Summary: %{name} krdc
 Group: Graphical desktop/KDE
-Requires: %name-core >= %epoch:%version
 Obsoletes: %name-krdc < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krdc < 3:4.0.68
 Provides: kde4-krdc = %epoch:%version
@@ -653,7 +657,6 @@ location to watch and possibly control your desktop.
 %package -n krfb
 Summary:   %{name} krfb
 Group:     Graphical desktop/KDE
-Requires:  %name-core >= %epoch:%version
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krfb < 3:4.0.68
 Provides:  kde4-krfb = %epoch:%version
