@@ -35,7 +35,6 @@ BuildRequires: shared-desktop-ontologies-devel
 BuildRequires: sqlite3-devel
 BuildRequires: strigi-devel
 BuildRequires: qca2-devel
-BuildRequires: telepathy-qt4-devel
 BuildRequires: libortp-devel
 BuildRequires: speex-devel
 BuildRequires: idn-devel
@@ -630,9 +629,6 @@ location to watch and possibly control your desktop.
 %files -n krdc
 %defattr(-,root,root)
 %_kde_bindir/krdc
-%_kde_bindir/krdc_rfb_approver
-%_kde_appsdir/krdc_rfb_approver/krdc_rfb_approver.notifyrc
-%_datadir/telepathy/clients/*.client
 %_datadir/dbus-1/services/*.service
 %dir %_kde_appsdir/krdc
 %_kde_appsdir/krdc/krdcui.rc
