@@ -23,6 +23,7 @@ Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
+Patch0: kdenetwork-4.5.77-fix-str-fmt.patch
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
@@ -721,6 +722,7 @@ based on %{name}.
 %else
 %setup -q -n kdenetwork-%version
 %endif
+%patch0 -p0
 
 %build
 %cmake_kde4
