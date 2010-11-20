@@ -2,11 +2,11 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define kde_snapshot svn1190490
+%define kde_snapshot svn1198704
 %endif
 
 Name: kdenetwork4
-Version: 4.5.74
+Version: 4.5.77
 %if %branch
 Release: %mkrel -c %kde_snapshot 1
 %else
@@ -23,7 +23,6 @@ Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
-Patch0: kdenetwork-4.5.74-fix-build.patch
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
@@ -722,7 +721,6 @@ based on %{name}.
 %else
 %setup -q -n kdenetwork-%version
 %endif
-%patch0 -p0
 
 %build
 %cmake_kde4
