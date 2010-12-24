@@ -282,6 +282,7 @@ plugin off of.
 %_kde_datadir/sounds/Kopete_Received.ogg
 %_kde_datadir/sounds/Kopete_Sent.ogg
 %_kde_datadir/sounds/Kopete_User_is_Online.ogg
+%_kde_datadir/sounds/KDE-Im-Phone-Ring.wav
 %_kde_appsdir/kopete
 %_kde_appsdir/kopete_contactnotes
 %_kde_appsdir/kopete_history
