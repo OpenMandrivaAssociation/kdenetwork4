@@ -6,7 +6,7 @@
 %endif
 
 Name: kdenetwork4
-Version: 4.5.95
+Version: 4.6.0
 %if %branch
 Release: %mkrel -c %kde_snapshot 1
 %else
