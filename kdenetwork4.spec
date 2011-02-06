@@ -10,7 +10,7 @@ Version: 4.6.0
 %if %branch
 Release: %mkrel -c %kde_snapshot 1
 %else
-Release: %mkrel 1
+Release: %mkrel 2
 %endif
 Epoch: 3
 Group: Graphical desktop/KDE
@@ -50,6 +50,7 @@ BuildRequires: expat-devel
 BuildRequires: openssl-devel
 BuildRequires: boost-devel
 BuildRequires: qimageblitz-devel
+BuildRequires: libktorrent-devel >= 1.1
 Suggests: kdnssd
 Suggests: kget
 Suggests: kopete
@@ -185,6 +186,7 @@ An advanced download manager for KDE.
 %_kde_libdir/kde4/plasma_engine_kget.so
 %_kde_libdir/kde4/kcm_kget_checksumsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_metalinkfactory.so
+%_kde_libdir/kde4/kcm_kget_bittorrentfactory.so
 %_kde_datadir/kde4/services/plasma-engine-kget.desktop
 %_kde_datadir/applications/kde4/kget.desktop
 %_kde_datadir/kde4/services/ServiceMenus/kget_download.desktop
@@ -633,10 +635,7 @@ location to watch and possibly control your desktop.
 %files -n krdc
 %defattr(-,root,root)
 %_kde_bindir/krdc
-%_datadir/dbus-1/services/*.service
-%dir %_kde_appsdir/krdc
-%_kde_appsdir/krdc/krdcui.rc
-%_kde_appsdir/krdc/pics/*.png
+%_kde_appsdir/krdc
 %_kde_datadir/applications/kde4/krdc.desktop
 %_kde_datadir/config.kcfg/krdc.kcfg
 %_kde_datadir/kde4/services/rdp.protocol
