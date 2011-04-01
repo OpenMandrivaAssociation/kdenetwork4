@@ -10,7 +10,7 @@ Version: 4.6.1
 %if %branch
 Release: %mkrel -c %kde_snapshot 1
 %else
-Release: %mkrel 2
+Release: %mkrel 3
 %endif
 Epoch: 3
 Group: Graphical desktop/KDE
@@ -23,6 +23,7 @@ Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
+Patch0: kdenetwork-4.6.0-kopete-no-v4l1.patch
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
@@ -721,6 +722,7 @@ based on %{name}.
 %else
 %setup -q -n kdenetwork-%version
 %endif
+%patch0 -p1
 
 %build
 %cmake_kde4
