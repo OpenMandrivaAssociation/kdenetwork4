@@ -727,7 +727,7 @@ based on %{name}.
 %patch0 -p0 -b .CVE-2011-1586
 
 %build
-%cmake_kde4
+%cmake_kde4 -DWITH_GOOGLETALK=OFF
 %make
 
 %install
