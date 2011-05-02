@@ -258,7 +258,9 @@ plugin off of.
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install
 %_kde_bindir/winpopup-send
+%if 0
 %_kde_bindir/googletalk-call
+%endif
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
