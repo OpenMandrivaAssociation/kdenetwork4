@@ -10,7 +10,7 @@ Version: 4.6.2
 %if %branch
 Release: 0.%kde_snapshot.1
 %else
-Release: 1
+Release: 2
 %endif
 Epoch: 3
 Group: Graphical desktop/KDE
@@ -23,6 +23,8 @@ Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
 %endif
+# http://websvn.kde.org/branches/KDE/4.6/kdenetwork/kget/ui/metalinkcreator/metalinker.cpp?r1=1227471&r2=1227470&pathrev=1227471
+Patch0: kdenetwork-4.6.2-CVE-2011-1586.diff
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
@@ -721,6 +723,8 @@ based on %{name}.
 %else
 %setup -q -n kdenetwork-%version
 %endif
+
+%patch0 -p0 -b .CVE-2011-1586
 
 %build
 %cmake_kde4
