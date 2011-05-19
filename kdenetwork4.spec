@@ -95,7 +95,6 @@ Networking applications for the K Desktop Environment.
 - krdc: a client for Desktop Sharing and other VNC servers
 
 %files
-%defattr(-,root,root,-)
 %doc README
 
 #----------------------------------------------------------------------
@@ -110,7 +109,6 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 %{name} filesharing.
 
 %files -n kde4-filesharing
-%defattr(-,root,root)
 %_kde_libdir/kde4/fileshare_propsdlgplugin.so
 %_kde_libdir/kde4/kcm_fileshare.so
 %_kde_libdir/kde4/kcm_kcmsambaconf.so
@@ -135,7 +133,6 @@ Provides:  kde4-kdnssd = %epoch:%version
 %{name} kdnssd.
 
 %files -n kdnssd
-%defattr(-,root,root)
 %dir %_kde_appsdir/remoteview
 %_kde_appsdir/remoteview/zeroconf.desktop
 %_kde_libdir/kde4/kded_dnssdwatcher.so
@@ -155,7 +152,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkgetcore
-%defattr(-,root,root)
 %_kde_libdir/libkgetcore.so.*
 
 #---------------------------------------------
@@ -177,7 +173,6 @@ Provides:  kde4-kget = %epoch:%version
 An advanced download manager for KDE.
 
 %files -n kget
-%defattr(-,root,root)
 %_kde_bindir/kget
 %dir %_kde_appsdir/kget
 %_kde_appsdir/kget/*
@@ -250,7 +245,6 @@ users can use, in addition to templates for new developers to base a
 plugin off of.
 
 %files -n kopete
-%defattr(-,root,root)
 %_kde_appsdir/kconf_update/kopete-*
 %_kde_bindir/kopete
 %_kde_bindir/kopete_latexconvert.sh
@@ -346,8 +340,6 @@ Requires: imagemagick
 Kopete latex plugin for write andd read mesages in latexinder
 
 %files kopete-latex
-%defattr(-,root,root,-)
-
 %_kde_appsdir/kopete_latex
 %_kde_libdir/kde4/kcm_kopete_latex.*
 %_kde_libdir/kde4/kopete_latex.*
@@ -369,7 +361,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopetecontactlist
-%defattr(-,root,root)
 %_kde_libdir/libkopetecontactlist.so.*
 
 #---------------------------------------------
@@ -384,7 +375,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkyahoo
-%defattr(-,root,root)
 %_kde_libdir/libkyahoo.so.*
 
 #---------------------------------------------
@@ -399,7 +389,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopete_videodevice
-%defattr(-,root,root)
 %_kde_libdir/libkopete_videodevice.so.*
 
 #---------------------------------------------
@@ -414,7 +403,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopeteaddaccountwizard
-%defattr(-,root,root)
 %_kde_libdir/libkopeteaddaccountwizard.so.*
 
 #---------------------------------------------
@@ -430,7 +418,6 @@ Obsoletes: %{_lib}kopete5 < 2:3.91-0.689748.1
 KDE 4 library
 
 %files -n %libkopete
-%defattr(-,root,root)
 %_kde_libdir/libkopete.so.*
 %_kde_datadir/config.kcfg/kopetestatussettings.kcfg
 
@@ -446,7 +433,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopeteprivacy
-%defattr(-,root,root)
 %_kde_libdir/libkopeteprivacy.so.*
 
 #---------------------------------------------
@@ -461,7 +447,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopetechatwindow_shared
-%defattr(-,root,root)
 %_kde_libdir/libkopetechatwindow_shared.so.*
 
 #---------------------------------------------
@@ -476,7 +461,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkrdccore
-%defattr(-,root,root)
 %_kde_libdir/libkrdccore.so.*
 
 #---------------------------------------------
@@ -492,7 +476,6 @@ Conflicts: kopete-otr < 0.8
 KDE 4 library
 
 %files -n %libkopete_otr_shared
-%defattr(-,root,root)
 %_kde_libdir/libkopete_otr_shared.so.*
 %dir %_kde_appsdir/kopete_otr
 %_kde_appsdir/kopete_otr/*
@@ -510,7 +493,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopetestatusmenu
-%defattr(-,root,root)
 %_kde_libdir/libkopetestatusmenu.so.*
 
 #---------------------------------------------
@@ -525,7 +507,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopete_oscar
-%defattr(-,root,root)
 %_kde_libdir/libkopete_oscar.so.*
 
 #---------------------------------------------
@@ -540,7 +521,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %liboscar
-%defattr(-,root,root)
 %_kde_libdir/liboscar.so.*
 
 #---------------------------------------------
@@ -555,7 +535,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkopeteidentity
-%defattr(-,root,root)
 %_kde_libdir/libkopeteidentity.so.*
 
 
@@ -571,7 +550,6 @@ Group: System/Libraries
 KDE 4 library
 
 %files -n %libkrfbprivate
-%defattr(-,root,root)
 %_kde_libdir/libkrfbprivate.so.*
 
 #---------------------------------------------
@@ -584,15 +562,11 @@ Requires: ppp
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork-kppp < 2:3.5.10-2
-%endif
 
 %description -n kppp
 %{name} kppp.
 
 %files -n kppp
-%defattr(-,root,root)
 %_kde_appsdir/kppp
 %_kde_bindir/kppp
 %_kde_bindir/kppplogview
@@ -608,16 +582,11 @@ Obsoletes: kdenetwork-kppp < 2:3.5.10-2
 %package -n kppp-provider
 Group: Graphical desktop/KDE
 Summary: List of providers for pppd
-Conflicts: kppp < 3:4.0.83-2
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork-kppp-provider < 2:3.5.10-2
-%endif
 
 %description -n kppp-provider
 List of providers for kppp
 
 %files -n kppp-provider
-%defattr(-,root,root,-)
 %_kde_appsdir/kppp/Rules
 %_kde_appsdir/kppp/Provider
 
@@ -635,7 +604,6 @@ KDE Desktop Sharing allows you to invite somebody at a remote
 location to watch and possibly control your desktop.
 
 %files -n krdc
-%defattr(-,root,root)
 %_kde_bindir/krdc
 %_kde_appsdir/krdc
 %_kde_datadir/applications/kde4/krdc.desktop
@@ -663,16 +631,12 @@ Group:     Graphical desktop/KDE
 Obsoletes: %name-krfb < 2:3.93.0-0.714148.1
 Obsoletes: kde4-krfb < 3:4.0.68
 Provides:  kde4-krfb = %epoch:%version
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork-krfb < 2:3.5.10-2
-%endif
 
 %description -n krfb
 KDE Desktop Sharing allows you to invite somebody at a remote
 location to watch and possibly control your desktop.
 
 %files -n krfb
-%defattr(-,root,root)
 %_kde_bindir/krfb
 %_kde_appsdir/krfb
 %_kde_datadir/applications/kde4/krfb.desktop
@@ -709,7 +673,6 @@ This package contains header files needed if you wish to build applications
 based on %{name}.
 
 %files devel
-%defattr(-,root,root)
 %_kde_libdir/*.so
 %exclude %_kde_libdir/libqgroupwise.so
 %_kde_includedir/*
@@ -729,10 +692,5 @@ based on %{name}.
 %make
 
 %install
-rm -fr %buildroot
 %makeinstall_std -C build
-
-%clean
-rm -fr %buildroot
-
 
