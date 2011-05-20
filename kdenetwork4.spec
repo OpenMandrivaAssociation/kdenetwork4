@@ -10,7 +10,7 @@ Version: 4.6.3
 %if %branch
 Release: 0.%kde_snapshot.1
 %else
-Release: 1
+Release: 2
 %endif
 Epoch: 3
 Group: Graphical desktop/KDE
@@ -559,6 +559,7 @@ Summary: %{name} kppp
 Group: Graphical desktop/KDE
 Conflicts: %name-core < 3:4.5.72
 Requires: ppp
+Requires: kppp-provider
 Obsoletes: %name-kppp < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kppp < 3:4.0.68
 Provides: kde4-kppp = %epoch:%version
