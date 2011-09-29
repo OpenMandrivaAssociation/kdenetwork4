@@ -69,7 +69,6 @@ Networking applications for the K Desktop Environment.
 
 #----------------------------------------------------------------------
 
-%if 0
 %package -n kde4-filesharing
 Summary: %{name} filesharing
 Group: Graphical desktop/KDE
@@ -80,15 +79,8 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 %{name} filesharing.
 
 %files -n kde4-filesharing
-%_kde_libdir/kde4/fileshare_propsdlgplugin.so
-%_kde_libdir/kde4/kcm_fileshare.so
-%_kde_libdir/kde4/kcm_kcmsambaconf.so
-%_kde_datadir/kde4/services/fileshare.desktop
-%_kde_datadir/kde4/services/fileshare_propsdlgplugin.desktop
-%_kde_datadir/kde4/services/kcmsambaconf.desktop
-%_kde_datadir/kde4/services/ServiceMenus/smb2rdc.desktop
-%_kde_iconsdir/*/*/apps/kcmsambaconf.*
-%endif
+%_kde_libdir/kde4/sambausershareplugin.so
+%_kde_datadir/kde4/services/sambausershareplugin.desktop
 
 #---------------------------------------------
 
@@ -582,6 +574,7 @@ location to watch and possibly control your desktop.
 %_kde_datadir/kde4/services/krdc_vnc.desktop
 %_kde_datadir/kde4/services/krdc_vnc_config.desktop
 %_kde_datadir/kde4/servicetypes/krdc_plugin.desktop
+%_kde_datadir/kde4/services/ServiceMenus/smb2rdc.desktop
 %_kde_docdir/HTML/*/krdc
 
 #---------------------------------------------
