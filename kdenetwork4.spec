@@ -69,6 +69,7 @@ Networking applications for the K Desktop Environment.
 
 #----------------------------------------------------------------------
 
+%if 0
 %package -n kde4-filesharing
 Summary: %{name} filesharing
 Group: Graphical desktop/KDE
@@ -87,6 +88,7 @@ Obsoletes: %name-filesharing < 2:3.93.0-0.714148.1
 %_kde_datadir/kde4/services/kcmsambaconf.desktop
 %_kde_datadir/kde4/services/ServiceMenus/smb2rdc.desktop
 %_kde_iconsdir/*/*/apps/kcmsambaconf.*
+%endif
 
 #---------------------------------------------
 
