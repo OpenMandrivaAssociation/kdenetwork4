@@ -1,28 +1,13 @@
-%define branch 0
-%{?_branch: %{expand: %%global branch 1}}
-
-%if %branch
-%define kde_snapshot svn1198704
-%endif
-
 Name: kdenetwork4
-Version: 4.6.4
-%if %branch
-Release: 0.%kde_snapshot.1
-%else
-Release: 2
-%endif
+Version: 4.7.41
+Release: 1
 Epoch: 3
 Group: Graphical desktop/KDE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
-%if %branch
-Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version%kde_snapshot.tar.bz2
-%else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
-%endif
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
@@ -70,20 +55,6 @@ Obsoletes: kdenetwork-kmail < 3.1.6
 Obsoletes: kdenetwork-knode < 3.1.6
 Obsoletes: kdenetwork-korn < 3.1.6
 Obsoletes: lisa < 2:3.5.10-7
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork3 < 2:3.5.9
-Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: kdenetwork-kxmlrpcd < 2:3.5.9
-Obsoletes: lisa< 2:3.5.10-2
-Obsoletes: ksambaplugin <= 0.5
-Obsoletes: kdenetwork-ktalk < 2:3.5.10-2
-Obsoletes: kdenetwork-ksirc < 2:3.5.10-2
-Obsoletes: kdenetwork-kwifimanager < 2:3.5.10-2
-Obsoletes: kdenetwork-kdict < 2:3.5.10-2
-Obsoletes: kdenetwork-knewsticker < 2:3.5.10-2
-Obsoletes: kdenetwork < 2:3.5.10-2
-Obsoletes: kdenetwork-common < 2:3.5.10-2
-%endif
 
 %description
 Networking applications for the K Desktop Environment.
@@ -163,9 +134,6 @@ Conflicts: %name-core < 3:4.5.72
 
 Obsoletes: %name-kget < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kget < 3:4.0.68
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork-kget < 2:3.5.10-2
-%endif
 Provides:  kde4-kget = %epoch:%version
 
 
@@ -218,13 +186,7 @@ Requires: kdepimlibs4-core
 Requires: jasper
 Obsoletes: %name-kopete < 2:3.93.0-0.714148.1
 Obsoletes: kde4-kopete < 3:4.0.68
-%if %mdkversion >= 200910
-Obsoletes: kdenetwork-kopete < 2:3.5.10-2
-Obsoletes: kdenetwork-kopete-nowlistening < %epoch:3.5.4
-%endif
-
 Conflicts: %name-devel < 3:3.96.1-0.740247.1
-
 Provides:  kde4-kopete = %epoch:%version
 
 %description -n kopete
@@ -250,9 +212,6 @@ plugin off of.
 %_kde_bindir/kopete_latexconvert.sh
 %_kde_bindir/winpopup-install
 %_kde_bindir/winpopup-send
-%if 0
-%_kde_bindir/googletalk-call
-%endif
 %_kde_libdir/kde4/kcm_kopete_*
 %_kde_libdir/kde4/kopete_*
 %_kde_libdir/libqgroupwise.so
