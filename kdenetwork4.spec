@@ -3,7 +3,6 @@ Version: 4.7.41
 Release: 1
 Epoch: 3
 Group: Graphical desktop/KDE
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
@@ -641,11 +640,7 @@ based on %{name}.
 #-------------------------------------------
 
 %prep
-%if %branch
-%setup -q -n kdenetwork-%version%kde_snapshot
-%else
 %setup -q -n kdenetwork-%version
-%endif
 
 %build
 %cmake_kde4 -DWITH_GOOGLETALK=OFF
