@@ -134,7 +134,7 @@ Provides:  kde4-kget = %epoch:%version
 An advanced download manager for KDE.
 
 %files -n kget
-%_kde_appsdir/kconf_update/kget-*
+%_kde_appsdir/kconf_update/kget*
 %_kde_bindir/kget
 %dir %_kde_appsdir/kget
 %_kde_appsdir/kget/*
