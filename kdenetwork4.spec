@@ -155,7 +155,7 @@ An advanced download manager for KDE.
 %_kde_appsdir/khtml/kpartplugins/kget_plug_in.desktop
 %_kde_appsdir/kwebkitpart/kpartplugins/kget_plug_in.desktop
 %_kde_appsdir/kwebkitpart/kpartplugins/kget_plug_in.rc
-%_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
+#%_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
 %_kde_libdir/kde4/kcm_kget_mirrorsearchfactory.so
 %_kde_libdir/kde4/kcm_kget_multisegkiofactory.so
 %_kde_libdir/kde4/plasma_kget_barapplet.so
