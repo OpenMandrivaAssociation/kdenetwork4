@@ -7,6 +7,7 @@ Summary: K Desktop Environment - Network Applications
 License: GPL
 URL: http://www.kde.org
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+BuildRequires:	qt4-devel >= 4:4.8.0-0.rc1.1
 BuildRequires: kdelibs4-devel >= 2:4.2.98
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdebase4-workspace-devel
