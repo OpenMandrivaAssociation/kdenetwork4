@@ -273,6 +273,8 @@ plugin off of.
 %_kde_datadir/config.kcfg/urlpicpreview.kcfg
 %_kde_docdir/HTML/*/kopete
 %_kde_libdir/mozilla/plugins/skypebuttons.so
+%dir %_kde_libdir/kde4/plugins/accessible
+%_kde_libdir/kde4/plugins/accessible/chatwindowaccessiblewidgetfactory.so
 %exclude %_kde_appsdir/kopete_latex
 %exclude %_kde_libdir/kde4/kcm_kopete_latex.*
 %exclude %_kde_libdir/kde4/kopete_latex.*
