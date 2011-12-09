@@ -1,5 +1,5 @@
 Name: kdenetwork4
-Version: 4.7.80
+Version: 4.7.90
 Release: 1
 Epoch: 3
 Group: Graphical desktop/KDE
