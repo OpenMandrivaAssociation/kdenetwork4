@@ -21,7 +21,7 @@ BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	strigi-devel
 BuildRequires:	qca2-devel
-BuildRequires:	libortp-devel
+BuildRequires:	pkgconfig(ortp)
 BuildRequires:	speex-devel
 BuildRequires:	idn-devel
 BuildRequires:	libalsa-devel
