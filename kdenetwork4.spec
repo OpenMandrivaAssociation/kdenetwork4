@@ -1,12 +1,12 @@
 Name:		kdenetwork4
-Version: 4.8.1
+Version: 4.8.2
 Release: 1
 Epoch:		3
 Group:		Graphical desktop/KDE
 Summary:	K Desktop Environment - Network Applications
 License:	GPL
 URL:		http://www.kde.org
-Source:		ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.bz2
+Source:		ftp://ftp.kde.org/pub/kde/stable/%version/src/kdenetwork-%version.tar.xz
 Patch0:		kdenetwork-4.6.5-krdcxdg.patch
 Patch1:		kdenetwork-4.6.5-krfbxdg.patch
 BuildRequires:	qt4-devel >= 4:4.8.0-0.rc1.1
