@@ -9,6 +9,7 @@ URL:		http://www.kde.org
 Source:		ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version.tar.xz
 Patch0:		kdenetwork-4.6.5-krdcxdg.patch
 Patch1:		kdenetwork-4.6.5-krfbxdg.patch
+Patch2:		kdenetwork-4.8.95-zero-length-memset.patch
 BuildRequires:	qt4-devel >= 4:4.8.0-0.rc1.1
 BuildRequires:	kdelibs4-devel >= 2:4.2.98
 BuildRequires:	kdepimlibs4-devel
@@ -643,6 +644,7 @@ based on %{name}.
 %setup -q -n kdenetwork-%{version}
 %patch0 -p1 -b .krdcxdg
 %patch1 -p1 -b .krfbxdg
+%patch2 -p1 -b .memset
 
 %build
 %cmake_kde4 -DWITH_GOOGLETALK=OFF
