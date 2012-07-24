@@ -1,44 +1,45 @@
 Name:		kdenetwork4
-Version: 4.8.97
-Release: 1
+Version:	4.8.97
+Release:	2
 Epoch:		3
 Group:		Graphical desktop/KDE
 Summary:	K Desktop Environment - Network Applications
 License:	GPL
 URL:		http://www.kde.org
-Source:		ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdenetwork-%version.tar.xz
-Patch0:		kdenetwork-4.6.5-krdcxdg.patch
-Patch1:		kdenetwork-4.6.5-krfbxdg.patch
+Source:		ftp://ftp.kde.org/pub/kde/unstable/%{version}/src/kdenetwork-%{version}.tar.xz
+Patch0:		kdenetwork-4.8.1-krdcxdg.patch
+Patch1:		kdenetwork-4.8.1-krfbxdg.patch
 Patch2:		kdenetwork-4.8.95-zero-length-memset.patch
-BuildRequires:	qt4-devel >= 4:4.8.0-0.rc1.1
-BuildRequires:	kdelibs4-devel >= 2:4.2.98
-BuildRequires:	kdepimlibs4-devel
-BuildRequires:	kdebase4-workspace-devel
-BuildRequires:	kdebase4-devel
-BuildRequires:	libvncserver-devel >= 0.8.2-3
-BuildRequires:	jpeg-devel
-BuildRequires:	soprano-devel
-BuildRequires:	shared-desktop-ontologies-devel
-BuildRequires:	sqlite3-devel
-BuildRequires:	strigi-devel
-BuildRequires:	qca2-devel
-BuildRequires:	pkgconfig(ortp)
-BuildRequires:	speex-devel
-BuildRequires:	idn-devel
-BuildRequires:	libalsa-devel
-BuildRequires:	libxml2-devel
-BuildRequires:	libxslt-devel
-BuildRequires:	libotr-devel
-BuildRequires:	libmsn-devel
-BuildRequires:	linphone-devel
-BuildRequires:	meanwhile-devel
-BuildRequires:	gadu-devel
-BuildRequires:	v4l-utils-devel
-BuildRequires:	expat-devel
-BuildRequires:	openssl-devel
 BuildRequires:	boost-devel
-BuildRequires:	qimageblitz-devel
+BuildRequires:	expat-devel
+BuildRequires:	jpeg-devel
 BuildRequires:	libktorrent-devel >= 1.1
+BuildRequires:	libvncserver-devel >= 0.8.2-3
+BuildRequires:	kdelibs4-devel
+BuildRequires:	kdepimlibs4-devel
+BuildRequires:	kdebase4-devel
+BuildRequires:	kdebase4-workspace-devel
+BuildRequires:	qt4-devel >= 4:4.8.0
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libgadu)
+BuildRequires:	pkgconfig(libidn)
+BuildRequires:	pkgconfig(libmsn)
+BuildRequires:	pkgconfig(libotr)
+BuildRequires:	pkgconfig(libstreams)
+BuildRequires:	pkgconfig(libv4l2)
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(libxslt)
+BuildRequires:	pkgconfig(linphone)
+BuildRequires:	pkgconfig(meanwhile)
+BuildRequires:	pkgconfig(openssl)
+BuildRequires:	pkgconfig(ortp)
+BuildRequires:	pkgconfig(qca2)
+BuildRequires:	pkgconfig(qimageblitz)
+BuildRequires:	pkgconfig(shared-desktop-ontologies)
+BuildRequires:	pkgconfig(soprano)
+BuildRequires:	pkgconfig(speex)
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(TelepathyQt4)
 Suggests:	kdnssd
 Suggests:	kget
 Suggests:	kopete
@@ -47,17 +48,6 @@ Suggests:	krdc
 Suggests:	krfb
 Suggests:	kde4-filesharing
 Obsoletes:	kdenetwork4-core < 3:4.5.72
-Obsoletes:	kde4-lanbrowsing
-Obsoletes:	kdenetwork-kxmlrpcd
-Obsoletes:	kdenetwork_kroupware
-Obsoletes:	kdenetwork_kroupware-kppp
-Obsoletes:	libkdenetwork_kroupware2
-Obsoletes:	libkdenetwork_kroupware2-devel
-Obsoletes:	kit
-Obsoletes:	kdenetwork-kmail < 3.1.6
-Obsoletes:	kdenetwork-knode < 3.1.6
-Obsoletes:	kdenetwork-korn < 3.1.6
-Obsoletes:	lisa < 2:3.5.10-7
 
 %description
 Networking applications for the K Desktop Environment.
@@ -77,14 +67,13 @@ Networking applications for the K Desktop Environment.
 Summary:	%{name} filesharing
 Group:		Graphical desktop/KDE
 Conflicts:	%{name}-core < 3:4.5.72
-Obsoletes:	%{name}-filesharing < 2:3.93.0-0.714148.1
 
 %description -n kde4-filesharing
 %{name} filesharing.
 
 %files -n kde4-filesharing
 %{_kde_libdir}/kde4/sambausershareplugin.so
-%{_kde_datadir}/kde4/services/sambausershareplugin.desktop
+%{_kde_services}/sambausershareplugin.desktop
 
 #---------------------------------------------
 
@@ -92,9 +81,6 @@ Obsoletes:	%{name}-filesharing < 2:3.93.0-0.714148.1
 Summary:	%{name} kdnssd
 Group:		Graphical desktop/KDE
 Requires:	nss_mdns
-Obsoletes:	%{name}-kdnssd < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-lanbrowsing
-Obsoletes:	kde4-kdnssd < 3:4.0.68
 Provides:	kde4-kdnssd = %{EVRD}
 
 %description -n kdnssd
@@ -105,8 +91,8 @@ Provides:	kde4-kdnssd = %{EVRD}
 %{_kde_appsdir}/remoteview/zeroconf.desktop
 %{_kde_libdir}/kde4/kded_dnssdwatcher.so
 %{_kde_libdir}/kde4/kio_zeroconf.so
-%{_kde_datadir}/kde4/services/kded/dnssdwatcher.desktop
-%{_kde_datadir}/kde4/services/zeroconf.protocol
+%{_kde_services}/kded/dnssdwatcher.desktop
+%{_kde_services}/zeroconf.protocol
 
 #---------------------------------------------
 
@@ -128,45 +114,40 @@ KDE 4 library
 Summary:	%{name} kget
 Group:		Graphical desktop/KDE
 Conflicts:	%{name}-core < 3:4.5.72
-Obsoletes:	%{name}-kget < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-kget < 3:4.0.68
 Provides:	kde4-kget = %{EVRD}
-
 
 %description -n kget
 An advanced download manager for KDE.
 
 %files -n kget
-%{_kde_appsdir}/kconf_update/kget*
 %{_kde_bindir}/kget
-%dir %{_kde_appsdir}/kget
-%{_kde_appsdir}/kget/*
-%{_kde_libdir}/kde4/krunner_kget.so
-%{_kde_libdir}/kde4/kget_*
-%{_kde_libdir}/kde4/plasma_engine_kget.so
-%{_kde_libdir}/kde4/kcm_kget_checksumsearchfactory.so
-%{_kde_libdir}/kde4/kcm_kget_metalinkfactory.so
-%{_kde_libdir}/kde4/kcm_kget_bittorrentfactory.so
-%{_kde_datadir}/kde4/services/plasma-engine-kget.desktop
-%{_kde_datadir}/applications/kde4/kget.desktop
-%{_kde_datadir}/kde4/services/ServiceMenus/kget_download.desktop
-%{_kde_datadir}/config.kcfg/kget*
-%{_kde_datadir}/kde4/services/kget_*
-%{_kde_datadir}/kde4/servicetypes/kget_*
+%{_kde_applicationsdir}/kget.desktop
+%{_kde_appsdir}/kget
+%{_kde_appsdir}/kconf_update/kget*
 %{_kde_appsdir}/dolphinpart/kpartplugins/kget_plug_in.rc
 %{_kde_appsdir}/dolphinpart/kpartplugins/kget_plug_in.desktop
 %{_kde_appsdir}/khtml/kpartplugins/kget_plug_in.rc
 %{_kde_appsdir}/khtml/kpartplugins/kget_plug_in.desktop
 %{_kde_appsdir}/kwebkitpart/kpartplugins/kget_plug_in.desktop
 %{_kde_appsdir}/kwebkitpart/kpartplugins/kget_plug_in.rc
-#%_kde_libdir/kde4/kcm_kget_contentfetchfactory.so
+%{_kde_services}/kget_*
+%{_kde_services}/plasma-engine-kget.desktop
+%{_kde_services}/kgetbarapplet-default.desktop
+%{_kde_services}/kgetpiechartapplet-default.desktop
+%{_kde_services}/plasma-runner-kget.desktop
+%{_kde_services}/ServiceMenus/kget_download.desktop
+%{_kde_servicetypes}/kget_*
+%{_kde_libdir}/kde4/krunner_kget.so
+%{_kde_libdir}/kde4/kget_*
+%{_kde_libdir}/kde4/plasma_engine_kget.so
+%{_kde_libdir}/kde4/kcm_kget_checksumsearchfactory.so
+%{_kde_libdir}/kde4/kcm_kget_metalinkfactory.so
+%{_kde_libdir}/kde4/kcm_kget_bittorrentfactory.so
 %{_kde_libdir}/kde4/kcm_kget_mirrorsearchfactory.so
 %{_kde_libdir}/kde4/kcm_kget_multisegkiofactory.so
 %{_kde_libdir}/kde4/plasma_kget_barapplet.so
 %{_kde_libdir}/kde4/plasma_kget_piechart.so
-%{_kde_datadir}/kde4/services/kgetbarapplet-default.desktop
-%{_kde_datadir}/kde4/services/kgetpiechartapplet-default.desktop
-%{_kde_datadir}/kde4/services/plasma-runner-kget.desktop
+%{_kde_datadir}/config.kcfg/kget*
 %{_kde_datadir}/dbus-1/services/org.kde.kget.service
 %{_kde_iconsdir}/*/*/apps/kget.*
 %{_kde_docdir}/HTML/*/kget
@@ -177,13 +158,10 @@ An advanced download manager for KDE.
 Summary:	%{name} kopete
 Group:		Graphical desktop/KDE
 Conflicts:	%{name}-core < 3:4.5.72
-Requires:	akonadi >= 1:1.1.95
+Requires:	akonadi
 Requires:	qca2-plugin-openssl-%{_lib}
 Requires:	kdepimlibs4-core
 Requires:	jasper
-Obsoletes:	%{name}-kopete < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-kopete < 3:4.0.68
-Conflicts:	%{name}-devel < 3:3.96.1-0.740247.1
 Provides:	kde4-kopete = %{EVRD}
 
 %description -n kopete
@@ -204,39 +182,10 @@ users can use, in addition to templates for new developers to base a
 plugin off of.
 
 %files -n kopete
-%{_kde_appsdir}/kconf_update/kopete-*
 %{_kde_bindir}/kopete
 %{_kde_bindir}/kopete_latexconvert.sh
 %{_kde_bindir}/winpopup-install
 %{_kde_bindir}/winpopup-send
-%{_kde_libdir}/kde4/kcm_kopete_*
-%{_kde_libdir}/kde4/kopete_*
-%{_kde_libdir}/libqgroupwise.so
-%{_kde_libdir}/kde4/libchattexteditpart.so
-%{_kde_datadir}/applications/kde4/kopete.desktop
-%{_kde_datadir}/config/kopeterc
-%{_kde_datadir}/config.kcfg/historyconfig.kcfg
-%{_kde_datadir}/config.kcfg/kopeteappearancesettings.kcfg
-%{_kde_datadir}/config.kcfg/kopetebehaviorsettings.kcfg
-%{_kde_datadir}/config.kcfg/latexconfig.kcfg
-%{_kde_datadir}/config.kcfg/nowlisteningconfig.kcfg
-%{_kde_datadir}/config.kcfg/webpresenceconfig.kcfg
-%{_kde_datadir}/config.kcfg/translatorconfig.kcfg
-%{_kde_datadir}/kde4/services/aim.protocol
-%{_kde_datadir}/kde4/services/chatwindow.desktop
-%{_kde_datadir}/kde4/services/emailwindow.desktop
-%{_kde_datadir}/kde4/services/kconfiguredialog/kopete_*
-%{_kde_datadir}/kde4/services/kopete_*
-%{_kde_datadir}/kde4/services/xmpp.protocol
-%{_kde_datadir}/kde4/services/callto.protocol
-%{_kde_datadir}/kde4/services/skype.protocol
-%{_kde_datadir}/kde4/services/tel.protocol
-%{_kde_datadir}/kde4/servicetypes/kopete*
-%{_kde_datadir}/sounds/Kopete_Event.ogg
-%{_kde_datadir}/sounds/Kopete_Received.ogg
-%{_kde_datadir}/sounds/Kopete_Sent.ogg
-%{_kde_datadir}/sounds/Kopete_User_is_Online.ogg
-%{_kde_datadir}/sounds/KDE-Im-Phone-Ring.wav
 %{_kde_appsdir}/kopete
 %{_kde_appsdir}/kopete_contactnotes
 %{_kde_appsdir}/kopete_history
@@ -250,6 +199,35 @@ plugin off of.
 %{_kde_appsdir}/kopete_groupwise
 %{_kde_appsdir}/kopete_skype
 %{_kde_appsdir}/kopeterichtexteditpart
+%{_kde_appsdir}/kconf_update/kopete-*
+%{_kde_libdir}/kde4/kcm_kopete_*
+%{_kde_libdir}/kde4/kopete_*
+%{_kde_libdir}/libqgroupwise.so
+%{_kde_libdir}/kde4/libchattexteditpart.so
+%{_kde_applicationsdir}/kopete.desktop
+%{_kde_configdir}/kopeterc
+%{_kde_datadir}/config.kcfg/historyconfig.kcfg
+%{_kde_datadir}/config.kcfg/kopeteappearancesettings.kcfg
+%{_kde_datadir}/config.kcfg/kopetebehaviorsettings.kcfg
+%{_kde_datadir}/config.kcfg/latexconfig.kcfg
+%{_kde_datadir}/config.kcfg/nowlisteningconfig.kcfg
+%{_kde_datadir}/config.kcfg/webpresenceconfig.kcfg
+%{_kde_datadir}/config.kcfg/translatorconfig.kcfg
+%{_kde_services}/aim.protocol
+%{_kde_services}/chatwindow.desktop
+%{_kde_services}/emailwindow.desktop
+%{_kde_services}/kconfiguredialog/kopete_*
+%{_kde_services}/kopete_*
+%{_kde_services}/xmpp.protocol
+%{_kde_services}/callto.protocol
+%{_kde_services}/skype.protocol
+%{_kde_services}/tel.protocol
+%{_kde_servicetypes}/kopete*
+%{_kde_datadir}/sounds/Kopete_Event.ogg
+%{_kde_datadir}/sounds/Kopete_Received.ogg
+%{_kde_datadir}/sounds/Kopete_Sent.ogg
+%{_kde_datadir}/sounds/Kopete_User_is_Online.ogg
+%{_kde_datadir}/sounds/KDE-Im-Phone-Ring.wav
 %{_kde_iconsdir}/*/*/actions/account_offline_overlay.*
 %{_kde_iconsdir}/*/*/actions/contact_away_overlay.*
 %{_kde_iconsdir}/*/*/actions/contact_busy_overlay.*
@@ -288,7 +266,7 @@ plugin off of.
 %exclude %{_kde_appsdir}/kopete/icons/oxygen/32x32/apps/latex.png
 #---------------------------------------------
 
-%package  kopete-latex
+%package kopete-latex
 Group:		Graphical desktop/KDE
 Summary:	Kopete latex plugin for write andd read mesages in latex
 Requires:	kopete
@@ -298,14 +276,14 @@ Requires:	imagemagick
 Kopete latex plugin for write andd read mesages in latexinder
 
 %files kopete-latex
+%{_kde_bindir}/kopete_latexconvert.sh
 %{_kde_appsdir}/kopete_latex
+%{_kde_appsdir}/kopete/icons/oxygen/32x32/apps/latex.png
 %{_kde_libdir}/kde4/kcm_kopete_latex.*
 %{_kde_libdir}/kde4/kopete_latex.*
-%{_kde_datadir}/kde4/services/kopete_latex.desktop
 %{_kde_datadir}/config.kcfg/latexconfig.kcfg
-%{_kde_bindir}/kopete_latexconvert.sh
-%{_kde_datadir}/kde4/services/kconfiguredialog/kopete_latex_config.desktop
-%{_kde_appsdir}/kopete/icons/oxygen/32x32/apps/latex.png
+%{_kde_services}/kopete_latex.desktop
+%{_kde_services}/kconfiguredialog/kopete_latex_config.desktop
 
 #---------------------------------------------
 
@@ -370,7 +348,6 @@ KDE 4 library
 %package -n %{libkopete}
 Summary:	KDE 4 library
 Group:		System/Libraries
-Obsoletes:	%{_lib}kopete5 < 2:3.91-0.689748.1
 
 %description -n %{libkopete}
 KDE 4 library
@@ -518,8 +495,6 @@ Group:		Graphical desktop/KDE
 Conflicts:	%{name}-core < 3:4.5.72
 Requires:	ppp
 Requires:	kppp-provider
-Obsoletes:	%{name}-kppp < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-kppp < 3:4.0.68
 Provides:	kde4-kppp = %{EVRD}
 
 %description -n kppp
@@ -529,8 +504,8 @@ Provides:	kde4-kppp = %{EVRD}
 %{_kde_appsdir}/kppp
 %{_kde_bindir}/kppp
 %{_kde_bindir}/kppplogview
-%{_kde_datadir}/applications/kde4/Kppp.desktop
-%{_kde_datadir}/applications/kde4/kppplogview.desktop
+%{_kde_applicationsdir}/Kppp.desktop
+%{_kde_applicationsdir}/kppplogview.desktop
 %{_kde_docdir}/HTML/*/kppp
 %{_kde_iconsdir}/*/*/apps/kppp.*
 %exclude %{_kde_appsdir}/kppp/Rules
@@ -554,8 +529,7 @@ List of providers for kppp
 %package -n krdc
 Summary:	%{name} krdc
 Group:		Graphical desktop/KDE
-Obsoletes:	%{name}-krdc < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-krdc < 3:4.0.68
+Conflicts:	kde4-filesharing < 3:4.8.0
 Provides:	kde4-krdc = %{EVRD}
 
 %description -n krdc
@@ -565,31 +539,34 @@ location to watch and possibly control your desktop.
 %files -n krdc
 %{_kde_bindir}/krdc
 %{_kde_appsdir}/krdc
-%{_kde_datadir}/applications/kde4/krdc.desktop
+%{_kde_applicationsdir}/krdc.desktop
 %{_kde_datadir}/config.kcfg/krdc.kcfg
-%{_kde_datadir}/kde4/services/rdp.protocol
-%{_kde_datadir}/kde4/services/vnc.protocol
 %{_kde_libdir}/kde4/kcm_krdc_rdpplugin.so
 %{_kde_libdir}/kde4/kcm_krdc_vncplugin.so
 %{_kde_libdir}/kde4/krdc_rdpplugin.so
 %{_kde_libdir}/kde4/krdc_testplugin.so
 %{_kde_libdir}/kde4/krdc_vncplugin.so
-%{_kde_datadir}/kde4/services/krdc_rdp.desktop
-%{_kde_datadir}/kde4/services/krdc_rdp_config.desktop
-%{_kde_datadir}/kde4/services/krdc_test.desktop
-%{_kde_datadir}/kde4/services/krdc_vnc.desktop
-%{_kde_datadir}/kde4/services/krdc_vnc_config.desktop
-%{_kde_datadir}/kde4/servicetypes/krdc_plugin.desktop
-%{_kde_datadir}/kde4/services/ServiceMenus/smb2rdc.desktop
+%{_kde_services}/rdp.protocol
+%{_kde_services}/vnc.protocol
+%{_kde_services}/krdc_rdp.desktop
+%{_kde_services}/krdc_rdp_config.desktop
+%{_kde_services}/krdc_test.desktop
+%{_kde_services}/krdc_vnc.desktop
+%{_kde_services}/krdc_vnc_config.desktop
+%{_kde_services}/ServiceMenus/smb2rdc.desktop
+%{_kde_servicetypes}/krdc_plugin.desktop
 %{_kde_docdir}/HTML/*/krdc
+#### Telepathy-Qt4-based optional feature ####
+%{_kde_bindir}/krdc_rfb_approver
+%{_kde_appsdir}/krdc_rfb_approver
+%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.krdc_rfb*.service
+%{_datadir}/telepathy/clients/krdc_rfb*.client
 
 #---------------------------------------------
 
 %package -n krfb
 Summary:	%{name} krfb
 Group:		Graphical desktop/KDE
-Obsoletes:	%{name}-krfb < 2:3.93.0-0.714148.1
-Obsoletes:	kde4-krfb < 3:4.0.68
 Provides:	kde4-krfb = %{EVRD}
 
 %description -n krfb
@@ -599,19 +576,23 @@ location to watch and possibly control your desktop.
 %files -n krfb
 %{_kde_bindir}/krfb
 %{_kde_appsdir}/krfb
-%{_kde_datadir}/applications/kde4/krfb.desktop
+%{_kde_applicationsdir}/krfb.desktop
 %{_kde_libdir}/kde4/krfb_*.so
-%{_kde_datadir}/kde4/service*/krfb*.desktop
+%{_kde_services}/krfb*.desktop
+%{_kde_servicetypes}/krfb*.desktop
 %{_kde_docdir}/HTML/*/krfb
+#### Telepathy-Qt4-based optional feature ####
+%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.krfb_rfb*.service
+%{_datadir}/telepathy/clients/krfb_rfb*.client
+
 
 #---------------------------------------------
 
 %package devel
 Summary:	Devel stuff for %{name}
 Group:		Development/KDE and Qt
-Conflicts:	kdepim <= 3.1.92
-Requires:	kdelibs4-devel >= 2:4.2.98
-Requires:	kdepimlibs4-devel >= 2:4.2.98
+Requires:	kdelibs4-devel
+Requires:	kdepimlibs4-devel
 Requires:	%{libkgetcore} = %{EVRD}
 Requires:	%{libkopetecontactlist} = %{EVRD}
 Requires:	%{libkyahoo} = %{EVRD}
@@ -628,7 +609,7 @@ Requires:	%{libkopete_otr_shared} = %{EVRD}
 Requires:	%{libkopeteidentity} = %{EVRD}
 Requires:	%{libkopetestatusmenu} = %{EVRD}
 
-%description  devel
+%description devel
 This package contains header files needed if you wish to build applications
 based on %{name}.
 
