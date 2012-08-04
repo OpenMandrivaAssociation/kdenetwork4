@@ -1,12 +1,12 @@
 Name:		kdenetwork4
-Version:	4.8.97
-Release:	2
+Version: 4.9.0
+Release: 1
 Epoch:		3
 Group:		Graphical desktop/KDE
 Summary:	K Desktop Environment - Network Applications
 License:	GPL
 URL:		http://www.kde.org
-Source:		ftp://ftp.kde.org/pub/kde/unstable/%{version}/src/kdenetwork-%{version}.tar.xz
+Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/src/kdenetwork-%{version}.tar.xz
 Patch0:		kdenetwork-4.8.1-krdcxdg.patch
 Patch1:		kdenetwork-4.8.1-krfbxdg.patch
 Patch2:		kdenetwork-4.8.95-zero-length-memset.patch
