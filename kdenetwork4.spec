@@ -1,6 +1,6 @@
 Name:		kdenetwork4
 Version: 4.9.0
-Release: 1
+Release: 2
 Epoch:		3
 Group:		Graphical desktop/KDE
 Summary:	K Desktop Environment - Network Applications
