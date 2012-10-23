@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(soprano)
 BuildRequires:	pkgconfig(speex)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(TelepathyQt4)
+BuildRequires:  pkgconfig(xtst)
 Suggests:	kdnssd
 Suggests:	kget
 Suggests:	kopete
