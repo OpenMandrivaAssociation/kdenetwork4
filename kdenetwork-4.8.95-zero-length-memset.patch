@@ -1,0 +1,15 @@
+--- kdenetwork-4.8.95/kopete/protocols/qq/evautil.cpp.orig-memset	2012-07-01 00:51:06.723775500 +0300
++++ kdenetwork-4.8.95/kopete/protocols/qq/evautil.cpp	2012-07-01 00:52:52.442681529 +0300
+@@ -78,7 +78,11 @@
+ 		plain[0] = ( rand() & 0xf8 ) | pos;
+ 		memset( plain_pre, 0, 8 );
+ 		memset( crypted_pre, 0, 8 );
+-		memset( plain+1, rand()& 0xff, pos++ );
++		if (pos > 0)
++		{
++			memset( plain+1, rand()& 0xff, pos );
++		}
++		pos++;
+ 
+ 		// pad 2 bytes
+ 		for( i = 0; i< 2; i++ )
