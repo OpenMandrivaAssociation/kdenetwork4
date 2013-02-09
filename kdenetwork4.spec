@@ -1,5 +1,5 @@
 Name:		kdenetwork4
-Version:	4.9.4
+Version:	4.10.0
 Release:	1
 Epoch:		3
 Group:		Graphical desktop/KDE
@@ -41,6 +41,7 @@ BuildRequires:	pkgconfig(soprano)
 BuildRequires:	pkgconfig(speex)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(TelepathyQt4)
+BuildRequires:	pkgconfig(xtst)
 Suggests:	kdnssd
 Suggests:	kget
 Suggests:	kopete
@@ -636,6 +637,10 @@ based on %{name}.
 %makeinstall_std -C build
 
 %changelog
+* Thu Feb 07 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.0-1
+- New version 4.10.0
+- Add pkgconfig(xtst) to BuildRequires
+
 * Wed Dec 05 2012 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.9.4-1
 - New version 4.9.4
 
