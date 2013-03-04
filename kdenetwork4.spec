@@ -11,7 +11,6 @@ Source1:	kdenetwork4.rpmlintrc
 Patch0:		kdenetwork-4.8.1-krdcxdg.patch
 Patch1:		kdenetwork-4.8.1-krfbxdg.patch
 Patch2:		kdenetwork-4.8.95-zero-length-memset.patch
-Patch3:		kdenetwork-4.10.0-giflib5.patch
 BuildRequires:	boost-devel
 BuildRequires:	expat-devel
 BuildRequires:	jpeg-devel
