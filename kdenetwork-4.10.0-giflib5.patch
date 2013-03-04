@@ -1,0 +1,11 @@
+--- kopete/protocols/wlm/wlmchatsession.cpp.orig	2013-03-04 00:41:12.699520383 +0000
++++ kopete/protocols/wlm/wlmchatsession.cpp	2013-03-04 00:41:19.317520651 +0000
+@@ -525,7 +525,7 @@
+         }
+     }
+ 
+-    GifFile= EGifOpenFileName(QFile::encodeName(filename).constData(), 0);
++    GifFile= EGifOpenFileName(QFile::encodeName(filename).constData(), 0, NULL);
+     if (!GifFile) {
+         FreeMapObject(imageColourmap);
+         FreeMapObject(screenColourmap);
