@@ -12,6 +12,7 @@ Patch0:		kdenetwork-4.8.1-krdcxdg.patch
 Patch1:		kdenetwork-4.8.1-krfbxdg.patch
 Patch2:		kdenetwork-4.8.95-zero-length-memset.patch
 Patch3:		kdenetwork-4.10.0-giflib5.patch
+Patch4:		kdenetwork-4.10.1-krfb-soversion.patch
 BuildRequires:	boost-devel
 BuildRequires:	expat-devel
 BuildRequires:	jpeg-devel
@@ -99,7 +100,8 @@ Provides:	kde4-kdnssd = %{EVRD}
 
 #---------------------------------------------
 
-%define libkgetcore %mklibname kgetcore 4
+%define kgetcore_major 4
+%define libkgetcore %mklibname kgetcore %{kgetcore_major}
 
 %package -n %{libkgetcore}
 Summary:	KDE 4 library
@@ -109,7 +111,7 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkgetcore}
-%{_kde_libdir}/libkgetcore.so.*
+%{_kde_libdir}/libkgetcore.so.%{kgetcore_major}*
 
 #---------------------------------------------
 
@@ -290,7 +292,8 @@ Kopete latex plugin for write andd read mesages in latexinder
 
 #---------------------------------------------
 
-%define libkopetecontactlist %mklibname kopetecontactlist 1
+%define kopetecontactlist_major 1
+%define libkopetecontactlist %mklibname kopetecontactlist %{kopetecontactlist_major}
 
 %package -n %{libkopetecontactlist}
 Summary:	KDE 4 library
@@ -300,11 +303,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopetecontactlist}
-%{_kde_libdir}/libkopetecontactlist.so.*
+%{_kde_libdir}/libkopetecontactlist.so.%{kopetecontactlist_major}*
 
 #---------------------------------------------
 
-%define libkyahoo %mklibname kyahoo 1
+%define kyahoo_major 1
+%define libkyahoo %mklibname kyahoo %{kyahoo_major}
 
 %package -n %{libkyahoo}
 Summary:	KDE 4 library
@@ -314,11 +318,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkyahoo}
-%{_kde_libdir}/libkyahoo.so.*
+%{_kde_libdir}/libkyahoo.so.%{kyahoo_major}*
 
 #---------------------------------------------
 
-%define libkopete_videodevice %mklibname kopete_videodevice 4
+%define kopete_videodevice_major 4
+%define libkopete_videodevice %mklibname kopete_videodevice %{kopete_videodevice_major}
 
 %package -n %{libkopete_videodevice}
 Summary:	KDE 4 library
@@ -328,11 +333,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopete_videodevice}
-%{_kde_libdir}/libkopete_videodevice.so.*
+%{_kde_libdir}/libkopete_videodevice.so.%{kopete_videodevice_major}*
 
 #---------------------------------------------
 
-%define libkopeteaddaccountwizard %mklibname kopeteaddaccountwizard 1
+%define kopeteaddaccountwizard_major 1
+%define libkopeteaddaccountwizard %mklibname kopeteaddaccountwizard %{kopeteaddaccountwizard_major}
 
 %package -n %{libkopeteaddaccountwizard}
 Summary:	KDE 4 library
@@ -342,11 +348,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopeteaddaccountwizard}
-%{_kde_libdir}/libkopeteaddaccountwizard.so.*
+%{_kde_libdir}/libkopeteaddaccountwizard.so.%{kopeteaddaccountwizard_major}*
 
 #---------------------------------------------
 
-%define libkopete %mklibname kopete 4
+%define kopete_major 4
+%define libkopete %mklibname kopete %{kopete_major}
 
 %package -n %{libkopete}
 Summary:	KDE 4 library
@@ -356,12 +363,13 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopete}
-%{_kde_libdir}/libkopete.so.*
+%{_kde_libdir}/libkopete.so.%{kopete_major}*
 %{_kde_datadir}/config.kcfg/kopetestatussettings.kcfg
 
 #---------------------------------------------
 
-%define libkopeteprivacy %mklibname kopeteprivacy 1
+%define kopeteprivacy_major 1
+%define libkopeteprivacy %mklibname kopeteprivacy %{kopeteprivacy_major}
 
 %package -n %{libkopeteprivacy}
 Summary:	KDE 4 library
@@ -371,11 +379,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopeteprivacy}
-%{_kde_libdir}/libkopeteprivacy.so.*
+%{_kde_libdir}/libkopeteprivacy.so.%{kopeteprivacy_major}*
 
 #---------------------------------------------
 
-%define libkopetechatwindow_shared %mklibname kopetechatwindow_shared 1
+%define kopetechatwindow_shared_major 1
+%define libkopetechatwindow_shared %mklibname kopetechatwindow_shared %{kopetechatwindow_shared_major}
 
 %package -n %{libkopetechatwindow_shared}
 Summary:	KDE 4 library
@@ -385,25 +394,28 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopetechatwindow_shared}
-%{_kde_libdir}/libkopetechatwindow_shared.so.*
+%{_kde_libdir}/libkopetechatwindow_shared.so.%{kopetechatwindow_shared_major}*
 
 #---------------------------------------------
 
-%define libkrdccore %mklibname krdccore 1
+%define krdccore_major 4
+%define libkrdccore %mklibname krdccore %{krdccore_major}
 
 %package -n %{libkrdccore}
 Summary:	KDE 4 library
 Group:		System/Libraries
+Obsoletes:	%{_lib}krdccore1 < 3:4.10.1
 
 %description -n %{libkrdccore}
 KDE 4 library
 
 %files -n %{libkrdccore}
-%{_kde_libdir}/libkrdccore.so.*
+%{_kde_libdir}/libkrdccore.so.%{krdccore_major}*
 
 #---------------------------------------------
 
-%define libkopete_otr_shared %mklibname kopete_otr_shared 1
+%define kopete_otr_shared_major 1
+%define libkopete_otr_shared %mklibname kopete_otr_shared %{kopete_otr_shared_major}
 
 %package -n %{libkopete_otr_shared}
 Summary:	KDE 4 library
@@ -414,14 +426,15 @@ Conflicts:	kopete-otr < 0.8
 KDE 4 library
 
 %files -n %{libkopete_otr_shared}
-%{_kde_libdir}/libkopete_otr_shared.so.*
+%{_kde_libdir}/libkopete_otr_shared.so.%{kopete_otr_shared_major}*
 %dir %{_kde_appsdir}/kopete_otr
 %{_kde_appsdir}/kopete_otr/*
 %{_kde_datadir}/config.kcfg/kopete_otr.kcfg
 
 #---------------------------------------------
 
-%define libkopetestatusmenu %mklibname kopetestatusmenu 1
+%define kopetestatusmenu_major 1
+%define libkopetestatusmenu %mklibname kopetestatusmenu %{kopetestatusmenu_major}
 
 %package -n %{libkopetestatusmenu}
 Summary:	KDE 4 library
@@ -431,11 +444,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopetestatusmenu}
-%{_kde_libdir}/libkopetestatusmenu.so.*
+%{_kde_libdir}/libkopetestatusmenu.so.%{kopetestatusmenu_major}*
 
 #---------------------------------------------
 
-%define libkopete_oscar %mklibname kopete_oscar 4
+%define kopete_oscar_major 4
+%define libkopete_oscar %mklibname kopete_oscar %{kopete_oscar_major}
 
 %package -n %{libkopete_oscar}
 Summary:	KDE 4 library
@@ -445,11 +459,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopete_oscar}
-%{_kde_libdir}/libkopete_oscar.so.*
+%{_kde_libdir}/libkopete_oscar.so.%{kopete_oscar_major}*
 
 #---------------------------------------------
 
-%define liboscar %mklibname oscar 1
+%define oscar_major 1
+%define liboscar %mklibname oscar %{oscar_major}
 
 %package -n %{liboscar}
 Summary:	KDE 4 library
@@ -459,11 +474,12 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{liboscar}
-%{_kde_libdir}/liboscar.so.*
+%{_kde_libdir}/liboscar.so.%{oscar_major}*
 
 #---------------------------------------------
 
-%define libkopeteidentity %mklibname kopeteidentity 1
+%define kopeteidentity_major 1
+%define libkopeteidentity %mklibname kopeteidentity %{kopeteidentity_major}
 
 %package -n %{libkopeteidentity}
 Summary:	KDE 4 library
@@ -473,12 +489,13 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkopeteidentity}
-%{_kde_libdir}/libkopeteidentity.so.*
+%{_kde_libdir}/libkopeteidentity.so.%{kopeteidentity_major}*
 
 
 #---------------------------------------------
 
-%define libkrfbprivate %mklibname krfbprivate 4
+%define krfbprivate_major 4
+%define libkrfbprivate %mklibname krfbprivate %{krfbprivate_major}
 
 %package -n %{libkrfbprivate}
 Summary:	KDE 4 library
@@ -488,7 +505,7 @@ Group:		System/Libraries
 KDE 4 library
 
 %files -n %{libkrfbprivate}
-%{_kde_libdir}/libkrfbprivate.so.*
+%{_kde_libdir}/libkrfbprivate.so.%{krfbprivate_major}*
 
 #---------------------------------------------
 
@@ -630,6 +647,7 @@ based on %{name}.
 %patch1 -p1 -b .krfbxdg
 %patch2 -p1 -b .memset
 %patch3 -p1 -b .giflib5
+%patch4 -p1 -b .soversion
 
 %build
 %cmake_kde4 -DWITH_GOOGLETALK=OFF
@@ -642,6 +660,9 @@ based on %{name}.
 * Sat Mar 09 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.1-1
 - New version 4.10.1
 - Add patch to fix build with giflib5
+- Add patch to fix krfb soversion
+- Fix krdccore library package major version
+- Add control over library major versions
 
 * Thu Feb 07 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.0-1
 - New version 4.10.0
