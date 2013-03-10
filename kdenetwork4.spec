@@ -629,7 +629,7 @@ based on %{name}.
 %patch0 -p1 -b .krdcxdg
 %patch1 -p1 -b .krfbxdg
 %patch2 -p1 -b .memset
-%patch3 -p0 -b .giflib5
+%patch3 -p1 -b .giflib5
 
 %build
 %cmake_kde4 -DWITH_GOOGLETALK=OFF
@@ -641,6 +641,7 @@ based on %{name}.
 %changelog
 * Sat Mar 09 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.1-1
 - New version 4.10.1
+- Add patch to fix build with giflib5
 
 * Thu Feb 07 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.0-1
 - New version 4.10.0

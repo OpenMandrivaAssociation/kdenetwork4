@@ -1,11 +1,65 @@
---- kopete/protocols/wlm/wlmchatsession.cpp.orig	2013-03-04 00:41:12.699520383 +0000
-+++ kopete/protocols/wlm/wlmchatsession.cpp	2013-03-04 00:41:19.317520651 +0000
-@@ -525,7 +525,7 @@
+diff -Naur kdenetwork-4.10.0/kopete/protocols/wlm/wlmchatsession.cpp kdenetwork-4.10.0-giflib5/kopete/protocols/wlm/wlmchatsession.cpp
+--- kdenetwork-4.10.0/kopete/protocols/wlm/wlmchatsession.cpp	2013-01-23 22:16:32.000000000 +0000
++++ kdenetwork-4.10.0-giflib5/kopete/protocols/wlm/wlmchatsession.cpp	2013-02-11 15:38:10.483000000 +0000
+@@ -467,11 +467,20 @@
+ {
+ #ifdef HAVE_GIFLIB
+ #ifdef HAVE_GIF_ERROR_STRING // giflib 4.2.0+
++#if GIFLIB_MAJOR >= 5
++        int ErrorCode;
++        const char * errorString = GifErrorString(ErrorCode);
++#else
+         const char * errorString = GifErrorString();
++#endif
+         if (errorString)
+             fprintf(stderr, "GIF-LIB error: %s\n", errorString);
+         else
++#if GIFLIB_MAJOR >= 5
++            fprintf(stderr, "GIF-LIB undefined error.\n");
++#else
+             fprintf(stderr, "GIF-LIB undefined error: %d\n", GifError());
++#endif
+ #else // older giflib versions, libungif
+         PrintGifError();
+ #endif // HAVE_GIF_ERROR_STRING
+@@ -489,12 +498,20 @@
+     ColorMapObject *imageColourmap;
+     QImage img = ink.toImage().convertToFormat(QImage::Format_Indexed8);
+ 
++#if GIFLIB_MAJOR >= 5
++    imageColourmap= GifMakeMapObject(256, NULL);
++#else
+     imageColourmap= MakeMapObject(256, NULL);
++#endif
+     if (!imageColourmap) {
+         return;
+     }
+ 
++#if GIFLIB_MAJOR >= 5
++    screenColourmap= GifMakeMapObject(256, NULL);
++#else
+     screenColourmap= MakeMapObject(256, NULL);
++#endif
+     if (!screenColourmap) {
+         return;
+     }
+@@ -525,10 +542,19 @@
          }
      }
  
--    GifFile= EGifOpenFileName(QFile::encodeName(filename).constData(), 0);
++#if GIFLIB_MAJOR >= 5
 +    GifFile= EGifOpenFileName(QFile::encodeName(filename).constData(), 0, NULL);
++#else
+     GifFile= EGifOpenFileName(QFile::encodeName(filename).constData(), 0);
++#endif
      if (!GifFile) {
++#if GIFLIB_MAJOR >= 5
++        GifFreeMapObject(imageColourmap);
++        GifFreeMapObject(screenColourmap);
++#else
          FreeMapObject(imageColourmap);
          FreeMapObject(screenColourmap);
++#endif
+         return;
+     }
+ 
