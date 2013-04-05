@@ -153,9 +153,11 @@ An advanced download manager for KDE.
 %{_kde_libdir}/kde4/plasma_kget_barapplet.so
 %{_kde_libdir}/kde4/plasma_kget_piechart.so
 %{_kde_datadir}/config.kcfg/kget*
-%{_kde_datadir}/dbus-1/services/org.kde.kget.service
+%{_kde_datadir}/ontology/kde/kget_history.ontology
+%{_kde_datadir}/ontology/kde/kget_history.trig
 %{_kde_iconsdir}/*/*/apps/kget.*
 %{_kde_docdir}/HTML/*/kget
+%{_datadir}/dbus-1/services/org.kde.kget.service
 
 #---------------------------------------------
 
@@ -659,6 +661,7 @@ based on %{name}.
 %changelog
 * Wed Apr 03 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.2-1
 - New version 4.10.2
+- Add new files
 
 * Sat Mar 09 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.1-1
 - New version 4.10.1
