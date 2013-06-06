@@ -1,11 +1,11 @@
+Summary:	K Desktop Environment - Network Applications
 Name:		kdenetwork4
-Version:	4.10.3
+Version:	4.10.4
 Release:	1
 Epoch:		3
 Group:		Graphical desktop/KDE
-Summary:	K Desktop Environment - Network Applications
 License:	GPL
-URL:		http://www.kde.org
+Url:		http://www.kde.org
 Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/src/kdenetwork-%{version}.tar.xz
 Source1:	kdenetwork4.rpmlintrc
 Patch0:		kdenetwork-4.8.1-krdcxdg.patch
@@ -659,6 +659,9 @@ based on %{name}.
 %makeinstall_std -C build
 
 %changelog
+* Wed Jun 05 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.4-1
+- New version 4.10.4
+
 * Tue May 07 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.3-1
 - New version 4.10.3
 
