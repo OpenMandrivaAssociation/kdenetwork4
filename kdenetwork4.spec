@@ -3,8 +3,8 @@ Name:		kdenetwork4
 Version:	4.10.5
 Release:	1
 Epoch:		3
-Group:		Graphical desktop/KDE
 License:	GPL
+Group:		Graphical desktop/KDE
 Url:		http://www.kde.org
 Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/src/kdenetwork-%{version}.tar.xz
 Source1:	kdenetwork4.rpmlintrc
@@ -63,7 +63,6 @@ Networking applications for the K Desktop Environment.
 - krdc: a client for Desktop Sharing and other VNC servers
 
 %files
-%doc README
 
 #----------------------------------------------------------------------
 
@@ -674,7 +673,7 @@ based on %{name}.
 * Wed Jul 03 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.5-1
 - New version 4.10.5
 - New subpackage kdenetwork-strigi-analyzers
-- Update files for kget
+- Update files for kget and for main package (now it's pure metapackage)
 
 * Wed Jun 05 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.4-1
 - New version 4.10.4
