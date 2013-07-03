@@ -610,6 +610,19 @@ location to watch and possibly control your desktop.
 
 #---------------------------------------------
 
+%package -n kdenetwork-strigi-analyzers
+Summary:	KDE network strigi plugins
+Group:		Graphical desktop/KDE
+
+%description -n kdenetwork-strigi-analyzers
+This package provides:
+- Strigi meta information plugin for BitTorrent files (*.torrent).
+
+%files -n kdenetwork-strigi-analyzers
+%{_kde_libdir}/strigi/strigita_torrent_analyzer.so
+
+#---------------------------------------------
+
 %package devel
 Summary:	Devel stuff for %{name}
 Group:		Development/KDE and Qt
@@ -661,6 +674,7 @@ based on %{name}.
 %changelog
 * Wed Jul 03 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.5-1
 - New version 4.10.5
+- New subpackage kdenetwork-strigi-analyzers
 
 * Wed Jun 05 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.4-1
 - New version 4.10.4
