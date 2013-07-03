@@ -108,7 +108,7 @@ Summary:	KDE 4 library
 Group:		System/Libraries
 
 %description -n %{libkgetcore}
-KDE 4 library
+KDE 4 library.
 
 %files -n %{libkgetcore}
 %{_kde_libdir}/libkgetcore.so.%{kgetcore_major}*
@@ -156,7 +156,6 @@ An advanced download manager for KDE.
 %{_kde_datadir}/ontology/kde/kget_history.ontology
 %{_kde_datadir}/ontology/kde/kget_history.trig
 %{_kde_iconsdir}/*/*/apps/kget.*
-%{_kde_docdir}/HTML/*/kget
 %{_datadir}/dbus-1/services/org.kde.kget.service
 
 #---------------------------------------------
@@ -675,6 +674,7 @@ based on %{name}.
 * Wed Jul 03 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.5-1
 - New version 4.10.5
 - New subpackage kdenetwork-strigi-analyzers
+- Update files for kget
 
 * Wed Jun 05 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.10.4-1
 - New version 4.10.4
