@@ -1,9 +1,0 @@
-diff -urN kdenetwork-4.8.1.orig/krfb/krfb/krfb.desktop kdenetwork-4.8.1/krfb/krfb/krfb.desktop
---- kdenetwork-4.8.1.orig/krfb/krfb/krfb.desktop	2012-03-13 15:44:19.500097595 +0400
-+++ kdenetwork-4.8.1/krfb/krfb/krfb.desktop	2012-03-13 15:45:35.629524946 +0400
-@@ -141,4 +141,4 @@
- GenericName[zh_CN]=桌面共享
- GenericName[zh_HK]=桌面分享
- GenericName[zh_TW]=桌面分享
--Categories=Qt;KDE;System;Network;RemoteAccess;
-+Categories=Qt;KDE;System;RemoteAccess;

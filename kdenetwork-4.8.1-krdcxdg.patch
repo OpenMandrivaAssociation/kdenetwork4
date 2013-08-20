@@ -1,9 +1,0 @@
-diff -urN kdenetwork-4.8.1.orig/krdc/krdc.desktop kdenetwork-4.8.1/krdc/krdc.desktop
---- kdenetwork-4.8.1.orig/krdc/krdc.desktop	2012-03-13 15:44:19.583099152 +0400
-+++ kdenetwork-4.8.1/krdc/krdc.desktop	2012-03-13 15:44:51.692701175 +0400
-@@ -119,4 +119,4 @@
- GenericName[zh_CN]=远程桌面客户端
- GenericName[zh_TW]=遠端桌面客戶端
- X-DocPath=krdc/index.html
--Categories=Qt;KDE;Network;RemoteAccess;
-+Categories=Qt;KDE;System;RemoteAccess;

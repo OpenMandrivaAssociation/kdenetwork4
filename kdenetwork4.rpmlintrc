@@ -1,7 +1,0 @@
-# False positives on internal libraries
-addFilter("E: non-versioned-file-in-library-package")
-# False positives on some .desktop files
-addFilter("E: script-without-shebang")
-# False positives on some file names
-addFilter("E: unexpanded-macro .*/usr/share/apps/kppp/Provider")
-
