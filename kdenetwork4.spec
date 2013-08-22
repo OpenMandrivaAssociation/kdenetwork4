@@ -1,11 +1,13 @@
 Summary:	K Desktop Environment - Network Applications
 Name:		kdenetwork4
 Version:	4.11.0
-Release:	1
+Release:	2
 Epoch:		3
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://www.kde.org
+Suggests:	kdenetwork-filesharing
+Suggests:	kdenetwork-strigi-analyzers
 Suggests:	kdnssd
 Suggests:	kget
 Suggests:	kopete
@@ -17,6 +19,8 @@ BuildArch:	noarch
 
 %description
 Networking applications for the K Desktop Environment:
+ - kdenetwork-filesharing: Samba filesharing dialog for KDE
+ - kdenetwork-strigi-analyzers: KDE network strigi plugins
  - kdnssd: DNS-SD service discovery monitor
  - kget: Versatile and user-friendly download manager for KDE
  - kopete: KDE internet messenger
@@ -35,6 +39,10 @@ Networking applications for the K Desktop Environment:
 %install
 
 %changelog
+* Thu Aug 22 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.11.0-2
+- Update Suggests
+- Update description
+
 * Wed Aug 14 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.11.0-1
 - New version 4.11.0
 - Just a metapackage from now on
