@@ -1,6 +1,6 @@
 Summary:	K Desktop Environment - Network Applications
 Name:		kdenetwork4
-Version:	4.12.2
+Version:	4.12.3
 Release:	1
 Epoch:		3
 License:	GPLv2+
@@ -39,6 +39,9 @@ Networking applications for the K Desktop Environment:
 %install
 
 %changelog
+* Tue Mar 04 2014 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.12.3-1
+- New version 4.12.3
+
 * Tue Feb 04 2014 Andrey Bondrov <andrey.bondrov@rosalab.ru> 3:4.12.2-1
 - New version 4.12.2
 
