@@ -5,7 +5,7 @@ Release:	3
 Epoch:		3
 License:	GPLv2+
 Group:		Graphical desktop/KDE
-Url:		http://www.kde.org
+Url:		https://www.kde.org
 Suggests:	kdenetwork-filesharing
 Suggests:	kdenetwork-strigi-analyzers
 Suggests:	kdnssd
